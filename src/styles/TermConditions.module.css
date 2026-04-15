@@ -1,0 +1,11 @@
+.termConditions {
+    background-color: #FFF;
+    width: 80%;
+    height: 70%;
+    border: 2px solid red;
+}
+/*
+.darkMode .termConditions {
+    background-color: #87A6F5;
+}
+*/
