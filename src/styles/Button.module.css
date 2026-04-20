@@ -1,6 +1,7 @@
 .button {
     border-radius: 20px;
     background-color: #87A6F5;
+    color: var(--color-button);
     padding-bottom: 5px;
     padding-top: 5px;
     padding-left: 15px;
@@ -8,5 +9,6 @@
     margin: 5px;
     max-width: 7rem;
     border-style: none;
+    text-decoration: none;
     cursor: pointer;
 }

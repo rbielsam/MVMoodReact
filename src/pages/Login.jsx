@@ -7,10 +7,23 @@ import LeftSection from "../components/LeftSection";
 import RightSection from "../components/RightSection";
 import ImgLogo from "../components/ImgLogo";
 import LoginForm from "../components/LoginForm";
-import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import { useState } from 'react';
+
 
 export default function Login () {
+
+    const [error, setError] = useState("");
+    
+    const getError = (err) => {
+        console.error("Error al conectar con el servidor para enviar los datos de acceso: ", err);
+        setError(err);
+    }
+
+    const deleteError = () => {
+        setError("");
+    }
+
     return (
         <>
             <Header />
@@ -19,12 +32,13 @@ export default function Login () {
                     <ImgLogo />
                 </LeftSection>
                 <RightSection>
-                    <LoginForm />
+                    {error && <p className="error">Error al conectar con el servidor para enviar los datos de acceso</p>}
+                    <LoginForm sendError={getError} deleteErrorMsg={deleteError} />
                     <Link className={styles.button} to="/signup">sign up</Link>
                     <Link className="a" to="/forgotpassword">forgot password?</Link>
                 </RightSection>
             </DivContainer>
             <Footer />
         </>
-    )
+    );
 }

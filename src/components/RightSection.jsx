@@ -1,8 +1,10 @@
 import "../index.css";
 import styles from "../styles/RightSection.module.css";
 
+
 export default function RightSection ({ children, imgLogo, signUpForm, forgotPasswordForm }) {
-    return (
+
+    return (       
         <>
             <section className={styles.rightSection}>
                     {imgLogo}

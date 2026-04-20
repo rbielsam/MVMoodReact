@@ -2,7 +2,7 @@ import "../index.css";
 import Button from "./Button";
 import { useState } from "react";
 
-export default function LoginForm () {
+export default function LoginForm (props) {
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -15,7 +15,7 @@ export default function LoginForm () {
 
         // Llamada a la API de Laravel (BackEnd)
         try {
-            await fetch("http:localhost:8000/api/login", {
+            await fetch("http://localhost:8000/api/login", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
@@ -24,17 +24,24 @@ export default function LoginForm () {
                 })
             });
             
-        } catch (error) {
-            console.error("Error en la petición al servidor: ", error);
+        } catch (err) {
+            console.error("Error en la petición al servidor: ", err);
+            props.sendError("Error al conectar con el servidor para enviar los datos de acceso: ", err);
+            setUser({
+                email: "",
+                password: ""
+            });
         }
     }
 
     const handleUserEmail = (e) => {
         setUser({...user, email: e.target.value}); // Recoge los datos que haya mas el nuevo
+        props.deleteErrorMsg("");
     }
 
     const handleUserPassword = (e) => {
         setUser({...user, password: e.target.value});
+        props.deleteErrorMsg("");
     }
 
     return (

@@ -2,12 +2,13 @@ import '../index.css';
 import { useState } from 'react';
 import Button from './Button';
 
-export default function ForgotPasswordForm() {
+export default function ForgotPasswordForm(props) {
 
     const [email, setEmail] = useState("");
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
+        props.deleteErrorMsg("");
     }
 
 
@@ -27,8 +28,10 @@ export default function ForgotPasswordForm() {
 
             window.location.replace("/");
         }
-        catch (error) {
-            console.error("Error en la petición al servidor: ", error);
+        catch (err) {
+            console.error("Error en la petición al servidor: ", err);
+            props.sendError("Error en la petición al servidor: ", err);
+            setEmail("");
         }
 
     }

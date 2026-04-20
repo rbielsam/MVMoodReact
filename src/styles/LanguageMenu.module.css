@@ -1,0 +1,7 @@
+.languageMenu {
+    background-color: var(--bg-color-languageMenu);
+    color: var(--color-languageMenu);
+    border: var(--border-languageMenu);
+    height: 300px;
+    width: 300px;
+}

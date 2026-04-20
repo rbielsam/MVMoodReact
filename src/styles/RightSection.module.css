@@ -12,7 +12,7 @@
 }
 
 .formContent {
-    background-color: #FFF;
+    background-color: var(--bg-color);
     border-radius: 3vh;
     align-items: center;
     height: auto;
@@ -27,21 +27,6 @@
     padding-bottom: 20px;
 }
 
-.formContent .logoSignUp {
+/*.formContent .logoSignUp {
     align-self: center;
-}
-/*
-.dark-mode .login_content {
-    background-color: #333333;
-    color: #FFF;
-}
-
-.dark-mode {
-    background-color: #333333;
-    color: #FFF;
-}
-
-.dark-mode a {
-    color: #FFF;
-}
-    */
+}*/
