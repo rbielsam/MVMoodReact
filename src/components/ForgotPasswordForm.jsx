@@ -1,14 +1,17 @@
 import '../index.css';
-import { useState } from 'react';
+import { useContext } from 'react';
 import Button from './Button';
+import { UserContext } from '../contexts/user.context.jsx';
+
 
 export default function ForgotPasswordForm(props) {
 
-    const [email, setEmail] = useState("");
+    const {user, setUser, error, setError, resetPassword} = useContext(UserContext);
+
 
     const handleEmail = (e) => {
-        setEmail(e.target.value);
-        props.deleteErrorMsg("");
+        setUser({...user, email: e.target.value});
+        setError("");
     }
 
 
@@ -17,30 +20,16 @@ export default function ForgotPasswordForm(props) {
 
         console.log("Conectando con el servidor...");
 
-        try {
-            await fetch('http://localhost:8000/api/forgotpassword', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: email
-                })
-            })
-
-            window.location.replace("/");
-        }
-        catch (err) {
-            console.error("Error en la petición al servidor: ", err);
-            props.sendError("Error en la petición al servidor: ", err);
-            setEmail("");
-        }
+        resetPassword(user);
 
     }
 
     return (
         <>
             <form onSubmit={handleSubmit}>
+                {error && <p className="error">Error en la petición al servidor: {error.message}</p>}
                 <p>Write your email</p>
-                <input type="email" name="email" placeholder="email" className="imputs" value={email} onChange={handleEmail} required /><br/>
+                <input type="email" name="email" placeholder="email" className="imputs" value={user.email} onChange={handleEmail} required /><br/>
                 <Button>Reset password</Button><br/><br/>
             </form>
         </>
