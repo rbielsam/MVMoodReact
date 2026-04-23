@@ -13,7 +13,6 @@ export default function SignUpForm (props) {
     const handleUserProps = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
         setError("");
-        //props.deleteErrorMsg("");
     }
 
     const handleSubmit = async (e) => {

@@ -2,9 +2,9 @@ import styles from "../styles/LanguageMenu.module.css";
 
 export default function LanguegeMenu () {
     const languages = [
-        {en: "EN",
-        es: "ES",
-        cat: "CAT"}
+        {en: "English",
+        es: "Spanish",
+        cat: "Catalan"}
     ];
 
     return (
