@@ -3,7 +3,9 @@ import '../index.css';
 import styles from '../styles/HeaderIcons.module.css';
 import { useEffect, useState } from "react";
 
+
 export default function ThemeModeIcon () {
+    
     const [isDark, setIsDark] = useState(false);
 
     // Comprobamos si hay un tema guardado al cargar el componente

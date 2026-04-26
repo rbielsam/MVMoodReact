@@ -1,21 +1,20 @@
 import styles from "../styles/LanguageMenu.module.css";
 
-export default function LanguegeMenu () {
+export default function LanguageMenu ({ onClose }) {
+
     const languages = [
-        {en: "English",
-        es: "Spanish",
-        cat: "Catalan"}
+        {lang: "en", name: "English", icon: ""},
+        {lang: "es", name: "Spanish", icon: ""},
+        {lang: "cat", name: "Catalan", icon: ""}
     ];
 
     return (
         <>
             <div className={styles.languageMenu}>
                 <ul>
-                    {languages.map(language => {
-                        return (
-                            <li key={language}>{languages.language}</li>
-                        )
-                    })}
+                    {languages.map(language => (
+                        <li key={language.lang} onClick={() => {onClose()}}>{language.name}</li>
+                    ))}                    
                 </ul>
             </div>
         </>
