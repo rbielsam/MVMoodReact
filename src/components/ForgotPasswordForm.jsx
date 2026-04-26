@@ -2,11 +2,14 @@ import '../index.css';
 import { useContext } from 'react';
 import Button from './Button';
 import { UserContext } from '../contexts/user.context.jsx';
+import { LanguageContext } from '../contexts/language.context.jsx';
 
 
 export default function ForgotPasswordForm(props) {
 
     const {user, setUser, error, setError, resetPassword} = useContext(UserContext);
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.forgotPassword;
 
 
     const handleEmail = (e) => {
@@ -28,9 +31,9 @@ export default function ForgotPasswordForm(props) {
         <>
             <form onSubmit={handleSubmit}>
                 {error && <p className="error">Error en la petición al servidor: {error.message}</p>}
-                <p>Write your email</p>
-                <input type="email" name="email" placeholder="email" className="imputs" value={user.email} onChange={handleEmail} required /><br/>
-                <Button>Reset password</Button><br/><br/>
+                <p>{language.writeEmail}</p>
+                <input type="email" name="email" placeholder={language.email} className="imputs" value={user.email} onChange={handleEmail} required /><br/>
+                <Button>{language.resetPassword}</Button><br/><br/>
             </form>
         </>
     );

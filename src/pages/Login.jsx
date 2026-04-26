@@ -8,9 +8,14 @@ import RightSection from "../components/RightSection";
 import ImgLogo from "../components/ImgLogo";
 import LoginForm from "../components/LoginForm";
 import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import { LanguageContext } from '../contexts/language.context';
 
 
 export default function Login () {
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.login;
 
     return (
         <>
@@ -21,8 +26,8 @@ export default function Login () {
                 </LeftSection>
                 <RightSection>
                     <LoginForm />
-                    <Link className={styles.button} to="/signup">sign up</Link>
-                    <Link className="a" to="/forgotpassword">forgot password?</Link>
+                    <Link className={styles.button} to="/signup">{language.signUp}</Link>
+                    <Link className="a" to="/forgotpassword">{language.forgotPassword}</Link>
                 </RightSection>
             </DivContainer>
             <Footer />
