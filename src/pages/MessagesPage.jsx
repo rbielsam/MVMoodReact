@@ -1,6 +1,6 @@
 import { useState } from 'react';
 //import Header from './Header';
-import Header from '../components/Header';
+import HeaderZara from '../components/HeaderZara';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages/Languages';
 import '../indexZara.css';
@@ -16,7 +16,7 @@ export default function MessagesPage({ data }) {
 
     return (
         <>
-            <Header />
+            <HeaderZara />
             <div className="container">
                 <Sidebar />
                 <div className="main">

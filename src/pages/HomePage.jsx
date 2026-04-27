@@ -2,8 +2,9 @@ import { useState } from 'react';
 //import Header from './Header';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages/Languages';
-import Header from "../components/Header";
+import HeaderZara from "../components/HeaderZara";
 import "../indexZara.css";
+
 
 export default function HomePage({ data }) {
     /*const [likedPosts, setLikedPosts] = useState([]);
@@ -24,8 +25,8 @@ export default function HomePage({ data }) {
 
     return (
         <>
-            <Header>
-            </Header>
+            <HeaderZara>
+            </HeaderZara>
 
             <div className="container">
                 <Sidebar />

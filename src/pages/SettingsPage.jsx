@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Header from '../components/Header';
+import HeaderZara from '../components/HeaderZara';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages//Languages';
 import '../indexZara.css';
@@ -7,8 +7,8 @@ import '../indexZara.css';
 
 export default function SettingsPage() {
     const [profilePic, setProfilePic] = useState('/images/user.png');
-    const [username, setUsername] = useState('User');
-    const [isEditingUsername, setIsEditingUsername] = useState(false);
+    const [nickname, setNickname] = useState('User');
+    const [isEditingNickname, setIsEditingNickname] = useState(false);
     const { t } = useLanguage();
 
     const handleProfilePicChange = (event) => {
@@ -19,19 +19,19 @@ export default function SettingsPage() {
         }
     };
 
-    const handleUsernameChange = (event) => {
+    const handleNicknameChange = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        const newUsername = formData.get('username');
-        if (newUsername.trim()) {
-            setUsername(newUsername.trim());
-            setIsEditingUsername(false);
+        const newNickname = formData.get('nickname');
+        if (newNickname.trim()) {
+            setNickname(newNickname.trim());
+            setIsEditingNickname(false);
         }
     };
 
     return (
         <>
-            <Header />
+            <HeaderZara />
             <div className="container">
                 <Sidebar />
                 <div className="main">
@@ -58,29 +58,29 @@ export default function SettingsPage() {
                                 </div>
                             </div>
                             <div className="profile-details">
-                                <div className="username-section">
-                                    <label className="section-label">Username</label>
-                                    {!isEditingUsername ? (
-                                        <div className="username-display">
-                                            <span className="username-text">{username}</span>
-                                            <button onClick={() => setIsEditingUsername(true)} className="edit-username-btn">
+                                <div className="nickname-section">
+                                    <label className="section-label"><nickname></nickname></label>
+                                    {!isEditingNickname ? (
+                                        <div className="nickname-display">
+                                            <span className="nickname-text">{nickname}</span>
+                                            <button onClick={() => setIsEditingNickname(true)} className="edit-nickname-btn">
                                                 ✏️ Edit
                                             </button>
                                         </div>
                                     ) : (
-                                        <form onSubmit={handleUsernameChange} className="username-edit-form">
+                                        <form onSubmit={handleNicknameChange} className="nickname-edit-form">
                                             <input 
                                                 type="text" 
-                                                name="username" 
-                                                defaultValue={username} 
+                                                name="nickname" 
+                                                defaultValue={nickname} 
                                                 maxLength={20}
                                                 required
-                                                className="username-input"
-                                                placeholder="Enter username"
+                                                className="nick-input"
+                                                placeholder="Enter nickname"
                                             />
                                             <div className="form-actions">
                                                 <button type="submit" className="save-btn">Save</button>
-                                                <button type="button" onClick={() => setIsEditingUsername(false)} className="cancel-btn">Cancel</button>
+                                                <button type="button" onClick={() => setIsEditingNickname(false)} className="cancel-btn">Cancel</button>
                                             </div>
                                         </form>
                                     )}

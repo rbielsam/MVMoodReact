@@ -1,5 +1,5 @@
 //import Header from './Header';
-import Header from '../components/Header';
+import HeaderZara from '../components/HeaderZara';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages/Languages';
 import '../indexZara.css';
@@ -9,8 +9,8 @@ export default function CrearPage({ data }) {
     const { t } = useLanguage();
     return (
         <>
-            <Header>
-            </Header>
+            <HeaderZara>
+            </HeaderZara>
 
             <div className="container">
                 <Sidebar />

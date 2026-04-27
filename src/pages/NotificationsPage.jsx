@@ -1,4 +1,4 @@
-import Header from '../components/Header';
+import HeaderZara from '../components/HeaderZara';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages/Languages';
 import '../indexZara.css';
@@ -9,8 +9,8 @@ export default function NotificationsPage({ data }) {
 
     return (
         <>
-            <Header>
-            </Header>
+            <HeaderZara>
+            </HeaderZara>
 
             <div className="container">
                 <Sidebar />
