@@ -10,7 +10,7 @@ function UserProviderWrapper(props) {
         email: "",
         password: "",
         repeatPassword: "",
-        username: ""
+        nickname: ""
     });
 
     const [error, setError] = useState("");
@@ -55,7 +55,7 @@ function UserProviderWrapper(props) {
                 email: "",
                 password: "",
                 repeatPassword: "",
-                username: ""
+                nickname: ""
             });
         }
 
@@ -71,7 +71,7 @@ function UserProviderWrapper(props) {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(user)/*{
-                    username: user.username,
+                    nickname: user.nickname,
                     email: user.email,
                     user: user.password,
                     repeatPassword: user.repeatPassword
@@ -97,7 +97,7 @@ function UserProviderWrapper(props) {
             setError(err);
 
             setUser({
-                username: "",
+                nickname: "",
                 email: "",
                 password: "",
                 repeatPassword: ""
@@ -131,7 +131,7 @@ function UserProviderWrapper(props) {
             setError(err);
 
             setUser({
-                username: "",
+                nickname: "",
                 email: "",
                 password: "",
                 repeatPassword: ""

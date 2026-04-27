@@ -4,6 +4,11 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import ErrorPage from './pages/ErrorPage';
+import HomePage from './pages/HomePage';
+import CrearPage from './pages/CrearPage';
+import MessagesPage from './pages/MessagesPage';
+import SettingsPage from './pages/SettingsPage';
+import NotificationsPage from './pages/NotificationsPage';
 
 
 function App() {
@@ -14,6 +19,11 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/create" element={<CrearPage />} />
+        <Route path="/messages" element={<MessagesPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
         
         <Route path="*" element={<ErrorPage />} /> // Cualquier ruta que no esté registrada en las Route llevaraá a la página de error
       </Routes>

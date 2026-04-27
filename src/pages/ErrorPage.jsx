@@ -5,7 +5,7 @@ import { LanguageContext } from "../contexts/language.context";
 
 export default function ErrorPage () {
 
-    const {translations, lang, setLang} = useContext(LanguageContext);
+    const {translations, lang} = useContext(LanguageContext);
     const language = lang.content.ErrorPage;
 
     return(
