@@ -1,5 +1,4 @@
 import { useState } from 'react';
-//import Header from './Header';
 import HeaderZara from '../components/HeaderZara';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages/Languages';

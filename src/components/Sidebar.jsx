@@ -14,7 +14,7 @@ export default function Sidebar() {
             <a href="/settings">{t('settings')}</a>
 
             <div className="logout">
-                <a href="/logout">{t('logout')}</a>
+                <a href="/login">{t('logout')}</a>
             </div>
         </div>
     );

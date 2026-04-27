@@ -24,7 +24,10 @@ function UserProviderWrapper(props) {
         try {
             const response = await fetch("http://127.0.0.1:8000/api/login", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
                 body: JSON.stringify(user)
                 /*body: JSON.stringify({
                     email: user.email,
@@ -32,24 +35,30 @@ function UserProviderWrapper(props) {
                 })*/
             });
 
-            if (!response.ok) {
-                const errorResponse = await response.json();
-                throw new Error("Error en el login: ", errorResponse.message);
-                console.error("Error en el login: ", errorResponse.message);
-                setError("Error en el login: ", errorResponse.message);
-            }
-
             const data = await response.json();
             console.log("Login correcto: ", data); //Recibe el objeto con sus atributos
             setMessage("Login correcto: ", data);
 
-            localStorage.setItem("token", data.token);
+            if (!response.ok) {
+                const errorResponse = data.message;
+                console.log(errorResponse);
+                throw new Error("Error en el login: ", errorResponse.message);
+                console.error("Error en el login: ", errorResponse.message);
+                setError("Error en el login: ", errorResponse.message);
 
-            window.location.replace("/home");
+            } else {
+                localStorage.setItem("token", data.token);
+            }
+
+
+            if(localStorage.getItem("token") !== "undefined") {
+                window.location.replace("/home");
+            }
+
             
         } catch (err) {
-            console.error("Error en la petición login al servidor: ", err.message);
-            setError(err);
+            //console.error("Error en la petición login al servidor: ", err.message);
+            //setError(err);
 
             setUser({
                 email: "",
@@ -67,7 +76,7 @@ function UserProviderWrapper(props) {
         //const response = await axios.post("http://localhost:8000/api/signup", {user});
         // Llamada al Back End (Laravel)
         try {
-            const response = await fetch("http://localhost:8000/api/signup", {
+            const response = await fetch("http://localhost:8000/api/register", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(user)/*{
