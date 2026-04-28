@@ -35,7 +35,7 @@ export default function SignUpForm (props) {
                 <br/>
                 <input type="password" name="password" placeholder={language.password} className="imputs" value={user.password} onChange={handleUserProps} required  />
                 <br/>
-                <input type="password" name="repeatPassword" placeholder={language.repeatPassword} className="imputs" value={user.repeatPassword} onChange={handleUserProps} required  />
+                <input type="password" name="password_confirmation" placeholder={language.repeatPassword} className="imputs" value={user.password_confirmation} onChange={handleUserProps} required  />
                 <br/><br/>
                 <Button>{language.signUp}</Button>
                 <br/>

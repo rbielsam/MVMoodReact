@@ -78,7 +78,10 @@ function UserProviderWrapper(props) {
         try {
             const response = await fetch("http://localhost:8000/api/register", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
                 body: JSON.stringify(user)/*{
                     nickname: user.nickname,
                     email: user.email,
@@ -87,19 +90,22 @@ function UserProviderWrapper(props) {
                 })*/                    
             });
 
+            const data = await response.json();
+            console.log("Registro correcto: ",  data);
+            setMessage("Registro correcto: ",  data);
+
             if (!response.ok) {
-                const errorResponse = response.json();
+                const errorResponse = data.messsage;
                 throw new Error("Error en el registro: ", errorResponse.message);
                 console.error("Error en el registro: ", errorResponse.message);
                 setError("Error en el registro: ", errorResponse.message);
             }
 
-            const data = await response.json();
-            console.log("Registro correcto: ",  data);
-            setMessage("Registro correcto: ",  data);
+            else {
+                window.location.replace("/");
+                //<Navigate to={"/"} replace />
+            }
 
-            window.location.replace("/");
-            //<Navigate to={"/"} replace />
         
         } catch (err) {
             console.error("Error en la petición al servidor: ", err.message);
