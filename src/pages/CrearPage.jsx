@@ -5,27 +5,42 @@ import { useLanguage } from '../languages/Languages';
 import '../indexZara.css';
 import { useContext, useState } from 'react';
 import {UserContext} from "../contexts/user.context";
+import Button from '../components/Button';
+import styles from "../styles/Button.module.css";
 
 
 export default function CrearPage({ data }) {
     const { t } = useLanguage();
 
-    const [publicacion, setPublicacion] = useState("");
-    const {user, setUser, error, setError} = useContext(UserContext);
+    const [contenido, setContenido] = useState("");
+    const {error, setError} = useContext(UserContext);
+    const token = localStorage.getItem("token");
 
-    const create = async (e, publicacion) => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Publicación envianda...");
+        create();
+    };
 
-        setPublicacion(e.target.value);
+    const handleContenido = (e) => {
+        setContenido(e.target.value);
+    };
+
+    const create = async () => {
+
+
        //const response = await axios.post("http://localhost:8000/api/signup", {user});
         // Llamada al Back End (Laravel)
         try {
             const response = await fetch("http://localhost:8000/api/create", {
+                
                 method: "POST",
                 headers: {
+                    "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: JSON.stringify(publicacion)           
+                body: JSON.stringify(contenido)           
             });
 
             const data = await response.json();
@@ -34,7 +49,6 @@ export default function CrearPage({ data }) {
 
             if (!response.ok) {
                 const errorResponse = data.messsage;
-                throw new Error("Error en el registro: ", errorResponse.message);
                 console.error("Error en el registro: ", errorResponse.message);
                 setError("Error en el registro: ", errorResponse.message);
             }
@@ -68,13 +82,16 @@ export default function CrearPage({ data }) {
                     <div className="create-post">
                         <h2>{t('create')}</h2>
 
-                        <form onSubmit={create}>
+                        <form onSubmit={handleSubmit}>
                             <textarea
                                 name="contenido"
                                 placeholder="What's on your mind? Share your thoughts, feelings, or updates..."
+                                value={contenido}
+                                onChange={handleContenido}
                                 required
                             />
-                            <button type="submit">{t('send')}</button>
+                            <Button className={styles.button}>{t('send')}</Button>
+                            {/*<button>{t('send')}</button>*/}
                         </form>
                     </div>
                 </div>

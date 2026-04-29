@@ -51,7 +51,7 @@ function UserProviderWrapper(props) {
             }
 
 
-            if(localStorage.getItem("token") !== "undefined") {
+            if(localStorage.getItem("token") && localStorage.getItem("token") !== "undefined") {
                 window.location.replace("/home");
             }
 

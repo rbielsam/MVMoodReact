@@ -7,6 +7,10 @@ import "../indexZara.css";
 
 
 export default function HomePage({ data }) {
+
+    if (!localStorage.getItem("token") || localStorage.getItem("token") == "undefined") {
+        window.location.replace("/");
+    }
     /*const [likedPosts, setLikedPosts] = useState([]);
     const [showComments, setShowComments] = useState([]);*/
     const { t } = useLanguage();
