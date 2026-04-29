@@ -5,6 +5,10 @@ import "../indexZara.css";
 export default function Sidebar() {
     const { t } = useLanguage();
 
+    const logOut = () => {
+        localStorage.removeItem("token");
+    };
+
     return (
         <div className="sidebar">
             <a href="/home">{t('home')}</a>
@@ -14,7 +18,7 @@ export default function Sidebar() {
             <a href="/settings">{t('settings')}</a>
 
             <div className="logout">
-                <a href="/">{t('logout')}</a>
+                <a onClick={logOut} href="/">{t('logout')}</a>
             </div>
         </div>
     );
