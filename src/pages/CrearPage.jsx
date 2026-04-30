@@ -13,8 +13,7 @@ export default function CrearPage({ data }) {
     const { t } = useLanguage();
 
     const [contenido, setContenido] = useState("");
-    const {error, setError} = useContext(UserContext);
-    const token = localStorage.getItem("token");
+    const {error, setError, token} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();

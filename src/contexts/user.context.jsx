@@ -1,7 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+//import { useNavigate } from "react-router-dom";
 
 
 const UserContext = createContext();
+//const navigate = useNavigate();
 
 
 function UserProviderWrapper(props) {
@@ -15,6 +17,16 @@ function UserProviderWrapper(props) {
 
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
+    const [token, setToken] = useState("");
+
+    
+    useEffect(() => {
+        if (token && token !== "undefined") {
+            window.location.replace("/home");
+        }
+    }, [token]);
+
+
 
 
     // Función asíncrona para el Login
@@ -48,12 +60,13 @@ function UserProviderWrapper(props) {
 
             } else {
                 localStorage.setItem("token", data.token);
+                setToken(data.token);
             }
 
 
-            if(localStorage.getItem("token") && localStorage.getItem("token") !== "undefined") {
+            /*if(localStorage.getItem("token") && localStorage.getItem("token") !== "undefined") {
                 window.location.replace("/home");
-            }
+            }*/
 
             
         } catch (err) {
@@ -104,6 +117,7 @@ function UserProviderWrapper(props) {
             else {
                 window.location.replace("/");
                 //<Navigate to={"/"} replace />
+                //navigate("/");
             }
 
         
@@ -155,7 +169,7 @@ function UserProviderWrapper(props) {
     }
     
     return (
-        <UserContext.Provider value={{ user, setUser, login, error, setError, signUp, resetPassword, message }}>
+        <UserContext.Provider value={{ user, setUser, login, error, setError, signUp, resetPassword, message, token }}>
             {props.children}
         </UserContext.Provider>
     );

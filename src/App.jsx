@@ -9,6 +9,7 @@ import CrearPage from './pages/CrearPage';
 import MessagesPage from './pages/MessagesPage';
 import SettingsPage from './pages/SettingsPage';
 import NotificationsPage from './pages/NotificationsPage';
+import ProtectedRoute from './components/utils/ProtectedRoute';
 
 
 function App() {
@@ -19,13 +20,16 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/create" element={<CrearPage />} />
-        <Route path="/messages" element={<MessagesPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
-        
-        <Route path="*" element={<ErrorPage />} /> // Cualquier ruta que no esté registrada en las Route llevaraá a la página de error
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/create" element={<CrearPage />} />
+          <Route path="/messages" element={<MessagesPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/notifications" element={<NotificationsPage />} />
+        </Route>
+      
+        <Route path="*" element={<ErrorPage />} /> // Cualquier ruta que no esté registrada en las Route llevará a la página de error
       </Routes>
     </>
   );
