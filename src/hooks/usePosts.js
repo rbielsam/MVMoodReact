@@ -10,6 +10,7 @@ export function usePosts() {
     const {token, error, setError, message, setMessage} = useContext(UserContext);
     const redirectPath = "/home";
     
+    // Función para crear POSTS
     const create = async (contenido) => {
 
         //const response = await axios.post("http://localhost:8000/api/signup", {user});
@@ -50,5 +51,41 @@ export function usePosts() {
 
     };
 
-    return {create};
+
+    // Función para eliminar POSTS
+    const del = async (id) => {
+
+        // Llamada al BackEnd (Laravel)
+        try {
+            const response = await fetch(`http://localhost:8000/api/publicaciones/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+            });
+
+            const data = await response.json();
+            console.log("Estado de la publicación: ", data);
+
+            if (!response.ok) {
+                const errorResponse = data.message;
+                console.error("Error eliminando el POST: ", errorResponse);
+                setError("Error eliminando el POST: ", errorResponse);
+            }
+
+            else {
+                window.location.replace("/home"); // MEJORAR ESTA LÍNEA ! ! !
+            }
+
+        } catch (err) {
+            console.log("Error en la petición al servidor: ", err.message);
+            setError(err);
+        }
+
+    };
+
+
+    return {create, del};
 }

@@ -16,6 +16,7 @@ export default function HomePage() {
     const [likedPosts, setLikedPosts] = useState([]);
     const [showComments, setShowComments] = useState([]);
     const { t } = useLanguage();
+    const {del} = usePosts();
 
     const toggleLike = (id) => {
         setLikedPosts((prev) =>
@@ -124,7 +125,8 @@ export default function HomePage() {
                                                         className="danger"
                                                         onClick={() => {
                                                             if (confirm('¿Seguro que quieres eliminar esta publicación?')) {
-                                                                window.location.href = '/eliminar/' + p.id;
+                                                                del(p.id);
+                                                                //window.location.href = '/eliminar/' + p.id;
                                                             }
                                                         }}
                                                     >
