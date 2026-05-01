@@ -3,68 +3,40 @@ import HeaderZara from '../components/HeaderZara';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages/Languages';
 import '../indexZara.css';
-import { useContext, useState } from 'react';
+import { useState, useContext } from 'react';
 import {UserContext} from "../contexts/user.context";
 import Button from '../components/Button';
 import styles from "../styles/Button.module.css";
+import { usePosts } from '../hooks/usePosts';
 
 
 export default function CrearPage({ data }) {
-    const { t } = useLanguage();
 
     const [contenido, setContenido] = useState("");
+    const { t } = useLanguage();
+
     const {error, setError, token} = useContext(UserContext);
+    const {create} = usePosts();
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Publicación envianda...");
-        create();
+        console.log("Creando publicación...");
+        const response = create(contenido);
+
+        if (!response.ok) {
+            return;
+        }
+        window.location.replace("/home");
     };
 
     const handleContenido = (e) => {
         setContenido(e.target.value);
     };
-
-    const create = async () => {
-
-
-       //const response = await axios.post("http://localhost:8000/api/signup", {user});
-        // Llamada al Back End (Laravel)
-        try {
-            const response = await fetch("http://localhost:8000/api/create", {
-                
-                method: "POST",
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(contenido)           
-            });
-
-            const data = await response.json();
-            console.log("Publicación creada: ",  data);
-            setMessage("Publicación creada: ",  data);
-
-            if (!response.ok) {
-                const errorResponse = data.messsage;
-                console.error("Error en el registro: ", errorResponse.message);
-                setError("Error en el registro: ", errorResponse.message);
-            }
-
-            else {
-                window.location.replace("/home");
-                //<Navigate to={"/"} replace />
-            }
-
-        
-        } catch (err) {
-            console.error("Error en la petición al servidor: ", err.message);
-            setError(err);
-
-        }
-
-    }
+/*
+                    {data?.mensaje && <p className="ok">{data.mensaje}</p>}
+                    {data?.error && <p className="error">{data.error}</p>}
+*/
 
     return (
         <>
@@ -75,8 +47,7 @@ export default function CrearPage({ data }) {
                 <Sidebar />
 
                 <div className="main">
-                    {data?.mensaje && <p className="ok">{data.mensaje}</p>}
-                    {data?.error && <p className="error">{data.error}</p>}
+
 
                     <div className="create-post">
                         <h2>{t('create')}</h2>

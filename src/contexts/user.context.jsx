@@ -21,12 +21,13 @@ function UserProviderWrapper(props) {
 
     
     useEffect(() => {
-        if (token && token !== "undefined") {
-            window.location.replace("/home");
+        const savedToken = localStorage.getItem("token");
+
+        if (savedToken && savedToken !== "undefined") {
+            setToken(savedToken);
+            //window.location.replace("/home");
         }
     }, [token]);
-
-
 
 
     // Función asíncrona para el Login
@@ -54,20 +55,15 @@ function UserProviderWrapper(props) {
             if (!response.ok) {
                 const errorResponse = data.message;
                 console.log(errorResponse);
-                throw new Error("Error en el login: ", errorResponse.message);
-                console.error("Error en el login: ", errorResponse.message);
-                setError("Error en el login: ", errorResponse.message);
+                throw new Error("Error en el login: ", errorResponse);
+                console.error("Error en el login: ", errorResponse);
+                setError("Error en el login: ", errorResponse);
 
             } else {
                 localStorage.setItem("token", data.token);
                 setToken(data.token);
-            }
-
-
-            /*if(localStorage.getItem("token") && localStorage.getItem("token") !== "undefined") {
                 window.location.replace("/home");
-            }*/
-
+            }
             
         } catch (err) {
             //console.error("Error en la petición login al servidor: ", err.message);
@@ -82,6 +78,7 @@ function UserProviderWrapper(props) {
         }
 
     }
+    
 
     // Función asíncrona para el Sign Up
     const signUp = async (user) => {
