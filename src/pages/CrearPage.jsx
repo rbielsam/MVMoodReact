@@ -8,6 +8,7 @@ import {UserContext} from "../contexts/user.context";
 import Button from '../components/Button';
 import styles from "../styles/Button.module.css";
 import { usePosts } from '../hooks/usePosts';
+import Footer from '../components/Footer';
 
 
 export default function CrearPage({ data }) {
@@ -66,6 +67,8 @@ export default function CrearPage({ data }) {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 }

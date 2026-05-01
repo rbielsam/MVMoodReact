@@ -3,6 +3,7 @@ import HeaderZara from '../components/HeaderZara';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages//Languages';
 import '../indexZara.css';
+import Footer from '../components/Footer';
 
 
 export default function SettingsPage() {
@@ -98,6 +99,8 @@ export default function SettingsPage() {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 }

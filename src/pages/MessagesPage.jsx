@@ -3,6 +3,7 @@ import HeaderZara from '../components/HeaderZara';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages/Languages';
 import '../indexZara.css';
+import Footer from '../components/Footer';
 
 
 export default function MessagesPage({ data }) {
@@ -54,6 +55,8 @@ export default function MessagesPage({ data }) {
                     )}
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 }
