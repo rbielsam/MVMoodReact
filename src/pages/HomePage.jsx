@@ -34,6 +34,8 @@ export default function HomePage() {
 
     const getPosts = async () => {
         try {
+            console.log("Token que se envia: ", token);
+
             const response = await fetch("http://localhost:8000/api/home", {
                 method: "GET",
                 headers: {
@@ -67,8 +69,8 @@ export default function HomePage() {
                 <Sidebar />
 
                 <div className="main">
-                    {publicaciones?.mensaje && <p className="ok">{publicaciones.mensaje}</p>}
-                    {publicaciones?.error && <p className="error">{publicaciones.error}</p>}
+                    {/* {publicaciones?.mensaje && <p className="ok">{publicaciones.mensaje}</p>}
+                    {publicaciones?.error && <p className="error">{publicaciones.error}</p>} */}
 
                     {!publicaciones?.data || publicaciones.data.length === 0 ? (
                         <div className="post">

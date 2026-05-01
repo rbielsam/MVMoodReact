@@ -17,7 +17,7 @@ function UserProviderWrapper(props) {
 
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState( localStorage.getItem("token") || "");
 
     
     useEffect(() => {
@@ -27,7 +27,7 @@ function UserProviderWrapper(props) {
             setToken(savedToken);
             //window.location.replace("/home");
         }
-    }, [token]);
+    }, []);
 
 
     // Función asíncrona para el Login

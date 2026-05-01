@@ -37,7 +37,6 @@ export function usePosts() {
             }
 
             else {
-                setContenido(data.message);
                 window.location.replace("/home");
                 //return <Navigate to={redirectPath} replace />
             }
