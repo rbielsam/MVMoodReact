@@ -1,6 +1,6 @@
 //import { Navigate } from "react-router-dom";
 
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../contexts/user.context";
 import CrearPage from "../pages/CrearPage";
 
@@ -8,7 +8,39 @@ import CrearPage from "../pages/CrearPage";
 export function usePosts() {
 
     const {token, error, setError, message, setMessage} = useContext(UserContext);
+    const [publicaciones, setPublicaciones] = useState([]);
     const redirectPath = "/home";
+
+
+    // Función para obtener los POSTS
+    const getPosts = async () => {
+        try {
+            console.log("Token que se envia: ", token);
+
+            const response = await fetch("http://localhost:8000/api/home", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    //"Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                //body: JSON.stringify({contenido})           
+            });
+
+            const result = await response.json();
+            
+            if (!response.ok) {
+                throw new Error("No se pueden cargar las peticiones");
+            }
+
+            setPublicaciones(result);
+
+        } catch (err) {
+            console.log("Error al conectar con el servidor", err);
+            setError(err.message);
+        }
+    };
+
     
     // Función para crear POSTS
     const create = async (contenido) => {
@@ -117,5 +149,5 @@ export function usePosts() {
     };
 
 
-    return {create, del};
+    return {getPosts, create, del, publicaciones};
 }

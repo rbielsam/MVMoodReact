@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-//import Header from './Header';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages/Languages';
 import HeaderZara from "../components/HeaderZara";
@@ -13,14 +12,17 @@ import Button from '../components/Button';
 
 export default function HomePage() {
 
-    const {token, error, setError} = useContext(UserContext);
-    const [publicaciones, setPublicaciones] = useState([]);
+    //const {error, setError} = useContext(UserContext);
+    const [showCreatePost, setShowCreatePost] = useState(false);
+
+    const [showEditPost, setShowEditPost] = useState(false);
+
+    const { t } = useLanguage();
+    const {getPosts, del, publicaciones} = usePosts();
+
+
     const [likedPosts, setLikedPosts] = useState([]);
     const [showComments, setShowComments] = useState([]);
-    const [showEditPost, setShowEditPost] = useState(false);
-    const [showCreatePost, setShowCreatePost] = useState(false);
-    const { t } = useLanguage();
-    const {del} = usePosts();
 
     const toggleLike = (id) => {
         setLikedPosts((prev) =>
@@ -28,154 +30,128 @@ export default function HomePage() {
         );
     };
 
-    useEffect(() => {
-        getPosts();
-    }, []);
-
     const toggleComments = (id) => {
         setShowComments((prev) =>
             prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
         );
     };
 
-    const getPosts = async () => {
-        try {
-            console.log("Token que se envia: ", token);
 
-            const response = await fetch("http://localhost:8000/api/home", {
-                method: "GET",
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                    //"Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                //body: JSON.stringify({contenido})           
-            });
+    useEffect(() => {
+        getPosts();
+    }, []);
 
-            const result = await response.json();
-            
-            if (!response.ok) {
-                throw new Error("No se pueden cargar las peticiones");
-            }
-
-            setPublicaciones(result);
-
-        } catch (err) {
-            console.log("Error al conectar con el servidor", err);
-            setError(err.message);
-        }
-    };
 
     return (
         <>
-            <HeaderZara>
-                </HeaderZara>
+            <HeaderZara />
 
-                <div className="container">
-                    <Sidebar />
+            <div className="container">
+                <Sidebar />
 
-                    <div className="main">
-                        {publicaciones?.mensaje && <p className="ok">{publicaciones.mensaje}</p>}
-                        {publicaciones?.error && <p className="error">{publicaciones.error}</p>} 
+                <div className="main">
+                    {publicaciones?.mensaje && <p className="ok">{publicaciones.mensaje}</p>}
+                    {publicaciones?.error && <p className="error">{publicaciones.error}</p>} 
 
-                        <Button onClick={() => setShowCreatePost(!showCreatePost)}>
-                            {showCreatePost ? "Close" : "Create Post"}
-                        </Button>
+                    <Button onClick={() => setShowCreatePost(!showCreatePost)}>
+                        {showCreatePost ? "Close" : "Create Post"}
+                    </Button>
 
-                        {showCreatePost && (<CreatePostForm />)}
+                    {showCreatePost && (<CreatePostForm />)}
 
-                        {!publicaciones?.data || publicaciones.data.length === 0 ? (
-                            <div className="post">
-                                <p>{t('no_posts')}</p>
-                            </div>
-                        ) : (
-                            publicaciones.data.map((p) => (
-                                <div className="post" key={p.id}>
+                    {!publicaciones?.data || publicaciones.data.length === 0 ? (
+                        <div className="post">
+                            <p>{t('no_posts')}</p>
+                        </div>
+                    ) : (
+                        publicaciones.data.map((p) => (
+                            <div className="post" key={p.id}>
 
-                                    <div className="post-content">{p.contenido}</div>
+                                <div className="post-content">{p.contenido}</div>
 
-                                    {showComments.includes(p.id) && (
-                                        <div className="comment-section">
-                                            <form>
-                                                <textarea placeholder={t('type_message')} rows={2}></textarea>
-                                                <button type="submit">{t('comment')}</button>
-                                            </form>
-                                        </div>
-                                    )}
+                                {showComments.includes(p.id) && (
+                                    <div className="comment-section">
+                                        <form>
+                                            <textarea placeholder={t('type_message')} rows={2}></textarea>
+                                            <button type="submit">{t('comment')}</button>
+                                        </form>
+                                    </div>
+                                )}
 
-                                    <div className="post-actions">
+                                <div className="post-actions">
+                                    <button
+                                        className={`like-btn ${likedPosts.includes(p.id) ? 'liked' : ''}`}
+                                        onClick={() => toggleLike(p.id)}
+                                        title={t('like')}
+                                    >
+                                        ❤️ {p.likes_count || 0}
+                                    </button>
+                                    <button
+                                        className="comment-btn"
+                                        onClick={() => toggleComments(p.id)}
+                                        title={t('comment')}
+                                    >
+                                        💬 {p.comments || 0}
+                                    </button>
+                                    <div className="menu-container" style={{ position: 'relative' }}>
                                         <button
-                                            className={`like-btn ${likedPosts.includes(p.id) ? 'liked' : ''}`}
-                                            onClick={() => toggleLike(p.id)}
-                                            title={t('like')}
+                                            className="menu-btn"
+                                            title="More options"
+                                            onClick={(event) => {
+                                                const next = event.currentTarget.nextElementSibling;
+                                                next?.classList.toggle('show');
+                                            }}
                                         >
-                                            ❤️ {p.likes_count || 0}
+                                            ⋮
                                         </button>
-                                        <button
-                                            className="comment-btn"
-                                            onClick={() => toggleComments(p.id)}
-                                            title={t('comment')}
-                                        >
-                                            💬 {p.comments || 0}
-                                        </button>
-                                        <div className="menu-container" style={{ position: 'relative' }}>
-                                            <button
-                                                className="menu-btn"
-                                                title="More options"
-                                                onClick={(event) => {
-                                                    const next = event.currentTarget.nextElementSibling;
-                                                    next?.classList.toggle('show');
-                                                }}
-                                            >
-                                                ⋮
-                                            </button>
-                                            <div className="menu-options">
-                                                {(publicaciones?.session?.rol === 'admin' || p.idUsuario === publicaciones?.session?.id) && (
-                                                    <button
-                                                        className="danger"
-                                                        onClick={() => {
-                                                            if (confirm('¿Seguro que quieres eliminar esta publicación?')) {
-                                                                del(p.id);
-                                                                //window.location.href = '/eliminar/' + p.id;
-                                                            }
-                                                        }}
-                                                    >
-                                                        {t('delete')}
-                                                    </button>
+                                        <div className="menu-options">
+                                            {(publicaciones?.session?.rol === 'admin' || p.idUsuario === publicaciones?.session?.id) && (
+                                                <button
+                                                    className="danger"
+                                                    onClick={() => {
+                                                        if (confirm('¿Seguro que quieres eliminar esta publicación?')) {
+                                                            del(p.id);
+                                                            //window.location.href = '/eliminar/' + p.id;
+                                                        }
+                                                    }}
+                                                >
+                                                    {t('delete')}
+                                                </button>
+                                            )}
+                            
+
+                                            <button onClick={() => {
+                                                setShowEditPost(true);
+                                            }}>Edit</button>
+                                                {showEditPost && (
+                                                    <div className="create-post">
+                                                        <h2>{t('create')}</h2>
+                                
+                                                        <form onSubmit={update()}>
+                                                            <textarea
+                                                                name="contenido"
+                                                                placeholder="What's on your mind? Share your thoughts, feelings, or updates..."
+                                                                value={p.contenido}
+                                                                onChange={handleContenido}
+                                                                required
+                                                            />
+                                                            <Button className={styles.button}>{t('send')}</Button>
+                                                            {/*<button>{t('send')}</button>*/}
+                                                        </form>
+                                                    </div>
                                                 )}
-                               
 
-                                                <button onClick={() => {
-                                                    setShowEditPost(true);
-                                                }}>Edit</button>
-                                                    {showEditPost && (
-                                                        <div className="create-post">
-                                                            <h2>{t('create')}</h2>
-                                    
-                                                            <form onSubmit={update()}>
-                                                                <textarea
-                                                                    name="contenido"
-                                                                    placeholder="What's on your mind? Share your thoughts, feelings, or updates..."
-                                                                    value={p.contenido}
-                                                                    onChange={handleContenido}
-                                                                    required
-                                                                />
-                                                                <Button className={styles.button}>{t('send')}</Button>
-                                                                {/*<button>{t('send')}</button>*/}
-                                                            </form>
-                                                        </div>
-                                                    )}
-
-                                            
-                                                <button>Reportar</button>
-                                            </div>
+                                        
+                                            <button>Reportar</button>
                                         </div>
                                     </div>
                                 </div>
-                            ))
-                        )}
-                    </div>
+                            </div>
+                        ))
+                    )}
                 </div>
+            </div>
+            
             <Footer />
         </>
     );
