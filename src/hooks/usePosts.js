@@ -80,10 +80,40 @@ export function usePosts() {
             }
 
         } catch (err) {
-            console.log("Error en la petición al servidor: ", err.message);
+            console.error("Error en la petición al servidor: ", err.message);
             setError(err);
         }
 
+    };
+
+
+    // Función para editar POSTS
+    const update = async (id) => {
+
+        // Llamada al BackEnd (Laravel)
+        try {
+            const response = await fetch(`http://localhost:8000/api/publicaciones/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Äuthorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+            });
+
+            const data = await response.json();
+            console.log("Estado de la publicación: ", data);
+
+            if (!response.ok) {
+                const errorResponse = data.message;
+                console.error("Error editando el POST: ", errorResponse);
+                setError("Error editando el POST: ", errorResponse);
+            }
+
+        } catch (err) {
+            console.error("Error en la petición al servidor: ", err.message);
+            setError(err);
+        }
     };
 
 

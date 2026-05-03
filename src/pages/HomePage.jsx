@@ -7,14 +7,18 @@ import "../indexZara.css";
 import { usePosts } from '../hooks/usePosts';
 import { UserContext } from '../contexts/user.context';
 import Footer from "../components/Footer";
+import CreatePostForm from '../components/CreatePostForm';
+import Button from '../components/Button';
 
 
 export default function HomePage() {
 
     const {token, error, setError} = useContext(UserContext);
-    const [publicaciones, setPublicaciones] = useState();
+    const [publicaciones, setPublicaciones] = useState([]);
     const [likedPosts, setLikedPosts] = useState([]);
     const [showComments, setShowComments] = useState([]);
+    const [showEditPost, setShowEditPost] = useState(false);
+    const [showCreatePost, setShowCreatePost] = useState(false);
     const { t } = useLanguage();
     const {del} = usePosts();
 
@@ -73,6 +77,12 @@ export default function HomePage() {
                     <div className="main">
                         {publicaciones?.mensaje && <p className="ok">{publicaciones.mensaje}</p>}
                         {publicaciones?.error && <p className="error">{publicaciones.error}</p>} 
+
+                        <Button onClick={() => setShowCreatePost(!showCreatePost)}>
+                            {showCreatePost ? "Close" : "Create Post"}
+                        </Button>
+
+                        {showCreatePost && (<CreatePostForm />)}
 
                         {!publicaciones?.data || publicaciones.data.length === 0 ? (
                             <div className="post">
@@ -133,6 +143,30 @@ export default function HomePage() {
                                                         {t('delete')}
                                                     </button>
                                                 )}
+                               
+
+                                                <button onClick={() => {
+                                                    setShowEditPost(true);
+                                                }}>Edit</button>
+                                                    {showEditPost && (
+                                                        <div className="create-post">
+                                                            <h2>{t('create')}</h2>
+                                    
+                                                            <form onSubmit={update()}>
+                                                                <textarea
+                                                                    name="contenido"
+                                                                    placeholder="What's on your mind? Share your thoughts, feelings, or updates..."
+                                                                    value={p.contenido}
+                                                                    onChange={handleContenido}
+                                                                    required
+                                                                />
+                                                                <Button className={styles.button}>{t('send')}</Button>
+                                                                {/*<button>{t('send')}</button>*/}
+                                                            </form>
+                                                        </div>
+                                                    )}
+
+                                            
                                                 <button>Reportar</button>
                                             </div>
                                         </div>
