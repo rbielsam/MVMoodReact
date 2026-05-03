@@ -120,17 +120,19 @@ export function usePosts() {
 
 
     // Función para editar POSTS
-    const update = async (id) => {
+    const update = async (postId, contenido) => {
 
         // Llamada al BackEnd (Laravel)
         try {
-            const response = await fetch(`http://localhost:8000/api/publicaciones/${id}`, {
+            const response = await fetch(`http://localhost:8000/api/publicaciones/${postId}`, {
                 method: "PUT",
                 headers: {
-                    "Äuthorization": `Bearer ${token}`,
+                    "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
+                body: JSON.stringify({ contenido })
+                
             });
 
             const data = await response.json();
@@ -142,6 +144,8 @@ export function usePosts() {
                 setError("Error editando el POST: ", errorResponse);
             }
 
+            return data;
+
         } catch (err) {
             console.error("Error en la petición al servidor: ", err.message);
             setError(err);
@@ -149,5 +153,5 @@ export function usePosts() {
     };
 
 
-    return {getPosts, create, del, publicaciones};
+    return {getPosts, create, del, update, publicaciones};
 }

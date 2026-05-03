@@ -8,14 +8,16 @@ import { UserContext } from '../contexts/user.context';
 import Footer from "../components/Footer";
 import CreatePostForm from '../components/CreatePostForm';
 import Button from '../components/Button';
+import EditPostForm from '../components/EditPostForm';
 
 
 export default function HomePage() {
 
     //const {error, setError} = useContext(UserContext);
     const [showCreatePost, setShowCreatePost] = useState(false);
-
     const [showEditPost, setShowEditPost] = useState(false);
+    const [editPostId, setEditPostId] = useState(null);
+    const [editPostContent, setEditPostContent] = useState("");
 
     const { t } = useLanguage();
     const {getPosts, del, publicaciones} = usePosts();
@@ -121,26 +123,18 @@ export default function HomePage() {
                             
 
                                             <button onClick={() => {
-                                                setShowEditPost(true);
-                                            }}>Edit</button>
-                                                {showEditPost && (
-                                                    <div className="create-post">
-                                                        <h2>{t('create')}</h2>
-                                
-                                                        <form onSubmit={update()}>
-                                                            <textarea
-                                                                name="contenido"
-                                                                placeholder="What's on your mind? Share your thoughts, feelings, or updates..."
-                                                                value={p.contenido}
-                                                                onChange={handleContenido}
-                                                                required
-                                                            />
-                                                            <Button className={styles.button}>{t('send')}</Button>
-                                                            {/*<button>{t('send')}</button>*/}
-                                                        </form>
-                                                    </div>
-                                                )}
+                                                setEditPostId(p.id);
+                                                setEditPostContent(p.contenido);
+                                            }}>{t('edit')}</button>
 
+                                            {editPostId === p.id && (
+                                                <EditPostForm
+                                                    postId={editPostId}
+                                                    initialContent={editPostContent}
+                                                    onCancel={() => setEditPostId(null)}
+                                                    onSuccess={() => {getPosts(); setEditPostId(null);}}
+                                                />
+                                            )}
                                         
                                             <button>Reportar</button>
                                         </div>

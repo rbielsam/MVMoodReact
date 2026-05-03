@@ -6,25 +6,23 @@ import Button from '../components/Button';
 import { usePosts } from '../hooks/usePosts';
 
 
-export default function CreatePostForm() {
+export default function EditPostForm({ postId, initialContent, onCancel, onSuccess }) {
 
-    const [contenido, setContenido] = useState("");
+    const [contenido, setContenido] = useState(initialContent);
     const { t } = useLanguage();
-
     const {error, setError, token} = useContext(UserContext);
-    const {create} = usePosts();
+    const {update} = usePosts();
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Creando publicación...");
+        console.log("Editando publicación...");
+        
+        const response = await update(postId, contenido);
 
-        const response = create(contenido);
-
-        if (response?.error) {
-            return;
+        if (!response?.error) {
+            onSuccess();
         }
-        setContenido("");
     };
 
     const handleContenido = (e) => {
@@ -38,7 +36,7 @@ export default function CreatePostForm() {
     return (
         <>
             <div className="create-post">
-                <h2>{t('create')}</h2>
+                <h2>{t('edit')}</h2>
 
                 <form onSubmit={handleSubmit}>
                     <textarea
