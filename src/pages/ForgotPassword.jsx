@@ -12,12 +12,14 @@ export default function ForgotPassword () {
 
     return (
         <>
-            <Header />
-            <DivContainer>
+            <div className='container'>
+                <Header />
+                <DivContainer>
                 <LeftSection imgLogo={<ImgLogo />} />
                 <RightSection forgotPasswordForm={<ForgotPasswordForm />} />
-            </DivContainer>
-            <Footer />
+                </DivContainer>
+                <Footer />
+            </div>
         </>
     );
-}
+} 

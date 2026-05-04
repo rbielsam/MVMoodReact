@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import { usePosts } from '../hooks/usePosts';
 
 
-export default function CreatePostForm() {
+export default function CreatePostForm({ onCreated }) {
 
     const [contenido, setContenido] = useState("");
     const { t } = useLanguage();
@@ -19,12 +19,15 @@ export default function CreatePostForm() {
         e.preventDefault();
         console.log("Creando publicación...");
 
-        const response = create(contenido);
+        const response = await create(contenido);
 
         if (response?.error) {
             return;
         }
+        
         setContenido("");
+        onCreated();
+
     };
 
     const handleContenido = (e) => {

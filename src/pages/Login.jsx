@@ -19,18 +19,20 @@ export default function Login () {
 
     return (
         <>
-            <Header />
-            <DivContainer>
-                <LeftSection>
-                    <ImgLogo />
-                </LeftSection>
-                <RightSection>
-                    <LoginForm />
-                    <Link className={styles.button} to="/signup">{language.signUp}</Link>
-                    <Link className="a" to="/forgotpassword">{language.forgotPassword}</Link>
-                </RightSection>
-            </DivContainer>
-            <Footer />
+            <div className='container'>
+                <Header />
+                <DivContainer>
+                    <LeftSection>
+                        <ImgLogo />
+                    </LeftSection>
+                    <RightSection>
+                        <LoginForm />
+                        <Link className={styles.button} to="/signup">{language.signUp}</Link>
+                        <Link className="a" to="/forgotpassword">{language.forgotPassword}</Link>
+                    </RightSection>
+                </DivContainer>
+                <Footer />
+            </div>
         </>
     );
 }

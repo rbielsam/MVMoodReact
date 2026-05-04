@@ -12,12 +12,14 @@ export default function SignUp () {
 
     return (
         <>
-            <Header />
-            <DivContainer>
-                <LeftSection termConditions={<TermConditions />} />
-                <RightSection imgLogo={<ImgLogo />} signUpForm={<SignUpForm />} />   
-            </DivContainer>
-            <Footer />
+            <div className="container">
+                <Header />
+                <DivContainer>
+                    <LeftSection termConditions={<TermConditions />} />
+                    <RightSection imgLogo={<ImgLogo />} signUpForm={<SignUpForm />} />   
+                </DivContainer>
+                <Footer />
+            </div>
         </>
     );
 }

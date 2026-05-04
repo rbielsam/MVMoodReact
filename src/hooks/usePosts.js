@@ -2,7 +2,6 @@
 
 import { useState, useContext } from "react";
 import { UserContext } from "../contexts/user.context";
-import CrearPage from "../pages/CrearPage";
 
 
 export function usePosts() {
@@ -64,13 +63,14 @@ export function usePosts() {
             //setMessage("Publicación creada: ",  data);
 
             if (!response.ok) {
-                const errorResponse = data.messsage;
+                const errorResponse = data.message;
                 console.error("Error en la creación del POST: ", errorResponse);
-                setError("Error en la creación del POST: ", errorResponse);
+                setError(`Error en la creación del POST: ${errorResponse}`);
             }
 
             else {
-                window.location.replace("/home");
+                return data;
+                //window.location.replace("/home");
                 //return <Navigate to={redirectPath} replace />
             }
 
@@ -108,7 +108,8 @@ export function usePosts() {
             }
 
             else {
-                window.location.replace("/home"); // MEJORAR ESTA LÍNEA ! ! !
+                return data;
+                //window.location.replace("/home"); // MEJORAR ESTA LÍNEA ! ! !
             }
 
         } catch (err) {
