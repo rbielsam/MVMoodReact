@@ -1,26 +1,27 @@
 import '../indexZara.css';
-import { usePosts } from '../hooks/usePosts';
+//import { usePosts } from '../hooks/usePosts';
 import { useState } from 'react';
 import { useLanguage } from '../languages/Languages';
 import Button from './Button';
 
 
-export default function Post({ post, updated, deleted }) {
+export default function Post({ post, updated, deleted, del, update, publicaciones, like }) {
     
-    const {del, update, publicaciones} = usePosts();
+    //const {del, update, publicaciones} = usePosts();
 
-    const [likedPosts, setLikedPosts] = useState([]);
+
     const [showComments, setShowComments] = useState([]);
     const { t } = useLanguage();
     const [editPost, setEditPost] = useState(false);
     const [editPostContent, setEditPostContent] = useState(post.contenido);
+    const [liked, setLiked] = useState(false);
 
 
-    const toggleLike = (id) => {
+    /*const toggleLike = (id) => {
         setLikedPosts((prev) =>
             prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
         );
-    };
+    };*/
 
     const toggleComments = (id) => {
         setShowComments((prev) =>
@@ -36,7 +37,7 @@ export default function Post({ post, updated, deleted }) {
 
 
 
-
+    // Guardar editar POST
     const handleSave = async () => {
         const response = await update(post.id, editPostContent);
 
@@ -46,6 +47,19 @@ export default function Post({ post, updated, deleted }) {
         }
     }
 
+
+    // Recibir like del Backend
+    const handleLike = async () => {
+        const response = await like(post.id);
+
+        if (!response?.error) {
+            setLiked(true);
+            updated();
+        }
+        else {
+            console.log("No se puede dar a like: ", response.message);
+        }
+    }
 
     return (
         <>
@@ -83,13 +97,17 @@ export default function Post({ post, updated, deleted }) {
                 )}
 
                 <div className="post-actions">
-                    <button
+                    <button className='like-btn' onClick={handleLike}>
+                        ❤️ {post.likes_count || 0}
+                    </button>
+
+                    {/*<button
                         className={`like-btn ${likedPosts.includes(post.id) ? 'liked' : ''}`}
                         onClick={() => toggleLike(post.id)}
                         title={t('like')}
                     >
                         ❤️ {post.likes_count || 0}
-                    </button>
+                    </button>*/}
                     <button
                         className="comment-btn"
                         onClick={() => toggleComments(post.id)}

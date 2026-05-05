@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import CreatePostForm from '../components/CreatePostForm';
 import Button from '../components/Button';
 import Post from '../components/Post';
+import { useLikes } from '../hooks/useLikes';
 
 
 export default function HomePage() {
@@ -16,7 +17,8 @@ export default function HomePage() {
     //const {error, setError} = useContext(UserContext);
     const [showCreatePost, setShowCreatePost] = useState(false);
     const { t } = useLanguage();
-    const {getPosts, create, publicaciones} = usePosts();
+    const {getPosts, create, publicaciones, update, del} = usePosts();
+    const {like} = useLikes();
 
 
     useEffect(() => {
@@ -58,7 +60,7 @@ export default function HomePage() {
                     ) : (
                         publicaciones.data.map((p) => (
                             <div className="post" key={p.id}>
-                                <Post post={p} updated={getPosts} deleted={getPosts} />
+                                <Post post={p} update={update} del={del} updated={getPosts} deleted={getPosts} like={like} />
                             </div>
                         ))
                     )}
