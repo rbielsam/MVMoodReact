@@ -10,6 +10,7 @@ import CreatePostForm from '../components/CreatePostForm';
 import Button from '../components/Button';
 import Post from '../components/Post';
 import { useLikes } from '../hooks/useLikes';
+import { useComments } from "../hooks/useComments";
 
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
     const { t } = useLanguage();
     const {getPosts, create, publicaciones, update, del} = usePosts();
     const {like} = useLikes();
+    const {getComments, createComment} = useComments();
 
 
     useEffect(() => {
@@ -60,7 +62,7 @@ export default function HomePage() {
                     ) : (
                         publicaciones.data.map((p) => (
                             <div className="post" key={p.id}>
-                                <Post post={p} update={update} del={del} updated={getPosts} deleted={getPosts} like={like} />
+                                <Post post={p} update={update} del={del} updated={getPosts} deleted={getPosts} like={like} getComments={getComments} createComment={createComment} />
                             </div>
                         ))
                     )}

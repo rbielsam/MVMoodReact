@@ -27,6 +27,7 @@ export function usePosts() {
             });
 
             const result = await response.json();
+            console.log(result.data);
             
             if (!response.ok) {
                 throw new Error("No se pueden cargar las peticiones");

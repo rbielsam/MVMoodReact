@@ -5,36 +5,16 @@ import { useLanguage } from '../languages/Languages';
 import Button from './Button';
 
 
-export default function Post({ post, updated, deleted, del, update, publicaciones, like }) {
+export default function Post({ post, updated, deleted, del, update, publicaciones, like, getComments, createComment }) {
     
     //const {del, update, publicaciones} = usePosts();
-
-
-    const [showComments, setShowComments] = useState([]);
     const { t } = useLanguage();
     const [editPost, setEditPost] = useState(false);
     const [editPostContent, setEditPostContent] = useState(post.contenido);
     const [liked, setLiked] = useState(false);
-
-
-    /*const toggleLike = (id) => {
-        setLikedPosts((prev) =>
-            prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-        );
-    };*/
-
-    const toggleComments = (id) => {
-        setShowComments((prev) =>
-            prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-        );
-    };
-
-    const handleComments = (e) => {
-        e.preventDefault();
-    }
-
-
-
+    const [showComments, setShowComments] = useState(false);
+    const [commentList, setCommentList] = useState([]);
+    const [contenido, setContenido] = useState("");
 
 
     // Guardar editar POST
@@ -58,6 +38,55 @@ export default function Post({ post, updated, deleted, del, update, publicacione
         }
         else {
             console.log("No se puede dar a like: ", response.message);
+        }
+    }
+
+
+    // Lógica para comentarios
+    const handleComment = (id) => {
+        setShowComments(!showComments);
+    };
+
+    /*const showCommentsMenu = async () => { // Abrir menú y cargar comentarios
+        setShowComments(!showComments);
+
+        if (!showComments) {
+            const response = await getComments(post.id);
+
+            if (!response?.error) {
+                setCommentList(response);
+            }
+        }
+    };*/
+
+    const showCommentsMenu = () => {
+        setShowComments((prev) => {
+            const next = !prev;
+
+            if (next) {
+                getComments(post.id).then((response) => {
+                    if (!response?.error) {
+                        setCommentList(response);
+                    }
+                });
+            }
+            return next;
+        });
+    };
+
+
+    const handleComments = async (e) => { // Hacer comentario y guardar
+        e.preventDefault();
+
+        const response = await createComment(post.id, contenido);
+
+        if (!response?.error) {
+            setContenido("");
+            setShowComments(false);
+
+            const updateListComments = await getComments(post.id);
+            setCommentList(updateListComments);
+            updated();
         }
     }
 
@@ -87,34 +116,48 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                     </>
                 )}
 
-                {showComments.includes(post.id) && (
+                {showComments && (
                     <div className="comment-section">
-                        <form onSubmit={handleComemnts}>
-                            <textarea placeholder={t('type_message')} rows={2}></textarea>
+                        <form onSubmit={handleComments}>
+
+                            <textarea placeholder={t('type_message')}
+                                rows={2}
+                                value={contenido}
+                                onChange={(e) => setContenido(e.target.value)}>
+                            </textarea>
+
                             <button type="submit">{t('comment')}</button>
                         </form>
+
+                        <div className='comments-list'>
+                            {commentList.length === 0 ? (
+                                <p>No hay comentarios</p>
+                            ) : (
+                                commentList.map((comment) => (
+                                    <div key={comment.uuid} className="comment">
+                                        <p>
+                                            <strong>{comment.user?.nickname}</strong>:
+                                        </p>
+                                        <p>{comment.contenido}</p>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+
                     </div>
                 )}
 
                 <div className="post-actions">
-                    <button className='like-btn' onClick={handleLike}>
+                    {/* Botón like */}
+                    <button className='like-btn' onClick={handleLike} title={t('like')}>
                         ❤️ {post.likes_count || 0}
                     </button>
 
-                    {/*<button
-                        className={`like-btn ${likedPosts.includes(post.id) ? 'liked' : ''}`}
-                        onClick={() => toggleLike(post.id)}
-                        title={t('like')}
-                    >
-                        ❤️ {post.likes_count || 0}
-                    </button>*/}
-                    <button
-                        className="comment-btn"
-                        onClick={() => toggleComments(post.id)}
-                        title={t('comment')}
-                    >
-                        💬 {post.comments || 0}
+                    {/* Botón comentarios */}
+                    <button className="comment-btn" onClick={showCommentsMenu} title={t('comment')}>                    
+                        💬 {post.comentarios_count || 0}
                     </button>
+                    
                     <div className="menu-container" style={{ position: 'relative' }}>
                         <button
                             className="menu-btn"
