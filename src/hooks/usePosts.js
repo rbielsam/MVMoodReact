@@ -43,20 +43,20 @@ export function usePosts() {
 
     
     // Función para crear POSTS
-    const create = async (contenido) => {
+    const create = async (formData/*contenido*/) => {
 
         //const response = await axios.post("http://localhost:8000/api/signup", {user});
         // Llamada al Back End (Laravel)
         try {
-            const response = await fetch("http://localhost:8000/api/create", {
-                
+            const response = await fetch("http://localhost:8000/api/create", {                
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json",
+                    //"Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: JSON.stringify({contenido})           
+                //body: JSON.stringify({formData/*contenido*/})    
+                body: formData       
             });
 
             const data = await response.json();
@@ -122,19 +122,20 @@ export function usePosts() {
 
 
     // Función para editar POSTS
-    const update = async (postId, contenido) => {
+    const update = async (postId, formData/*contenido*/) => {
 
+        formData.append("_method", "PUT")
         // Llamada al BackEnd (Laravel)
         try {
             const response = await fetch(`http://localhost:8000/api/publicaciones/${postId}`, {
-                method: "PUT",
+                method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json",
+                    //"Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: JSON.stringify({ contenido })
-                
+                //body: JSON.stringify({ formData/*contenido*/ })
+                body: formData
             });
 
             const data = await response.json();

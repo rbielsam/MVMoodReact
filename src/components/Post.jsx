@@ -15,11 +15,21 @@ export default function Post({ post, updated, deleted, del, update, publicacione
     const [showComments, setShowComments] = useState(false);
     const [commentList, setCommentList] = useState([]);
     const [contenido, setContenido] = useState("");
+    const [newImagen, setNewImagen] = useState(null);
 
 
     // Guardar editar POST
     const handleSave = async () => {
-        const response = await update(post.id, editPostContent);
+
+        const formData = new FormData();
+        formData.append("contenido", editPostContent);
+
+        if (newImagen) {
+            formData.append("imagen", newImagen);
+        }
+
+        const response = await update(post.id, formData);
+        //const response = await update(post.id, editPostContent);
 
         if (!response?.error) {
             updated();
@@ -95,14 +105,22 @@ export default function Post({ post, updated, deleted, del, update, publicacione
             <div className="post">
                 {editPost ? (
                     <div className='post-content'>
+                        <img src={`http://localhost:8000/storage/${post.imagen}`} />
                         <textarea
                             value={editPostContent}
                             onChange={(e) => setEditPostContent(e.target.value)}
                         />
+                        <input type="file" name="imagen" onChange={(e) => setNewImagen(e.target.files[0])} />
                     </div>
 
                 ) : (
-                    <div className="post-content">{post.contenido}</div>
+                    <div className="post-content">
+                        {post.imagen && (
+                            <img src={`http://localhost:8000/storage/${post.imagen}`} />
+                        )}
+                        <p>{post.contenido}</p>
+                    </div>
+
                 )}
 
                 {editPost && (

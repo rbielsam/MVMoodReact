@@ -13,19 +13,28 @@ export default function CreatePostForm({ onCreated }) {
 
     const {error, setError, token} = useContext(UserContext);
     const {create} = usePosts();
+    const [imagen, setImagen] = useState(null);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Creando publicación...");
 
-        const response = await create(contenido);
+        const formData = new FormData();
+        formData.append("contenido", contenido);
+
+        if (imagen) formData.append("imagen", imagen);
+
+        const response = await create(formData);
+
+        //const response = await create(contenido);
 
         if (response?.error) {
             return;
         }
         
         setContenido("");
+        setImagen(null);
         onCreated();
 
     };
@@ -51,6 +60,8 @@ export default function CreatePostForm({ onCreated }) {
                         onChange={handleContenido}
                         required
                     />
+                    <input type="file" name="imagen" onChange={(e) => {console.log("Imagen: ", e); setImagen(e.target.files[0])}} />
+
                     <Button>{t('send')}</Button>
                     {/*<button>{t('send')}</button>*/}
                 </form>
