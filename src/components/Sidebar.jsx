@@ -13,6 +13,7 @@ export default function Sidebar() {
         <div className="sidebar">
             <a href="/home">{t('home')}</a>
             <a href="/notifications">{t('notifications')}</a>
+            <a href="/chat">{t('chat')}</a>
             <a href="/messages">{t('messages')}</a>
             <a href="/settings">{t('settings')}</a>
 
