@@ -765,6 +765,13 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
     align-items: center;
 }
 
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
 .action-btn {
     background: transparent;
     border: none;

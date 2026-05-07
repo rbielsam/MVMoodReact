@@ -1,9 +1,14 @@
-import { useLanguage } from '../languages/Languages';
+//import { useLanguage } from '../languages/Languages';
 import "../indexZara.css";
+import { useContext } from 'react';
+import { LanguageContext } from '../contexts/language.context';
 
 
 export default function Sidebar() {
-    const { t } = useLanguage();
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.HomePage;
+   // const { t } = useLanguage();
 
     const logOut = () => {
         localStorage.removeItem("token");
@@ -11,14 +16,13 @@ export default function Sidebar() {
 
     return (
         <div className="sidebar">
-            <a href="/home">{t('home')}</a>
-            <a href="/notifications">{t('notifications')}</a>
-            <a href="/chat">{t('chat')}</a>
-            <a href="/messages">{t('messages')}</a>
-            <a href="/settings">{t('settings')}</a>
+            <a href="/home">{language.home}</a>
+            <a href="/notifications">{language.notifications}</a>
+            <a href="/chat">{language.chat}</a>
+            <a href="/settings">{language.settings}</a>
 
             <div className="logout">
-                <a onClick={logOut} href="/">{t('logout')}</a>
+                <a onClick={logOut} href="/">{language.logout}</a>
             </div>
         </div>
     );

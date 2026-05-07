@@ -1,14 +1,16 @@
 import '../indexZara.css';
 //import { usePosts } from '../hooks/usePosts';
-import { useState } from 'react';
-import { useLanguage } from '../languages/Languages';
+import { useState, useContext } from 'react';
+//import { useLanguage } from '../languages/Languages';
 import Button from './Button';
+import { LanguageContext } from '../contexts/language.context';
 
 
 export default function Post({ post, updated, deleted, del, update, publicaciones, like, getComments, createComment }) {
     
-    //const {del, update, publicaciones} = usePosts();
-    const { t } = useLanguage();
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.Post;
+
     const [editPost, setEditPost] = useState(false);
     const [editPostContent, setEditPostContent] = useState(post.contenido);
     const [liked, setLiked] = useState(false);
@@ -16,6 +18,9 @@ export default function Post({ post, updated, deleted, del, update, publicacione
     const [commentList, setCommentList] = useState([]);
     const [contenido, setContenido] = useState("");
     const [newImagen, setNewImagen] = useState(null);
+
+    //const {del, update, publicaciones} = usePosts();
+    //const { t } = useLanguage();
 
 
     // Guardar editar POST
@@ -102,119 +107,118 @@ export default function Post({ post, updated, deleted, del, update, publicacione
 
     return (
         <>
-            <div className="post">
-                {editPost ? (
-                    <div className='post-content'>
+            {editPost ? (
+                <div className='post-content'>
+                    <img src={`http://localhost:8000/storage/${post.imagen}`} />
+                    <textarea
+                        value={editPostContent}
+                        onChange={(e) => setEditPostContent(e.target.value)}
+                    />
+                    <input type="file" name="imagen" onChange={(e) => setNewImagen(e.target.files[0])} />
+                </div>
+
+            ) : (
+                <div className="post-content">
+                    <p>{post.contenido}</p>
+
+                    {post.imagen && (
                         <img src={`http://localhost:8000/storage/${post.imagen}`} />
-                        <textarea
-                            value={editPostContent}
-                            onChange={(e) => setEditPostContent(e.target.value)}
-                        />
-                        <input type="file" name="imagen" onChange={(e) => setNewImagen(e.target.files[0])} />
-                    </div>
+                    )}
+                </div>
 
-                ) : (
-                    <div className="post-content">
-                        {post.imagen && (
-                            <img src={`http://localhost:8000/storage/${post.imagen}`} />
+            )}
+
+            {editPost && (
+                <>
+                    <Button onClick={handleSave}>
+                        {language.save}
+                    </Button>
+                    <Button onClick={() => setEditPost(false)}>
+                        {language.language}
+                    </Button>
+                </>
+            )}
+
+            {showComments && (
+                <div className="comment-section">
+                    <form onSubmit={handleComments}>
+
+                        <textarea placeholder={language.type_message}
+                            rows={2}
+                            value={contenido}
+                            onChange={(e) => setContenido(e.target.value)}>
+                        </textarea>
+
+                        <button type="submit">{language.comment}</button>
+                    </form>
+
+                    <div className='comment-list'>
+                        {commentList.length === 0 ? (
+                            <p>{language.no_comments_yet}</p>
+                        ) : (
+                            commentList.map((comment) => (
+                                <div key={comment.uuid} className="comment-item">
+                                    <p>
+                                        <strong>{comment.user?.nickname}</strong>
+                                    </p>
+                                    <p>{comment.contenido}</p>
+                                </div>
+                            ))
                         )}
-                        <p>{post.contenido}</p>
                     </div>
 
-                )}
+                </div>
+            )}
 
-                {editPost && (
-                    <>
-                        <Button onClick={handleSave}>
-                            {t('save')}
-                        </Button>
-                        <Button onClick={() => setEditPost(false)}>
-                            {t('cancel')}
-                        </Button>
-                    </>
-                )}
+            <div className="post-actions">
+                {/* Botón like */}
+                <button className='like-btn' onClick={handleLike} title={language.like}>
+                    ❤️ {post.likes_count || 0}
+                </button>
 
-                {showComments && (
-                    <div className="comment-section">
-                        <form onSubmit={handleComments}>
-
-                            <textarea placeholder={t('type_message')}
-                                rows={2}
-                                value={contenido}
-                                onChange={(e) => setContenido(e.target.value)}>
-                            </textarea>
-
-                            <button type="submit">{t('comment')}</button>
-                        </form>
-
-                        <div className='comments-list'>
-                            {commentList.length === 0 ? (
-                                <p>No hay comentarios</p>
-                            ) : (
-                                commentList.map((comment) => (
-                                    <div key={comment.uuid} className="comment">
-                                        <p>
-                                            <strong>{comment.user?.nickname}</strong>:
-                                        </p>
-                                        <p>{comment.contenido}</p>
-                                    </div>
-                                ))
-                            )}
-                        </div>
-
-                    </div>
-                )}
-
-                <div className="post-actions">
-                    {/* Botón like */}
-                    <button className='like-btn' onClick={handleLike} title={t('like')}>
-                        ❤️ {post.likes_count || 0}
+                {/* Botón comentarios */}
+                <button className="comment-btn" onClick={showCommentsMenu} title={language.comment}>                    
+                    💬 {post.comentarios_count || 0}
+                </button>
+                
+                <div className="menu-container" style={{ position: 'relative' }}>
+                    <button
+                        className="menu-btn"
+                        title="More options"
+                        onClick={(event) => {
+                            const next = event.currentTarget.nextElementSibling;
+                            next?.classList.toggle('show');
+                        }}
+                    >
+                        ⋮
                     </button>
 
-                    {/* Botón comentarios */}
-                    <button className="comment-btn" onClick={showCommentsMenu} title={t('comment')}>                    
-                        💬 {post.comentarios_count || 0}
-                    </button>
+                    {/* Menú opciones POSTS */}
+                    <div className="menu-options">
+                        {(publicaciones?.session?.rol === 'admin' || post.idUsuario === publicaciones?.session?.id) && (
+                            
+                            // Botón eliminar POST
+                            <button
+                                className="danger"
+                                onClick={() => {
+                                    if (confirm("{language.sure_delete_post}")) {
+                                        del(post.id);
+                                        deleted();
+                                    }
+                                }}
+                            >
+                                {language.delete}
+                            </button>
+                        )}
+        
+                        {/* Botón editar POST */}
+
+                        <Button onClick={() => {setEditPost(true); setEditPostContent(post.contenido)}}>
+                            {language.edit}
+                        </Button>
                     
-                    <div className="menu-container" style={{ position: 'relative' }}>
-                        <button
-                            className="menu-btn"
-                            title="More options"
-                            onClick={(event) => {
-                                const next = event.currentTarget.nextElementSibling;
-                                next?.classList.toggle('show');
-                            }}
-                        >
-                            ⋮
-                        </button>
-
-                        {/* Menú opciones POSTS */}
-                        <div className="menu-options">
-                            {(publicaciones?.session?.rol === 'admin' || post.idUsuario === publicaciones?.session?.id) && (
-                                
-                                // Botón eliminar POST
-                                <button
-                                    className="danger"
-                                    onClick={() => {
-                                        if (confirm('¿Seguro que quieres eliminar esta publicación?')) {
-                                            del(post.id);
-                                            deleted();
-                                        }
-                                    }}
-                                >
-                                    {t('delete')}
-                                </button>
-                            )}
-            
-                            {/* Botón editar POST */}
-
-                            <Button onClick={() => {setEditPost(true); setEditPostContent(post.contenido)}}>
-                                {t('edit')}
-                            </Button>
-                        
-                            {/* Botón reportar POST */}
-                            <button>Reportar</button>
-                        </div>
+                        {/* Botón reportar POST */}
+                        <button>{language.report}</button>
                     </div>
                 </div>
             </div>

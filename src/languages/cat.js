@@ -28,6 +28,46 @@ const cat = {
     errorPage: {
         title: "Error en accedir a la ruta seleccionada",
         returnHome: "Tornar a l'inici"
+    },
+
+    HomePage: {
+        home: 'Inici',
+        notifications: 'Notificacions',
+        messages: 'Missatges',
+        create: 'Crear',
+        edit: 'Editar',
+        edit_post: 'Editar Post',
+        settings: 'Configuració',
+        logout: 'Tancar Sessió',
+        profile_edit: 'Editar Perfil',
+        change_password: 'Canviar Contrasenya',
+        terms_conditions: 'Termes i Condicions',
+        help_support: 'Ajuda i Suport',
+        about: 'Sobre Nosaltres',
+        delete_account: 'Eliminar Compte',
+        back_to_messages: 'Tornar a Missatges',
+        chat_with: 'Xat amb',
+        type_message: 'Escriu un missatge...',
+        send: 'Enviar',
+        no_posts: 'No hi ha publicacions encara. Sigues el primer en publicar!',
+        no_messages: 'No hi ha missatges encara.',
+        no_notifications: 'No hi ha notificacions encara.',
+        welcome: 'Benvingut a MVMood!',
+        like: 'M\'agrada',
+        comment: 'Comentar',
+        delete: 'Eliminar',
+        comments: 'Comentaris',
+        select_language: 'Selecciona idioma',
+        chat: 'Chat',
+        share_your_updates: "Comparteix les teves novetats..."
+    },
+
+    Post: {
+        no_comments_yet: "No hi ha comentaris",
+        sure_delete_post: "¿Segur que vols eliminar aquesta publicació?",
+        report: "Reportar",
+        like: "M\'agrada",
+        comment: "Comentari"
     }
 };
 

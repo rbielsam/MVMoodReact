@@ -1,15 +1,19 @@
-import { useLanguage } from '../languages/Languages';
+//import { useLanguage } from '../languages/Languages';
 import '../indexZara.css';
 import { useState, useContext } from 'react';
 import {UserContext} from "../contexts/user.context";
+import { LanguageContext } from '../contexts/language.context';
 import Button from '../components/Button';
 import { usePosts } from '../hooks/usePosts';
 
 
 export default function CreatePostForm({ onCreated }) {
 
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.HomePage;
+
     const [contenido, setContenido] = useState("");
-    const { t } = useLanguage();
+    //const { t } = useLanguage();
 
     const {error, setError, token} = useContext(UserContext);
     const {create} = usePosts();
@@ -50,20 +54,19 @@ export default function CreatePostForm({ onCreated }) {
     return (
         <>
             <div className="create-post">
-                <h2>{t('create')}</h2>
+                <h2>{language.create}</h2>
 
                 <form onSubmit={handleSubmit}>
                     <textarea
                         name="contenido"
-                        placeholder="What's on your mind? Share your thoughts, feelings, or updates..."
+                        placeholder={language.share_your_updates}
                         value={contenido}
                         onChange={handleContenido}
                         required
                     />
                     <input type="file" name="imagen" onChange={(e) => {console.log("Imagen: ", e); setImagen(e.target.files[0])}} />
 
-                    <Button>{t('send')}</Button>
-                    {/*<button>{t('send')}</button>*/}
+                    <Button>{language.send}</Button>
                 </form>
             </div>
         </>

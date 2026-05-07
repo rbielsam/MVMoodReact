@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
+import { LanguageContext } from '../contexts/language.context';
 import { useLanguage } from '../languages/Languages';
 import HeaderZara from "../components/HeaderZara";
+import Header from "../components/Header";
 import "../indexZara.css";
 import { usePosts } from '../hooks/usePosts';
 //import { UserContext } from '../contexts/user.context';
@@ -14,6 +16,9 @@ import { useComments } from "../hooks/useComments";
 
 
 export default function HomePage() {
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.HomePage;
 
     //const {error, setError} = useContext(UserContext);
     const [showCreatePost, setShowCreatePost] = useState(false);
@@ -41,6 +46,7 @@ export default function HomePage() {
     return (
         <>
             <HeaderZara />
+
 
             <div className="container">
                 <Sidebar />

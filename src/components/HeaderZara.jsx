@@ -4,6 +4,7 @@ import '../indexZara.css';
 import imgLogo from "../assets/imgLogo.png";
 import modoOscuro from "../assets/header/modoOscuro.png";
 import tierra from "../assets/header/tierra.png";
+import LanguageIcon from '../components/LanguageIcon';
 
 
 export default function HeaderZara({ children }) {
@@ -42,7 +43,9 @@ export default function HeaderZara({ children }) {
                         <img src={modoOscuro} alt="Mode icon" width="32" height="32" />
                     </button>
 
-                    <button 
+
+
+                    {/*<button 
                         id="languaje-icon" 
                         type="button" 
                         onClick={() => setShowLanguageMenu(!showLanguageMenu)}
@@ -73,7 +76,7 @@ export default function HeaderZara({ children }) {
                                 English
                             </button>
                         </div>
-                    )}
+                    )}*/}
                 </div>
             </div>
         </header>
