@@ -9,7 +9,7 @@ export default function Chat({ message, onBack, currentUser }) {
     const [cargando, setCargando] = useState(true);
     const scrollRef = useRef(null);
 
-    // 1. Cargar historial y suscribirse a Pusher
+    // Cargar historial y suscribirse a Pusher
     useEffect(() => {
         // Cargar mensajes previos desde la API
         const cargarHistorial = async () => {
@@ -21,7 +21,7 @@ export default function Chat({ message, onBack, currentUser }) {
                     }
                 });
                 const data = await response.json();
-                // Laravel paginate devuelve los datos en .data.data
+                // Devuelve los datos en .data.data
                 // Los invertimos para que el más reciente esté abajo
                 setMensajes(data.data.reverse());
             } catch (error) {
@@ -44,12 +44,12 @@ export default function Chat({ message, onBack, currentUser }) {
         };
     }, [message.uuid]);
 
-    // 2. Scroll automático al final
+    // Scroll automático al final
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [mensajes]);
 
-    // 3. Enviar mensaje a la API
+    // Enviar mensaje a la API
     const handleSend = async (e) => {
         e.preventDefault();
         if (!nuevoMensaje.trim()) return;
@@ -66,7 +66,7 @@ export default function Chat({ message, onBack, currentUser }) {
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    receptor_uuid: message.uuid, // O el UUID del chat según tu lógica
+                    receptor_uuid: message.uuid,
                     contenido: textoParaEnviar
                 })
             });
