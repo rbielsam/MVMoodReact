@@ -49,7 +49,7 @@ export default function Header ({ children }) {
                     <ImgLogo to="/home" width="72" height="72" />
                 </div>
 
-                <div className={styles.nicknameLogged}>
+                <div className={styles.dataLoggedContainer}>
                         {/*<p>{localStorage.getItem("nickname")}</p>*/}
                         <p className={styles.dataLoggedUser}>{user.nickname}</p>
                 </div>

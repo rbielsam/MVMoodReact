@@ -151,7 +151,9 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                             onChange={(e) => setContenido(e.target.value)}>
                         </textarea>
 
-                        <button type="submit">{language.comment}</button>
+                        <Button>{language.comment}</Button>
+
+                        {/*<button type="submit">{language.comment}</button>*/}
                     </form>
 
                     <div className='comment-list'>

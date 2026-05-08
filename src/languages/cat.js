@@ -31,11 +31,38 @@ const cat = {
     },
 
     HomePage: {
+        no_posts: 'No hi ha publicacions encara. Sigues el primer en publicar!'
+    },
+
+    Sidebar: {
+        home: 'Inici',
+        notifications: 'Notificacions',
+        chat: 'Chat',
+        profile: "Perfil",
+        settings: 'Configuració',
+        logout: 'Tancar Sessió'
+    },
+
+    Post: {
+        no_comments_yet: "No hi ha comentaris",
+        like: "M\'agrada",
+        comment: "Comentar",
+        edit: 'Editar',
+        report: "Reportar",
+        create_post: "Nova publicació",
+        type_message: 'Escriu un missatge...',
+        comments: 'Comentaris',
+
+
+
+
+
+
+        sure_delete_post: "¿Segur que vols eliminar aquesta publicació?",
         messages: 'Missatges',
         create: 'Crear',
-        edit: 'Editar',
+
         edit_post: 'Editar Post',
-        logout: 'Tancar Sessió',
         profile_edit: 'Editar Perfil',
         change_password: 'Canviar Contrasenya',
         terms_conditions: 'Termes i Condicions',
@@ -44,34 +71,17 @@ const cat = {
         delete_account: 'Eliminar Compte',
         back_to_messages: 'Tornar a Missatges',
         chat_with: 'Xat amb',
-        type_message: 'Escriu un missatge...',
+
         send: 'Enviar',
-        no_posts: 'No hi ha publicacions encara. Sigues el primer en publicar!',
         no_messages: 'No hi ha missatges encara.',
         no_notifications: 'No hi ha notificacions encara.',
         welcome: 'Benvingut a MVMood!',
         like: 'M\'agrada',
-        comment: 'Comentar',
+
         delete: 'Eliminar',
-        comments: 'Comentaris',
+
         select_language: 'Selecciona idioma',
         share_your_updates: "Comparteix les teves novetats..."
-    },
-
-    Sidebar: {
-        home: 'Inici',
-        notifications: 'Notificacions',
-        chat: 'Chat',
-        profile: "Perfil",
-        settings: 'Configuració'
-    },
-
-    Post: {
-        no_comments_yet: "No hi ha comentaris",
-        sure_delete_post: "¿Segur que vols eliminar aquesta publicació?",
-        report: "Reportar",
-        like: "M\'agrada",
-        comment: "Comentari"
     }
 };
 

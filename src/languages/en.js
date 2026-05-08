@@ -32,10 +32,36 @@ const en = {
         returnHome: "Return to home"
     },
 
-    HomePage: {
-        create: 'create',
-        edit: 'edit',
+    Sidebar: {
+        home: 'home',
+        notifications: 'notifications',
+        chat: 'chat',
+        profile: "profile",
+        settings: 'settings',
         logout: 'logout',
+    },
+
+    HomePage: {
+        no_posts: 'No posts yet.'
+    },
+
+    Post: {
+        no_comments_yet: "No comments yet",
+        like: "like",
+        comment: "comment",
+        edit: 'edit',
+        report: "report",
+        create_post: "Create Post",
+        type_message: 'type message...',
+        comments: 'comments',
+
+
+
+
+
+
+        sure_delete_post: "Are you sure you want to delete this post?",
+        create: 'create',
         profile_edit: 'profile edit',
         change_password: 'change password',
         terms_conditions: 'terms conditions',
@@ -44,34 +70,17 @@ const en = {
         delete_account: 'delete account',
         back_to_messages: 'back to messages',
         chat_with: 'chat with',
-        type_message: 'type message...',
+
         send: 'send',
-        no_posts: 'No posts yet.',
+
         no_messages: 'no messages yet',
         no_notifications: 'No notifications yet',
         welcome: 'welcome!',
         like: 'like',
-        comment: 'comment',
+
         delete: 'Eliminar',
-        comments: 'comments',
         select_language: 'select language',
         share_your_updates: "share your updates..."
-    },
-
-    Sidebar: {
-        home: 'home',
-        notifications: 'notifications',
-        chat: 'chat',
-        profile: "profile",
-        settings: 'settings'
-    },
-
-    Post: {
-        no_comments_yet: "No comments yet",
-        sure_delete_post: "Are you sure you want to delete this post?",
-        report: "report",
-        like: "like",
-        comment: "comment"
     }
 };
 

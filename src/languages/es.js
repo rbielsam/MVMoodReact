@@ -31,29 +31,7 @@ const es = {
     },
 
     HomePage: {
-        create: 'Crear',
-        edit: 'Editar',
-        logout: 'Cerrar Sesión',
-        profile_edit: 'Editar Perfil',
-        change_password: 'Cambiar Contraseña',
-        terms_conditions: 'Términos y Condiciones',
-        help_support: 'Ayuda y Soporte',
-        about: 'Acerca de',
-        delete_account: 'Eliminar Cuenta',
-        back_to_messages: 'Volver a Mensajes',
-        chat_with: 'Chat con',
-        type_message: 'Escribe un mensaje...',
-        send: 'Enviar',
-        no_posts: 'No hay publicaciones todavía. ¡Sé el primero en publicar!',
-        no_messages: 'No hay mensajes todavía.',
-        no_notifications: 'No hay notificaciones todavía.',
-        welcome: 'Bienvenido a MVMood!',
-        like: 'Me gusta',
-        comment: 'Comentar',
-        delete: 'Eliminar',
-        comments: 'Comentarios',
-        select_language: 'Seleccionar idioma',
-        share_your_updates: "Comparte tus novedades..."
+        no_posts: 'No hay publicaciones todavía. ¡Sé el primero en publicar!'
     },
 
     Sidebar: {
@@ -62,14 +40,50 @@ const es = {
         chat: 'Chat',
         profile: "Perfil",
         settings: 'Configuración',
+        logout: 'Cerrar Sesión'
     },
 
     Post: {
         no_comments_yet: "No hay comentarios",
-        sure_delete_post: "¿Seguro que quieres eliminar esta publicación?",
+        like: 'Me gusta',
+        comment: 'Comentar',
+        edit: 'Editar',
         report: "Reportar",
+        create_post: "Nueva publicación",
+        type_message: 'Escribe un mensaje...',
+        comments: "Comentarios",
+
+
+
+
+
+
+        sure_delete_post: "¿Seguro que quieres eliminar esta publicación?",
+
         like: "Me gusta",
-        comment: "Comentario"
+
+
+
+        create: 'Crear',
+
+        profile_edit: 'Editar Perfil',
+        change_password: 'Cambiar Contraseña',
+        terms_conditions: 'Términos y Condiciones',
+        help_support: 'Ayuda y Soporte',
+        about: 'Acerca de',
+        delete_account: 'Eliminar Cuenta',
+        back_to_messages: 'Volver a Mensajes',
+        chat_with: 'Chat con',
+
+        send: 'Enviar',
+        no_messages: 'No hay mensajes todavía.',
+        no_notifications: 'No hay notificaciones todavía.',
+        welcome: 'Bienvenido a MVMood!',
+
+        delete: 'Eliminar',
+
+        select_language: 'Seleccionar idioma',
+        share_your_updates: "Comparte tus novedades..."
     }
 };
 
