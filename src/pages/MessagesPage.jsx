@@ -11,7 +11,6 @@ export default function Chat({ message, onBack, currentUser }) {
     const [cargando, setCargando] = useState(true);
     const scrollRef = useRef(null);
 
-    // Cargar historial y suscribirse a Pusher
     useEffect(() => {
         // Cargar mensajes previos desde la API
         const cargarHistorial = async () => {
@@ -57,7 +56,7 @@ export default function Chat({ message, onBack, currentUser }) {
         if (!nuevoMensaje.trim()) return;
 
         const textoParaEnviar = nuevoMensaje;
-        setNuevoMensaje(""); // Optimismo: limpiamos el input
+        setNuevoMensaje(""); // Limpiamos el input
 
         try {
             const response = await fetch(`http://127.0.0.1:8000/api/chats/enviar`, {
