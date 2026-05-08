@@ -1,5 +1,5 @@
-const translations = {
-  es: {
+/*const translations = {
+es: {
     home: 'Inicio',
     notifications: 'Notificaciones',
     messages: 'Mensajes',
@@ -104,4 +104,4 @@ export const useLanguage = () => {
   const t = (key) => getTranslation(lang, key);
 
   return { lang, setLanguage, t };
-};
+};*/

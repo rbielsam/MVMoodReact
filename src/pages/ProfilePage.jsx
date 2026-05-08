@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
-import { useLanguage } from '../languages/Languages';
+//import { useLanguage } from '../languages/Languages';
 import userImg from "../assets/settingsprofile/user.png";
 import Footer from "../components/Footer";
 
@@ -11,7 +11,7 @@ export default function ProfilePage({ data }) {
   const { userId } = useParams();
   const navigate = useNavigate();
   const [actionStatus, setActionStatus] = useState('');
-  const { t } = useLanguage();
+  //const { t } = useLanguage();
   const id = Number(userId);
 
   const userPosts = data?.publicaciones?.filter((post) => post.idUsuario === id) || [];

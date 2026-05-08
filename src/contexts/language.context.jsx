@@ -14,7 +14,8 @@ function LanguageProviderWrapper (props) {
         {lang: "cat", name: "Catalan", icon: "", content: cat}
     ];
 
-    const [lang, setLang] = useState(translations[0]);
+    const savedLang = localStorage.getItem("language");
+    const [lang, setLang] = useState(savedLang ? JSON.parse(savedLang) : translations[0]);
 
     return (
         <LanguageContext.Provider value={{lang, setLang, translations}}>

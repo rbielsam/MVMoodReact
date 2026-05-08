@@ -1,12 +1,12 @@
 import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
-import { useLanguage } from '../languages/Languages';
+//import { useLanguage } from '../languages/Languages';
 import '../indexZara.css';
 import Footer from '../components/Footer';
 
 
 export default function NotificationsPage({ data }) {
-    const { t } = useLanguage();
+    //const { t } = useLanguage();
 
     return (
         <>

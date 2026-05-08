@@ -12,6 +12,7 @@ export default function Sidebar() {
 
     const logOut = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("language");
     };
 
     return (

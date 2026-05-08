@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { LanguageContext } from '../contexts/language.context';
-import { useLanguage } from '../languages/Languages';
-import HeaderZara from "../components/HeaderZara";
+//import { useLanguage } from '../languages/Languages';
 import Header from "../components/Header";
 import "../indexZara.css";
 import { usePosts } from '../hooks/usePosts';
@@ -23,7 +22,7 @@ export default function HomePage() {
 
     //const {error, setError} = useContext(UserContext);
     const [showCreatePost, setShowCreatePost] = useState(false);
-    const { t } = useLanguage();
+    //const { t } = useLanguage();
     const {getPosts, create, publicaciones, update, del} = usePosts();
     const {like} = useLikes();
     const {getComments, createComment} = useComments();
@@ -64,7 +63,7 @@ export default function HomePage() {
 
                     {!publicaciones?.data || publicaciones.data.length === 0 ? (
                         <div className="post">
-                            <p>{t('no_posts')}</p>
+                            <p>{language.no_posts}</p>
                         </div>
                     ) : (
                         publicaciones.data.map((p) => (

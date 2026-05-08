@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import echo from '../lib/echo'; // Tu instancia de Laravel Echo
-import { useLanguage } from '../languages/Languages';
+//import { useLanguage } from '../languages/Languages';
 //import HeaderLogged from "../components/HeaderLogged";
 
 
 export default function Chat({ message, onBack, currentUser }) {
-    const { t } = useLanguage();
+    //const { t } = useLanguage();
     const [mensajes, setMensajes] = useState([]);
     const [nuevoMensaje, setNuevoMensaje] = useState("");
     const [cargando, setCargando] = useState(true);

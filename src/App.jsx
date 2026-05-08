@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
 import './index.css';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -10,6 +11,7 @@ import SettingsPage from './pages/SettingsPage';
 import NotificationsPage from './pages/NotificationsPage';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import ProfilePage from './pages/ProfilePage';
+import { LanguageContext } from './contexts/language.context';
 
 
 function App() {

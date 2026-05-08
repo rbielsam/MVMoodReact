@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
-import { useLanguage } from '../languages//Languages';
+//import { useLanguage } from '../languages//Languages';
 import '../indexZara.css';
 import Footer from '../components/Footer';
 import TermConditions from '../components/TermConditions';
@@ -17,7 +17,7 @@ export default function SettingsPage() {
     const [passwords, setPasswords] = useState({ current: '', next: '', confirm: '' });
     const [passwordMessage, setPasswordMessage] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    const { t } = useLanguage();
+    //const { t } = useLanguage();
 
     const handleProfilePicChange = (event) => {
         const file = event.target.files?.[0];
