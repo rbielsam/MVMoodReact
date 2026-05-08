@@ -193,6 +193,7 @@ function UserProviderWrapper(props) {
             console.log("Datos de usuario recibidos correctamente");
 
             setUser(prev => ({...prev,
+                id: data.id,
                 nickname: data.nickname,
                 email: data.email,
                 foto_perfil: data.foto_perfil
