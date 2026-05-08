@@ -1,6 +1,8 @@
 :root {
     --bg-color: #FFF;
     --bg-color-divContainer: #F2F2F2;
+    --bg-color-HeaderLogged: #ffffff;
+
     --bg-color-imputs: #C7DBFC;
     --bg-color-termConditions: #FFF;
     --bg-color-languageMenu: #FFF;
@@ -11,6 +13,8 @@
     --bg-color: #333333;
     --bg-color-divContainer: #2A2A2A;
     --color-divContainer: #FFF; /*#7Ba6FF*/
+    --bg-color-HeaderLogged: #1E1E1E;
+        --border-color-HeaderLogged: #333;
     --bg-color-termConditions: #87A6F5;
     --color-button: #000000;
     --bg-color-languageMenu: #2A2A2A;
@@ -72,3 +76,19 @@ a {
 .error {
     color: red;
 }
+
+
+/* CONTROLADOS */
+
+/* HeaderLogged */
+/*.topbar .brand img {
+    max-height: 50px;
+    width: auto;
+    height: auto;
+}
+
+.topbar .headerContent img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}*/

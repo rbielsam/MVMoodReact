@@ -13,6 +13,7 @@ import Button from '../components/Button';
 import Post from '../components/Post';
 import { useLikes } from '../hooks/useLikes';
 import { useComments } from "../hooks/useComments";
+import HeaderLogged from "../components/HeaderLogged";
 
 
 export default function HomePage() {
@@ -45,7 +46,7 @@ export default function HomePage() {
 
     return (
         <>
-            <HeaderZara />
+            <HeaderLogged />
 
 
             <div className="container">

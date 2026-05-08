@@ -45,7 +45,7 @@ export default function HeaderZara({ children }) {
 
 
 
-                    {/*<button 
+                    <button 
                         id="languaje-icon" 
                         type="button" 
                         onClick={() => setShowLanguageMenu(!showLanguageMenu)}
@@ -76,7 +76,7 @@ export default function HeaderZara({ children }) {
                                 English
                             </button>
                         </div>
-                    )}*/}
+                    )}
                 </div>
             </div>
         </header>

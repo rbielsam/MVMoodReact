@@ -7,167 +7,17 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
     min-height: 100vh;
     width: 100%;
     background-color: #f2f2f2;
     color: #222;
 }
 
-.dark-mode,
-.dark-mode body {
+.dark,
+.dark body {
     background-color: #121212;
     color: #f1f1f1;
-}
-
-.imputs {
-    background-color: #C7DBFC;
-    margin: 10px;
-    height: 2.5rem;
-    width: 80%;
-    padding: 5px;
-    border: 1px solid #5877CC;
-    border-radius: 3vh;
-}
-
-.imputs:hover {
-    border: 1px solid #203C8F;
-}
-
-.logoConfirmationCode {
-    max-width: 100%;
-    max-height: 100px;
-}
-
-/*.logoSignUp {
-    max-width: 100%;
-    height: auto;
-}*/
-
-.logIn_button, .signUp_button, .resetPassword_button, .confirm_button {
-    border-radius: 20px;
-    background-color: #87A6F5;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin: 5px;
-    max-width: 7rem;
-    border-style: none;
-    cursor: pointer;
-}
-
-.div_container {
-    flex: 1;
-    display: grid;
-    /*grid-template-columns: 1fr 1fr;*/
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-    background-color: #F2F2F2;
-    flex: 1;
-    min-height: 80%;
-    height: auto;
-    width: 90%;
-    min-width: auto;
-    margin: 0 auto;
-    align-items: center;
-    border-radius: 5vh;
-    padding-bottom: 20px;
-    padding-top: 20px;
-
-}
-
-.dark-mode .div_container {
-    background-color: #2A2A2A;
-    color: #7Ba6FF;
-}
-
-.left_section, .right_section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-    min-width: 0;
-    margin: 0;
-}
-
-.login_content {
-    background-color: #FFF;
-    border-radius: 3vh;
-    /*min-height: 450px;*/
-    height: auto;
-    min-height: 200px;
-    width: 60%;
-    max-width: 400px;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.login_content .logoSignUp {
-    align-self: center;
-}
-
-.dark-mode .login_content {
-    background-color: #333333;
-    color: #FFF;
-}
-
-.p_login {
-    font-size: 0.80em;
-}
-
-a {
-    font-size: 0.75em;
-}
-
-.dark-mode a {
-    color: #FFF;
-}
-
-.terms_conditions {
-    background-color: #FFF;
-    max-width: 300px;
-    max-height: 400px;
-}
-
-.dark-mode .terms_conditions {
-    background-color: #87A6F5;
-}
-
-.topbar {
-    height: 70px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.topbar .brand img {
-    max-height: 50px;
-    width: auto;
-    height: auto;
-}
-
-.topbar .header-content img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-}
-
-.topbar .header-content {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
 }
 
 .top-right {
@@ -931,44 +781,32 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
     font-size: 0.95rem;
 }
 
-.dark-mode,
-.dark-mode body {
+.dark,
+.dark body {
     background-color: #121212;
 }
 
-.dark-mode .topbar,
-.dark-mode .sidebar,
-.dark-mode .post,
-.dark-mode .create-post,
-.dark-mode .message-item,
-.dark-mode .notification,
-.dark-mode .settings-section,
-.dark-mode .stories {
+.dark .sidebar,
+.dark .post,
+.dark .create-post,
+.dark .message-item,
+.dark .notification,
+.dark .settings-section,
+.dark .stories {
     background-color: #1e1e1e;
     border-color: #333;
 }
 
-.dark-mode a,
-.dark-mode h2,
-.dark-mode h4,
-.dark-mode .post-content,
-.dark-mode .post-author {
+.dark a,
+.dark h2,
+.dark h4,
+.dark .post-content,
+.dark .post-author {
     color: #f1f1f1;
 }
 
-.dark-mode .action-btn:hover {
+.dark .action-btn:hover {
     background-color: #333;
-}
-
-
-
-/*  FIXED HEADER */
-.topbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
 }
 
 /*  FIXED SIDEBAR  */
@@ -1285,123 +1123,123 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
 }
 
 /* Dark mode for new elements */
-.dark-mode .settings-section {
+.dark .settings-section {
     background: #2a2a2a;
     color: white;
 }
 
-.dark-mode .settings-section h3 {
+.dark .settings-section h3 {
     color: white;
 }
 
-.dark-mode .settings-button {
+.dark .settings-button {
     background-color: #3a3a3a;
     border-color: #444;
     color: white;
 }
 
-.dark-mode .settings-button:hover {
+.dark .settings-button:hover {
     background-color: #444;
     border-color: #555;
 }
 
-.dark-mode .settings-button.delete {
+.dark .settings-button.delete {
     background-color: #3a1a1a;
     border-color: #5a2a2a;
 }
 
-.dark-mode .settings-button.delete:hover {
+.dark .settings-button.delete:hover {
     background-color: #4a2a2a;
     border-color: #6a3a3a;
 }
 
-.dark-mode .profile-section {
+.dark .profile-section {
     background: linear-gradient(135deg, #4a5fd5 0%, #5a3d91 100%);
 }
 
-.dark-mode .chat-header {
+.dark .chat-header {
     background: #2a2a2a;
     border-bottom-color: #444;
 }
 
-.dark-mode .chat-username {
+.dark .chat-username {
     color: white;
 }
 
-.dark-mode .chat-status {
+.dark .chat-status {
     color: #ccc;
 }
 
-.dark-mode .chat-action-btn:hover {
+.dark .chat-action-btn:hover {
     background-color: #3a3a3a;
 }
 
-.dark-mode .back-button:hover {
+.dark .back-button:hover {
     background-color: #3a3a3a;
 }
 
-.dark-mode .chat-messages-container {
+.dark .chat-messages-container {
     background: #1a1a1a;
 }
 
-.dark-mode .message-content {
+.dark .message-content {
     background: #3a3a3a;
     color: white;
 }
 
-.dark-mode .message-wrapper.sent .message-content {
+.dark .message-wrapper.sent .message-content {
     background: #007bff;
 }
 
-.dark-mode .message-wrapper.sent .message-content::after {
+.dark .message-wrapper.sent .message-content::after {
     border-left-color: #007bff;
 }
 
-.dark-mode .message-wrapper.received .message-content::after {
+.dark .message-wrapper.received .message-content::after {
     border-right-color: #3a3a3a;
 }
 
-.dark-mode .message-time {
+.dark .message-time {
     color: #ccc;
 }
 
-.dark-mode .message-wrapper.sent .message-time {
+.dark .message-wrapper.sent .message-time {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.dark-mode .chat-input-container {
+.dark .chat-input-container {
     background: #2a2a2a;
     border-top-color: #444;
 }
 
-.dark-mode .chat-input-wrapper {
+.dark .chat-input-wrapper {
     background: #3a3a3a;
     border-color: #444;
 }
 
-.dark-mode .chat-input-field {
+.dark .chat-input-field {
     color: white;
 }
 
-.dark-mode .chat-input-field::placeholder {
+.dark .chat-input-field::placeholder {
     color: #999;
 }
 
-.dark-mode .attach-btn:hover,
-.dark-mode .emoji-btn:hover {
+.dark .attach-btn:hover,
+.dark .emoji-btn:hover {
     background-color: #444;
 }
-.dark-mode .chat-header {
+.dark .chat-header {
     background-color: #2a2a2a;
     border-bottom-color: #444;
 }
 
-.dark-mode .back-button:hover {
+.dark .back-button:hover {
     background-color: #3a3a3a;
 }
 
-.dark-mode .message-time,
-.dark-mode .chat-status {
+.dark .message-time,
+.dark .chat-status {
     color: #ccc;
 }
 
@@ -1680,56 +1518,4 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
 
 .cancel-btn:hover {
     background: rgba(255, 255, 255, 0.3);
-}
-
-/* Language Menu */
-.language-menu-container {
-    position: relative;
-}
-
-.language-menu {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px 0;
-    min-width: 120px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.language-menu button {
-    display: block;
-    width: 100%;
-    text-align: left;
-    padding: 8px 12px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.language-menu button:hover {
-    background-color: #f0f0f0;
-}
-
-.language-menu button.active {
-    background-color: #007bff;
-    color: white;
-}
-
-.dark-mode .language-menu {
-    background-color: #2a2a2a;
-    border-color: #444;
-}
-
-.dark-mode .language-menu button:hover {
-    background-color: #3a3a3a;
-}
-
-.dark-mode .language-menu button.active {
-    background-color: #007bff;
-    color: white;
 }

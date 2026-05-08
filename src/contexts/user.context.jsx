@@ -62,6 +62,8 @@ function UserProviderWrapper(props) {
             } else {
                 localStorage.setItem("token", data.token);
                 setToken(data.token);
+
+                localStorage.setItem("nickname", data.user.nickname);
                 window.location.replace("/home");
             }
             
@@ -164,9 +166,44 @@ function UserProviderWrapper(props) {
             });
         }
     }
+
+    // Función asíncrona para devolver los datos de usuario para el HeaderLogged
+    const getDataLoggedUser = async () => {
+        try {
+            const response = await fetch("http://localhost:8000/api/user", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    //"Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                const errorResponse = await response.json();
+                throw new Error("Error al recibir datos de usuario: ", errorResponse.message);
+                setError("Error al recibir datos de usuario: ", errorResponse.message);
+            }
+
+            const data = await response.json();
+            console.log("Datos de usuario recibidos correctamente");
+
+            setUser(prev => ({...prev,
+                nickname: data.nickname,
+                email: data.email,
+                foto_perfil: data.foto_perfil
+            }));
+
+            return data;
+
+        } catch (err) {
+            console.error("Error en la petición al servidor: ", err.message);
+            setError(err);
+        }
+    }
     
     return (
-        <UserContext.Provider value={{ user, setUser, login, error, setError, signUp, resetPassword, message, token }}>
+        <UserContext.Provider value={{ user, setUser, login, error, setError, signUp, resetPassword, message, token, getDataLoggedUser }}>
             {props.children}
         </UserContext.Provider>
     );

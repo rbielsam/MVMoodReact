@@ -1,4 +1,5 @@
 import '../indexZara.css';
+import styles from "../styles/Post.module.css";
 //import { usePosts } from '../hooks/usePosts';
 import { useState, useContext } from 'react';
 //import { useLanguage } from '../languages/Languages';
@@ -119,7 +120,8 @@ export default function Post({ post, updated, deleted, del, update, publicacione
 
             ) : (
                 <div className="post-content">
-                    <p>{post.contenido}</p>
+                    <p className={styles.nicknamePost}>{post.user?.nickname}</p>
+                    <p className={styles.postText}>{post.contenido}</p>
 
                     {post.imagen && (
                         <img src={`http://localhost:8000/storage/${post.imagen}`} />
