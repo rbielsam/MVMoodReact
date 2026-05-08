@@ -9,6 +9,7 @@ const UserContext = createContext();
 function UserProviderWrapper(props) {
 
     const [user, setUser] = useState({
+        id:"",
         email: "",
         password: "",
         repeatPassword: "",
@@ -72,6 +73,7 @@ function UserProviderWrapper(props) {
             //setError(err);
 
             setUser({
+                id:"",
                 email: "",
                 password: "",
                 repeatPassword: "",
@@ -125,6 +127,7 @@ function UserProviderWrapper(props) {
             setError(err);
 
             setUser({
+                id:"",
                 nickname: "",
                 email: "",
                 password: "",
@@ -159,6 +162,7 @@ function UserProviderWrapper(props) {
             setError(err);
 
             setUser({
+                id:"",
                 nickname: "",
                 email: "",
                 password: "",
