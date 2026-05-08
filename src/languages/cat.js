@@ -31,13 +31,10 @@ const cat = {
     },
 
     HomePage: {
-        home: 'Inici',
-        notifications: 'Notificacions',
         messages: 'Missatges',
         create: 'Crear',
         edit: 'Editar',
         edit_post: 'Editar Post',
-        settings: 'Configuració',
         logout: 'Tancar Sessió',
         profile_edit: 'Editar Perfil',
         change_password: 'Canviar Contrasenya',
@@ -58,8 +55,15 @@ const cat = {
         delete: 'Eliminar',
         comments: 'Comentaris',
         select_language: 'Selecciona idioma',
-        chat: 'Chat',
         share_your_updates: "Comparteix les teves novetats..."
+    },
+
+    Sidebar: {
+        home: 'Inici',
+        notifications: 'Notificacions',
+        chat: 'Chat',
+        profile: "Perfil",
+        settings: 'Configuració'
     },
 
     Post: {

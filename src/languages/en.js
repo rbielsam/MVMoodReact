@@ -1,3 +1,5 @@
+import Sidebar from "../components/Sidebar";
+
 const en = {
     login: {
         logInMVMood: "Log in to MVMood",
@@ -31,12 +33,8 @@ const en = {
     },
 
     HomePage: {
-        home: 'home',
-        notifications: 'notifications',
-        messages: 'messages',
         create: 'create',
         edit: 'edit',
-        settings: 'settings',
         logout: 'logout',
         profile_edit: 'profile edit',
         change_password: 'change password',
@@ -57,8 +55,15 @@ const en = {
         delete: 'Eliminar',
         comments: 'comments',
         select_language: 'select language',
-        chat: 'chat',
         share_your_updates: "share your updates..."
+    },
+
+    Sidebar: {
+        home: 'home',
+        notifications: 'notifications',
+        chat: 'chat',
+        profile: "profile",
+        settings: 'settings'
     },
 
     Post: {

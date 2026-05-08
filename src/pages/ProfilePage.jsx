@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import HeaderZara from '../components/Header';
+import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages/Languages';
 import userImg from "../assets/settingsprofile/user.png";
+import Footer from "../components/Footer";
+
 
 export default function ProfilePage({ data }) {
   const { userId } = useParams();
@@ -33,7 +35,7 @@ export default function ProfilePage({ data }) {
 
   return (
     <>
-      <Header />
+      <HeaderLogged />
       <div className="container">
         <Sidebar />
 
@@ -138,6 +140,7 @@ export default function ProfilePage({ data }) {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -9,6 +9,7 @@ import Chat from './pages/Chat';
 import SettingsPage from './pages/SettingsPage';
 import NotificationsPage from './pages/NotificationsPage';
 import ProtectedRoute from './components/utils/ProtectedRoute';
+import ProfilePage from './pages/ProfilePage';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/notifications" element={<NotificationsPage />} />
         </Route>

@@ -7,7 +7,7 @@ import { LanguageContext } from '../contexts/language.context';
 export default function Sidebar() {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.HomePage;
+    const language = lang.content.Sidebar;
    // const { t } = useLanguage();
 
     const logOut = () => {
@@ -19,6 +19,7 @@ export default function Sidebar() {
             <a href="/home">{language.home}</a>
             <a href="/notifications">{language.notifications}</a>
             <a href="/chat">{language.chat}</a>
+            <a href="/profile">{language.profile}</a>
             <a href="/settings">{language.settings}</a>
 
             <div className="logout">

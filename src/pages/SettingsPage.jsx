@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import HeaderZara from '../components/HeaderZara';
+import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
 import { useLanguage } from '../languages//Languages';
 import '../indexZara.css';
 import Footer from '../components/Footer';
 import TermConditions from '../components/TermConditions';
+
 
 export default function SettingsPage() {
     const [profilePic, setProfilePic] = useState('/images/user.png');
@@ -68,7 +69,7 @@ export default function SettingsPage() {
 
     return (
         <>
-            <HeaderZara />
+            <HeaderLogged />
             <div className="container">
                 <Sidebar />
                 <div className="main">

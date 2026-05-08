@@ -31,12 +31,8 @@ const es = {
     },
 
     HomePage: {
-        home: 'Inicio',
-        notifications: 'Notificaciones',
-        messages: 'Mensajes',
         create: 'Crear',
         edit: 'Editar',
-        settings: 'Configuración',
         logout: 'Cerrar Sesión',
         profile_edit: 'Editar Perfil',
         change_password: 'Cambiar Contraseña',
@@ -57,8 +53,15 @@ const es = {
         delete: 'Eliminar',
         comments: 'Comentarios',
         select_language: 'Seleccionar idioma',
-        chat: 'Chat',
         share_your_updates: "Comparte tus novedades..."
+    },
+
+    Sidebar: {
+        home: 'Inicio',
+        notifications: 'Notificaciones',
+        chat: 'Chat',
+        profile: "Perfil",
+        settings: 'Configuración',
     },
 
     Post: {
