@@ -1,6 +1,7 @@
 import '../indexLogged.css';
 import { useContext } from 'react';
 import { LanguageContext } from '../contexts/language.context';
+import { Link } from "react-router-dom";
 
 
 export default function Sidebar() {
@@ -16,10 +17,10 @@ export default function Sidebar() {
 
     return (
         <div className="sidebar">
-            <a href="/home">{language.home}</a>
-            <a href="/notifications">{language.notifications}</a>
-            <a href="/chat">{language.chat}</a>
-            <a href="/profile">{language.profile}</a>
+            <Link to="/home">{language.home}</Link>
+            <Link to="/profile">{language.profile}</Link>
+            <Link to="/notifications">{language.notifications}</Link>            
+            <Link to="/chat">{language.chat}</Link>
 
             <div className="logout">
                 <a onClick={logOut} href="/">{language.logout}</a>
