@@ -1,12 +1,15 @@
 import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
-//import { useLanguage } from '../languages/Languages';
-import '../indexZara.css';
+import '../indexLogged.css';
 import Footer from '../components/Footer';
+import { useContext } from 'react';
+import { LanguageContext } from '../contexts/language.context';
 
 
 export default function NotificationsPage({ data }) {
-    //const { t } = useLanguage();
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.NotificationsPage;
 
     return (
         <>
@@ -19,11 +22,11 @@ export default function NotificationsPage({ data }) {
                     {data?.mensaje && <p className="ok">{data.mensaje}</p>}
                     {data?.error && <p className="error">{data.error}</p>}
 
-                    <h2>{t('notifications')}</h2>
+                    <h2>{language.notifications}</h2>
 
                     {!data?.notificaciones || data.notificaciones.length === 0 ? (
                         <div className="post">
-                            <p>{t('no_notifications')}</p>
+                            <p>{language.no_notifications}</p>
                         </div>
                     ) : (
                         data.notificaciones.map((notification) => (

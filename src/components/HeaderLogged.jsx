@@ -3,7 +3,7 @@ import LanguageIcon from "./LanguageIcon";
 import { use, useContext, useEffect, useState } from "react";
 import LanguageMenu from "./LanguageMenu";
 import languageMenuStyles from "../styles/LanguageMenu.module.css";
-import '../indexZara.css';
+import '../indexLogged.css';
 import "../index.css";
 import styles from "../styles/HeaderLogged.module.css";
 import styleLanguageIcon from "../styles/LanguageIcon.module.css";

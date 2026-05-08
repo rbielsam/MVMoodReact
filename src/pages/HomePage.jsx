@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { LanguageContext } from '../contexts/language.context';
-//import { useLanguage } from '../languages/Languages';
 import Header from "../components/Header";
-import "../indexZara.css";
+import '../indexLogged.css';
 import { usePosts } from '../hooks/usePosts';
 //import { UserContext } from '../contexts/user.context';
 import Footer from "../components/Footer";
@@ -47,7 +46,6 @@ export default function HomePage() {
         <>
             <HeaderLogged />
 
-
             <div className="container">
                 <Sidebar />
 
@@ -56,7 +54,7 @@ export default function HomePage() {
                     {publicaciones?.error && <p className="error">{publicaciones.error}</p>} 
 
                     <Button onClick={() => setShowCreatePost(!showCreatePost)}>
-                        {showCreatePost ? "Close" : "Create Post"}
+                        {showCreatePost ? `${language.cancel}` : `${language.create_post}`}
                     </Button>
 
                     {showCreatePost && (<CreatePostForm onCreated={onCreated} />)}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
-import '../indexZara.css';
+import '../indexLogged.css';
 import "../index.css";
 import Footer from '../components/Footer';
 

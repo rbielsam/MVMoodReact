@@ -40,7 +40,9 @@ const cat = {
     },
 
     HomePage: {
-        no_posts: 'No hi ha publicacions encara. Sigues el primer en publicar!'
+        no_posts: 'No hi ha publicacions encara. Sigues el primer en publicar!',
+        create_post: "Nova publicació",
+        cancel: "Cancel·lar"
     },
 
     CreatePostForm: {
@@ -51,44 +53,36 @@ const cat = {
 
     Post: {
         no_comments_yet: "No hi ha comentaris",
-        like: "M\'agrada",
+        likes: "M\'agrada",
         comment: "Comentar",
         edit: 'Editar',
         report: "Reportar",
-        create_post: "Nova publicació",
         type_message: 'Escriu un missatge...',
         comments: 'Comentaris',
         save: "Guardar",
-
-
-
-
-
-
+        cancel: "Cancel·lar",
+        delete: 'Eliminar',
         sure_delete_post: "¿Segur que vols eliminar aquesta publicació?",
-        messages: 'Missatges',
-        create: 'Crear',
+    },
 
-        edit_post: 'Editar Post',
+    NotificationsPage: {
+        notifications: 'Notificacions',
+        no_notifications: 'No hi ha notificacions encara.',
+    },
+
+    ProfilePage: {
+        settings: 'Configuració',
         profile_edit: 'Editar Perfil',
+        nickname: "Nom d'usuari",
+        cancel: "Cancel·lar",
         change_password: 'Canviar Contrasenya',
         terms_conditions: 'Termes i Condicions',
         help_support: 'Ajuda i Suport',
-        about: 'Sobre Nosaltres',
         delete_account: 'Eliminar Compte',
-        back_to_messages: 'Tornar a Missatges',
-        chat_with: 'Xat amb',
-
-
-        no_messages: 'No hi ha missatges encara.',
-        no_notifications: 'No hi ha notificacions encara.',
-        welcome: 'Benvingut a MVMood!',
-        like: 'M\'agrada',
-
-        delete: 'Eliminar',
-
-        select_language: 'Selecciona idioma',
-
+        current_password: "Contrasenya actual",
+        new_password: "Nova contrasenya",
+        repeatPassword: "Repeteix la contrasenya",
+        confirm_password: "Confirmar contrasenya",
     }
 };
 

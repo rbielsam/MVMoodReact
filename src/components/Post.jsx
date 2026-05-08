@@ -1,4 +1,4 @@
-import '../indexZara.css';
+import '../indexLogged.css';
 import styles from "../styles/Post.module.css";
 //import { usePosts } from '../hooks/usePosts';
 import { useState, useContext } from 'react';
@@ -136,7 +136,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                         {language.save}
                     </Button>
                     <Button onClick={() => setEditPost(false)}>
-                        {language.language}
+                        {language.cancel}
                     </Button>
                 </>
             )}
@@ -176,7 +176,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
 
             <div className="post-actions">
                 {/* Botón like */}
-                <button className='like-btn' onClick={handleLike} title={language.like}>
+                <button className='like-btn' onClick={handleLike} title={language.likes}>
                     ❤️ {post.likes_count || 0}
                 </button>
 
@@ -205,7 +205,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                             <button
                                 className="danger"
                                 onClick={() => {
-                                    if (confirm("{language.sure_delete_post}")) {
+                                    if (confirm(`${language.sure_delete_post}`)) {
                                         del(post.id);
                                         deleted();
                                     }

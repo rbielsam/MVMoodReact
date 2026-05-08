@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
 import './index.css';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -7,11 +6,9 @@ import ForgotPassword from './pages/ForgotPassword';
 import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
 import Chat from './pages/Chat';
-import SettingsPage from './pages/SettingsPage';
 import NotificationsPage from './pages/NotificationsPage';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import ProfilePage from './pages/ProfilePage';
-import { LanguageContext } from './contexts/language.context';
 
 
 function App() {
@@ -27,7 +24,6 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/settings" element={<SettingsPage />} />
           <Route path="/notifications" element={<NotificationsPage />} />
         </Route>
       

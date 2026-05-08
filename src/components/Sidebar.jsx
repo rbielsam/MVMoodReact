@@ -1,5 +1,4 @@
-//import { useLanguage } from '../languages/Languages';
-import "../indexZara.css";
+import '../indexLogged.css';
 import { useContext } from 'react';
 import { LanguageContext } from '../contexts/language.context';
 
@@ -21,7 +20,6 @@ export default function Sidebar() {
             <a href="/notifications">{language.notifications}</a>
             <a href="/chat">{language.chat}</a>
             <a href="/profile">{language.profile}</a>
-            <a href="/settings">{language.settings}</a>
 
             <div className="logout">
                 <a onClick={logOut} href="/">{language.logout}</a>

@@ -1,5 +1,5 @@
 //import { useLanguage } from '../languages/Languages';
-import '../indexZara.css';
+import '../indexLogged.css';
 import { useState, useContext } from 'react';
 import {UserContext} from "../contexts/user.context";
 import { LanguageContext } from '../contexts/language.context';

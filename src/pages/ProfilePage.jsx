@@ -1,146 +1,244 @@
 import { useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
 import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
-//import { useLanguage } from '../languages/Languages';
-import userImg from "../assets/settingsprofile/user.png";
-import Footer from "../components/Footer";
+import '../indexLogged.css';
+import Footer from '../components/Footer';
+import TermConditions from '../components/TermConditions';
+import { useContext } from 'react';
+import { LanguageContext } from '../contexts/language.context';
 
 
-export default function ProfilePage({ data }) {
-  const { userId } = useParams();
-  const navigate = useNavigate();
-  const [actionStatus, setActionStatus] = useState('');
-  //const { t } = useLanguage();
-  const id = Number(userId);
+export default function ProfilePage() {
 
-  const userPosts = data?.publicaciones?.filter((post) => post.idUsuario === id) || [];
-  const userData = data?.users?.find((user) => user.id === id) || {
-    id,
-    nickname: userPosts?.[0]?.nickname || t('unknown_user'),
-    foto: userPosts?.[0]?.usuario_foto || {userImg},
-    bio: t('no_bio'),
-  };
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.ProfilePage;
 
-  const [menuOpen, setMenuOpen] = useState(false);
+    const [profilePic, setProfilePic] = useState('/images/user.png');
+    const [nickname, setNickname] = useState('User');
+    const [isEditingNickname, setIsEditingNickname] = useState(false);
+    const [showPasswordForm, setShowPasswordForm] = useState(false);
+    const [showTerms, setShowTerms] = useState(false);
+    const [showHelp, setShowHelp] = useState(false);
+    const [passwords, setPasswords] = useState({ current: '', next: '', confirm: '' });
+    const [passwordMessage, setPasswordMessage] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
-  const handleAction = (type) => {
-    setActionStatus(type);
-    setMenuOpen(false);
-  };
+    const handleProfilePicChange = (event) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const url = URL.createObjectURL(file);
+            setProfilePic(url);
+        }
+    };
 
-  const toggleMenu = () => {
-    setMenuOpen((current) => !current);
-  };
+    const handleNicknameChange = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const newNickname = formData.get('nickname');
+        if (newNickname.trim()) {
+            setNickname(newNickname.trim());
+            setIsEditingNickname(false);
+        }
+    };
 
-  return (
-    <>
-      <HeaderLogged />
-      <div className="container">
-        <Sidebar />
+    const handlePasswordInput = (event) => {
+        const { name, value } = event.target;
+        setPasswords((prev) => ({ ...prev, [name]: value }));
+    };
 
-        <div className="main">
-          <div className="profile-page-header">
-            <button className="back-btn" onClick={() => navigate(-1)}>
-              ← {t('back')}
-            </button>
-            <h2>{t('view_profile')}</h2>
-          </div>
+    const handlePasswordSubmit = (event) => {
+        event.preventDefault();
+        if (!passwords.current || !passwords.next || !passwords.confirm) {
+            setPasswordError(t('fill_all_fields'));
+            setPasswordMessage('');
+            return;
+        }
 
-          <div className="profile-hero">
-            <div className="profile-hero-info">
-              <img
-                src={userData.foto ? `/images/${userData.foto}` : {userImg}}
-                alt={userData.nickname}
-                className="profile-avatar hero-avatar"
-              />
-              <div className="profile-hero-details">
-                <div className="profile-hero-title-row">
-                  <div>
-                    <h2>{userData.nickname}</h2>
-                    <p className="profile-handle">@{userData.nickname.toLowerCase()}</p>
-                  </div>
-                  <div className="profile-menu-wrapper">
-                    <button
-                      className="profile-menu-toggle"
-                      onClick={toggleMenu}
-                      aria-label={t('more_options')}
-                    >
-                      ⋯
-                    </button>
-                    {menuOpen && (
-                      <div className="profile-menu">
-                        <button
-                          className="profile-menu-item"
-                          onClick={() => handleAction('blocked')}
-                        >
-                          {t('block_user')}
-                        </button>
-                        <button
-                          className="profile-menu-item"
-                          onClick={() => handleAction('reported')}
-                        >
-                          {t('report_user')}
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <p className="profile-bio">{userData.bio}</p>
-                <div className="profile-stats">
-                  <div className="profile-stat minimal">
-                    <strong>{userPosts.length}</strong>
-                    <span>{t('profile_posts')}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        if (passwords.next !== passwords.confirm) {
+            setPasswordError(t('password_mismatch'));
+            setPasswordMessage('');
+            return;
+        }
 
-          {actionStatus && (
-            <div className={`profile-action-message ${actionStatus}`}>
-              {actionStatus === 'blocked' ? t('user_blocked') : t('user_reported')}
-            </div>
-          )}
+        if (passwords.next.length < 6) {
+            setPasswordError(t('password_too_short'));
+            setPasswordMessage('');
+            return;
+        }
 
-          <div className="profile-posts">
-            <h3>{t('user_posts')}</h3>
-            {userPosts.length === 0 ? (
-              <div className="post">
-                <p>{t('no_posts')}</p>
-              </div>
-            ) : (
-              userPosts.map((post) => (
-                <div className="profile-post-card" key={post.id}>
-                  <div className="post-card-header">
-                    <Link to={`/profile/${post.idUsuario}`} className="profile-link">
-                      <img
-                        src={post.usuario_foto ? `/images/${post.usuario_foto}` : {userImg}}
-                        alt={post.nickname}
-                        className="avatar"
-                      />
-                    </Link>
-                    <div>
-                      <Link to={`/profile/${post.idUsuario}`} className="profile-link">
-                        <div className="post-author">{post.nickname}</div>
-                      </Link>
-                      <div className="post-meta">
-                        {new Date(post.fecha).toLocaleString('es-ES')}
-                      </div>
+        setPasswordError('');
+        setPasswordMessage(t('password_updated'));
+        setPasswords({ current: '', next: '', confirm: '' });
+    };
+
+    return (
+        <>
+            <HeaderLogged />
+            <div className="container">
+                <Sidebar />
+                <div className="main">
+                    <h2>{language.settings}</h2>
+
+                    <div className="settings-section profile-section">
+                        <h3>{language.profile_edit}</h3>
+                        <div className="profile-card">
+                            <div className="profile-picture-section">
+                                <div className="profile-picture-container">
+                                    <img src={profilePic} alt="Profile" className="profile-picture" />
+                                    <div className="profile-picture-overlay">
+                                        <label htmlFor="profile-pic-input" className="change-photo-btn">
+                                            <span>📷</span>
+                                        </label>
+                                        <input 
+                                            id="profile-pic-input"
+                                            type="file" 
+                                            accept="image/*" 
+                                            onChange={handleProfilePicChange}
+                                            style={{ display: 'none' }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="profile-details">
+                                <div className="nickname-section">
+                                    <div className="section-label">{language.nickname}</div>
+                                    {!isEditingNickname ? (
+                                        <div className="nickname-display">
+                                            <span className="nickname-text">{nickname}</span>
+                                            <button onClick={() => setIsEditingNickname(true)} className="edit-nickname-btn">
+                                                ✏️ Edit
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <form onSubmit={handleNicknameChange} className="nickname-edit-form">
+                                            <input 
+                                                type="text" 
+                                                name="nickname" 
+                                                defaultValue={nickname} 
+                                                maxLength={20}
+                                                required
+                                                className="nick-input"
+                                                placeholder="Enter nickname"
+                                            />
+                                            <div className="form-actions">
+                                                <button type="submit" className="save-btn">Save</button>
+                                                <button type="button" onClick={() => setIsEditingNickname(false)} className="cancel-btn">{language.cancel}</button>
+                                            </div>
+                                        </form>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div className="post-card-text">{post.contenido}</div>
-                  <div className="post-card-footer">
-                    <span>❤️ {post.likes || 0}</span>
-                    <span>💬 {post.comments || 0}</span>
-                  </div>
+
+                    <div className="settings-section">
+                        <button className="settings-button" onClick={() => setShowPasswordForm((prev) => !prev)}>
+                            {language.change_password}
+                        </button>
+                        <button className="settings-button" onClick={() => setShowTerms(true)}>{language.terms_conditions}</button>
+                        <button className="settings-button" onClick={() => setShowHelp(true)}>{language.help_support}</button>
+                        <button className="settings-button delete">{language.delete_account}</button>
+                    </div>
+
+                    {showPasswordForm && (
+                        <div className="modal-overlay" onClick={() => setShowPasswordForm(false)}>
+                            <div className="modal-card" onClick={(event) => event.stopPropagation()}>
+                                <div className="modal-header">
+                                    <h3>{language.change_password}</h3>
+                                    <button type="button" className="modal-close" onClick={() => setShowPasswordForm(false)}>
+                                        ×
+                                    </button>
+                                </div>
+                                <form onSubmit={handlePasswordSubmit}>
+                                    <div className="form-group">
+                                        <label htmlFor="current">{language.current_password}</label>
+                                        <input
+                                            id="current"
+                                            name="current"
+                                            type="password"
+                                            value={passwords.current}
+                                            onChange={handlePasswordInput}
+                                            placeholder={language.current_password}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="next">{language.new_password}</label>
+                                        <input
+                                            id="next"
+                                            name="next"
+                                            type="password"
+                                            value={passwords.next}
+                                            onChange={handlePasswordInput}
+                                            placeholder={language.new_password}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="confirm">{language.repeat_password}</label>
+                                        <input
+                                            id="confirm"
+                                            name="confirm"
+                                            type="password"
+                                            value={passwords.confirm}
+                                            onChange={handlePasswordInput}
+                                            placeholder={language.repeat_password}
+                                        />
+                                    </div>
+                                    {passwordError && <p className="error">{passwordError}</p>}
+                                    {passwordMessage && <p className="message">{passwordMessage}</p>}
+                                    <div className="form-actions">
+                                        <button type="submit" className="save-btn">{language.confirm_password}</button>
+                                        <button type="button" className="cancel-btn" onClick={() => setShowPasswordForm(false)}>
+                                            {language.cancel}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    )}
+
+                    {showHelp && (
+                        <div className="modal-overlay" onClick={() => setShowHelp(false)}>
+                            <div className="modal-card modal-card--wide" onClick={(event) => event.stopPropagation()}>
+                                <div className="modal-header">
+                                    <h3>{t('help_support')}</h3>
+                                    <button type="button" className="modal-close" onClick={() => setShowHelp(false)}>
+                                        ×
+                                    </button>
+                                </div>
+                                <div className="help-content">
+                                    <h4>Ayuda y soporte de MVMood</h4>
+                                    <p>Estamos aquí para resolver tus dudas, ayudarte con tu cuenta y acompañarte en el uso diario de la plataforma.</p>
+                                    <ul>
+                                        <li><strong>¿Problemas para iniciar sesión?</strong> Comprueba tu correo institucional y contraseña.</li>
+                                        <li><strong>Cambio de contraseña:</strong> Usa el botón “Cambiar contraseña” para renovar tu acceso de forma segura.</li>
+                                        <li><strong>Publicaciones y mensajes:</strong> Mantén siempre el respeto y evita compartir datos personales.</li>
+                                    </ul>
+                                    <p>Si necesitas ayuda personalizada, contacta con:</p>
+                                    <p><strong>Email:</strong> welcomemvmood@gmail.com</p>
+                                    <p>También puedes enviar tus preguntas desde dentro de la plataforma y te responderemos lo antes posible.</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {showTerms && (
+                        <div className="modal-overlay" onClick={() => setShowTerms(false)}>
+                            <div className="modal-card modal-card--wide" onClick={(event) => event.stopPropagation()}>
+                                <div className="modal-header">
+                                    <h3>{language.terms_conditions}</h3>
+                                    <button type="button" className="modal-close" onClick={() => setShowTerms(false)}>
+                                        ×
+                                    </button>
+                                </div>
+                                <div className="terms-content">
+                                    <TermConditions></TermConditions>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
-              ))
-            )}
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </>
-  );
+            </div>
+            <Footer />
+        </>
+    );
 }

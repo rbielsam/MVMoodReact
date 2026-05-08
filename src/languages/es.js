@@ -40,7 +40,9 @@ const es = {
     },
 
     HomePage: {
-        no_posts: 'No hay publicaciones todavía. ¡Sé el primero en publicar!'
+        no_posts: 'No hay publicaciones todavía. ¡Sé el primero en publicar!',
+        create_post: "Nueva publicación",
+        cancel: "Cancelar"
     },
 
     CreatePostForm: {
@@ -49,50 +51,38 @@ const es = {
         send: 'Enviar'
     },
 
-
-
     Post: {
         no_comments_yet: "No hay comentarios",
-        like: 'Me gusta',
+        likes: 'Me gusta',
         comment: 'Comentar',
         edit: 'Editar',
         report: "Reportar",
-        create_post: "Nueva publicación",
         type_message: 'Escribe un mensaje...',
         comments: "Comentarios",
         save: "Guardar",
-
-
-
-
-
-
+        cancel: "Cancelar",
+        delete: 'Eliminar',
         sure_delete_post: "¿Seguro que quieres eliminar esta publicación?",
+    },
 
-        like: "Me gusta",
+    NotificationsPage: {
+        notifications: 'Notificaciones',
+        no_notifications: 'No hay notificaciones todavía.',
+    },
 
-
-
-        create: 'Crear',
-
+    ProfilePage: {
+        settings: 'Configuración',
         profile_edit: 'Editar Perfil',
+        nickname: "Nombre de usuario",
+        cancel: "Cancelar",
         change_password: 'Cambiar Contraseña',
         terms_conditions: 'Términos y Condiciones',
         help_support: 'Ayuda y Soporte',
-        about: 'Acerca de',
         delete_account: 'Eliminar Cuenta',
-        back_to_messages: 'Volver a Mensajes',
-        chat_with: 'Chat con',
-
-
-        no_messages: 'No hay mensajes todavía.',
-        no_notifications: 'No hay notificaciones todavía.',
-        welcome: 'Bienvenido a MVMood!',
-
-        delete: 'Eliminar',
-
-        select_language: 'Seleccionar idioma',
-
+        current_password: "Contraseña actual",
+        new_password: "Nueva contraseña",
+        repeatPassword: "Repite contraseña",
+        confirm_password: "Confirmar contraseña",
     }
 };
 
