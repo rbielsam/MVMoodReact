@@ -45,6 +45,12 @@ const en = {
         no_posts: 'No posts yet.'
     },
 
+    CreatePostForm: {
+        create: 'create post',
+        share_your_updates: "share your updates...",
+        send: 'send'
+    },
+
     Post: {
         no_comments_yet: "No comments yet",
         like: "like",
@@ -54,6 +60,7 @@ const en = {
         create_post: "Create Post",
         type_message: 'type message...',
         comments: 'comments',
+        save: "save",
 
 
 
@@ -61,7 +68,7 @@ const en = {
 
 
         sure_delete_post: "Are you sure you want to delete this post?",
-        create: 'create',
+
         profile_edit: 'profile edit',
         change_password: 'change password',
         terms_conditions: 'terms conditions',
@@ -71,7 +78,7 @@ const en = {
         back_to_messages: 'back to messages',
         chat_with: 'chat with',
 
-        send: 'send',
+
 
         no_messages: 'no messages yet',
         no_notifications: 'No notifications yet',
@@ -80,7 +87,7 @@ const en = {
 
         delete: 'Eliminar',
         select_language: 'select language',
-        share_your_updates: "share your updates..."
+
     }
 };
 

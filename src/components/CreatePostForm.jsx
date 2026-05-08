@@ -10,7 +10,7 @@ import { usePosts } from '../hooks/usePosts';
 export default function CreatePostForm({ onCreated }) {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.HomePage;
+    const language = lang.content.CreatePostForm;
 
     const [contenido, setContenido] = useState("");
     //const { t } = useLanguage();

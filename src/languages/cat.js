@@ -30,10 +30,6 @@ const cat = {
         returnHome: "Tornar a l'inici"
     },
 
-    HomePage: {
-        no_posts: 'No hi ha publicacions encara. Sigues el primer en publicar!'
-    },
-
     Sidebar: {
         home: 'Inici',
         notifications: 'Notificacions',
@@ -41,6 +37,16 @@ const cat = {
         profile: "Perfil",
         settings: 'Configuració',
         logout: 'Tancar Sessió'
+    },
+
+    HomePage: {
+        no_posts: 'No hi ha publicacions encara. Sigues el primer en publicar!'
+    },
+
+    CreatePostForm: {
+        create: 'Nova publicació',
+        share_your_updates: "Comparteix les teves novetats...",
+        send: 'Enviar'
     },
 
     Post: {
@@ -52,6 +58,7 @@ const cat = {
         create_post: "Nova publicació",
         type_message: 'Escriu un missatge...',
         comments: 'Comentaris',
+        save: "Guardar",
 
 
 
@@ -72,7 +79,7 @@ const cat = {
         back_to_messages: 'Tornar a Missatges',
         chat_with: 'Xat amb',
 
-        send: 'Enviar',
+
         no_messages: 'No hi ha missatges encara.',
         no_notifications: 'No hi ha notificacions encara.',
         welcome: 'Benvingut a MVMood!',
@@ -81,7 +88,7 @@ const cat = {
         delete: 'Eliminar',
 
         select_language: 'Selecciona idioma',
-        share_your_updates: "Comparteix les teves novetats..."
+
     }
 };
 

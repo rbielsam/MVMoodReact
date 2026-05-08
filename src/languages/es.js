@@ -30,10 +30,6 @@ const es = {
         returnHome: "Volver al Inicio"
     },
 
-    HomePage: {
-        no_posts: 'No hay publicaciones todavía. ¡Sé el primero en publicar!'
-    },
-
     Sidebar: {
         home: 'Inicio',
         notifications: 'Notificaciones',
@@ -42,6 +38,18 @@ const es = {
         settings: 'Configuración',
         logout: 'Cerrar Sesión'
     },
+
+    HomePage: {
+        no_posts: 'No hay publicaciones todavía. ¡Sé el primero en publicar!'
+    },
+
+    CreatePostForm: {
+        create: 'Nueva publicación',
+        share_your_updates: "Comparte tus novedades...",        
+        send: 'Enviar'
+    },
+
+
 
     Post: {
         no_comments_yet: "No hay comentarios",
@@ -52,6 +60,7 @@ const es = {
         create_post: "Nueva publicación",
         type_message: 'Escribe un mensaje...',
         comments: "Comentarios",
+        save: "Guardar",
 
 
 
@@ -75,7 +84,7 @@ const es = {
         back_to_messages: 'Volver a Mensajes',
         chat_with: 'Chat con',
 
-        send: 'Enviar',
+
         no_messages: 'No hay mensajes todavía.',
         no_notifications: 'No hay notificaciones todavía.',
         welcome: 'Bienvenido a MVMood!',
@@ -83,7 +92,7 @@ const es = {
         delete: 'Eliminar',
 
         select_language: 'Seleccionar idioma',
-        share_your_updates: "Comparte tus novedades..."
+
     }
 };
 
