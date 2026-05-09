@@ -1,14 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import echo from '../lib/echo'; // Tu instancia de Laravel Echo
-//import { useLanguage } from '../languages/Languages';
-//import HeaderLogged from "../components/HeaderLogged";
+import { LanguageContext } from '../contexts/language.context';
+import "../indexLogged.css";
+import HeaderLogged from "../components/HeaderLogged";
+import Sidebar from '../components/Sidebar';
+import Footer from '../components/Footer';
 
 
 export default function Chat({ selectedChat, onBack, currentUser }) {
-    //const { t } = useLanguage();
+
+    if (!selectedChat) return null;
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.login;
+
     const [mensajes, setMensajes] = useState([]);
     const [nuevoMensaje, setNuevoMensaje] = useState("");
     const scrollRef = useRef(null);
+    const [cargando, setCargando] = useState(false);
+
 
     useEffect(() => {
         // Cargar mensajes previos desde la API
@@ -40,9 +50,9 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
             });
 
         return () => {
-            echo.leave(`chat.${message.uuid}`);
+            echo.leave(`private-chat.${selectedChat.uuid}`);
         };
-    }, [message.uuid]);
+    }, [selectedChat.uuid]);
 
     // Scroll automático al final
     useEffect(() => {
@@ -54,6 +64,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         e.preventDefault();
         if (!nuevoMensaje.trim()) return;
 
+        const receptor = selectedChat.usuarios.find(u => u.id !== currentUser.id);
         const textoParaEnviar = nuevoMensaje;
         setNuevoMensaje(""); // Limpiamos el input
 
@@ -66,7 +77,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    receptor_uuid: selectedChat.usuarios[0].uuid,
+                    receptor_uuid: receptor.uuid,
                     contenido: textoParaEnviar
                 })
             });
@@ -84,7 +95,8 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         <div className="main chat-container"> 
             <div className="chat-header"> 
                 <button onClick={onBack}>← Volver</button> 
-                <h3>{selectedChat.usuarios[0]?.nickname}</h3> 
+                {/*<h3>{selectedChat.usuarios[0]?.nickname}</h3> */}
+                <h3>{receptor?.nickname}</h3>
             </div> 
             <div className="chat-messages"> 
                 {mensajes.map(msg => ( 

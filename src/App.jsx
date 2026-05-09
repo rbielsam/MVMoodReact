@@ -10,6 +10,7 @@ import NotificationsPage from './pages/NotificationsPage';
 import Chat from './pages/Chat';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import PublicRoute from './components/utils/PublicRoute';
+import MessagesPage from "./pages/MessagesPage";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/notifications" element={<NotificationsPage />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/messages" element={<MessagesPage />} />
         </Route>
       
         <Route path="*" element={<ErrorPage />} /> // Cualquier ruta que no esté registrada en las Route llevará a la página de error

@@ -14,7 +14,7 @@ export default function LayoutMensajeria() {
                 <Sidebar />
                 {}
                 {!chatSeleccionado ? (
-                    <MessagesPage onSelectChat={(chat) => setChatSeleccionado(chat)} />
+                    <MessagesPage onSelectChat={(chat) => setChatSeleccionado(chat)} currentUser={user} />
                 ) : (
                     <Chat
                         selectedChat={chatSeleccionado}

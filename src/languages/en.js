@@ -32,10 +32,10 @@ const en = {
 
     Sidebar: {
         home: 'home',
+        profile: "profile",
         notifications: 'notifications',
         chat: 'chat',
-        profile: "profile",
-        settings: 'settings',
+        messages: "messages",
         logout: 'logout',
     },
 

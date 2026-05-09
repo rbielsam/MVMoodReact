@@ -32,10 +32,10 @@ const cat = {
 
     Sidebar: {
         home: 'Inici',
+        profile: "Perfil",
         notifications: 'Notificacions',
         chat: 'Chat',
-        profile: "Perfil",
-        settings: 'Configuració',
+        messages: "Missatges",
         logout: 'Tancar Sessió'
     },
 
