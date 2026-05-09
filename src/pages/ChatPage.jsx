@@ -7,6 +7,7 @@ import Chat from '../components/Chat.jsx';
 import Footer from '../components/Footer.jsx';
 import HeaderLogged from "../components/HeaderLogged.jsx";
 import Sidebar from '../components/Sidebar.jsx';
+import ChatUserList from "../components/ChatUserList";
 
 
 export default function ChatPage() {
@@ -21,6 +22,7 @@ export default function ChatPage() {
                 <Sidebar />
 
                 <div className="main">
+                    <ChatUserList />
                     {!chatSeleccionado ? (
                         <MessagesChat onSelectChat={(chat) => setChatSeleccionado(chat)} currentUser={user} />
                     ) : (
