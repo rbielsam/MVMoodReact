@@ -1,12 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { LanguageContext } from '../contexts/language.context';
-import "../indexLogged.css";
-import HeaderLogged from "../components/HeaderLogged";
-import Sidebar from '../components/Sidebar';
-import Footer from '../components/Footer';
+import "../indexChat.css";
 
 
-export default function MessagesPage({ onSelectChat, currentUser }) {
+export default function MessagesChat({ onSelectChat, currentUser }) {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.login;
@@ -25,7 +22,7 @@ export default function MessagesPage({ onSelectChat, currentUser }) {
                 });
                 const data = await res.json();
                 //console.log("Respuesta Back: ", data);
-                setChats(data?.data ?? []);
+                setChats(Array.isArray(data) ? data : []);
             } catch (err) {
                 console.error("Error al obtener chats:", err);
             } finally {
@@ -37,9 +34,9 @@ export default function MessagesPage({ onSelectChat, currentUser }) {
 
     return (
         
-        <div className="main messages-main">
-            <HeaderLogged />
-            <Sidebar />
+        <div className="main-content messages-main">
+            {/*<HeaderLogged />
+            <Sidebar />*/}
 
             <h2>Mensajes</h2>
             {cargando ? (
@@ -70,7 +67,7 @@ export default function MessagesPage({ onSelectChat, currentUser }) {
                     })}
                 </div>
             )}
-            <Footer />
+            {/*<Footer />*/}
         </div>
     );
 }

@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import echo from '../lib/echo'; // Tu instancia de Laravel Echo
 import { LanguageContext } from '../contexts/language.context';
-import "../indexLogged.css";
-import HeaderLogged from "../components/HeaderLogged";
-import Sidebar from '../components/Sidebar';
-import Footer from '../components/Footer';
+import "../indexChat.css";
 
 
 export default function Chat({ selectedChat, onBack, currentUser }) {
 
     if (!selectedChat) return null;
+    const receptor = selectedChat.usuarios.find(u => u.id !== currentUser.id);
 
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.login;
@@ -91,8 +89,14 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
             console.error("Error al enviar:", error);
         }
     };
+
+    console.log("Chat renderizado");
+
     return ( 
-        <div className="main chat-container"> 
+        <div className="main-content chat-container">
+            {/*<HeaderLogged />
+            <Sidebar />*/}
+
             <div className="chat-header"> 
                 <button onClick={onBack}>← Volver</button> 
                 {/*<h3>{selectedChat.usuarios[0]?.nickname}</h3> */}
@@ -110,6 +114,8 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
                 <input value={nuevoMensaje} onChange={(e) => setNuevoMensaje(e.target.value)} /> 
                 <button type="submit">Enviar</button> 
             </form> 
+
+            {/*<Footer />*/}
         </div> 
     );  
 }

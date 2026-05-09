@@ -20,7 +20,6 @@ export default function Sidebar() {
             <Link to="/profile">{language.profile}</Link>
             <Link to="/notifications">{language.notifications}</Link>            
             <Link to="/chat">{language.chat}</Link>
-            <Link to="/messages">{language.messages}</Link>
 
             <div className="logout">
                 <a onClick={logOut} href="/">{language.logout}</a>

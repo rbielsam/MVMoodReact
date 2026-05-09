@@ -853,7 +853,7 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
 }
 
 /* Chat Interface */
-.chat-main {
+/*.chat-main {
     padding: 0;
     height: calc(100vh - 70px);
     display: flex;
@@ -1120,7 +1120,15 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
 
 .send-btn:hover {
     background: #0056b3;
-}
+}*/
+
+
+/*CHAT NUEVO*/
+
+
+
+
+
 
 /* Dark mode for new elements */
 .dark .settings-section {
