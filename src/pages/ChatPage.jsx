@@ -11,8 +11,31 @@ import ChatUserList from "../components/ChatUserList";
 
 
 export default function ChatPage() {
+
     const { user } = useContext(UserContext);
     const [chatSeleccionado, setChatSeleccionado] = useState(null);
+
+
+    const startChatWithUser = async (user) => {
+        try {
+            await fetch("http://127.0.0.1:8000/api/chats/enviar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    receptor_id: user.id,
+                    contenido: "Hola"
+                })
+            })
+
+        } catch (err) {
+            throw new Error ("Error al conectar con el servidor: ", err.message);
+            console.error("Error al conectar con el servidor: ", err.message);
+        }
+    }
 
     return (
         <div className="app-layout">
@@ -22,7 +45,11 @@ export default function ChatPage() {
                 <Sidebar />
 
                 <div className="main">
-                    <ChatUserList />
+                    <ChatUserList 
+                            currentUser={user}
+                            onSelectUser={startChatWithUser}
+                    />
+
                     {!chatSeleccionado ? (
                         <MessagesChat onSelectChat={(chat) => setChatSeleccionado(chat)} currentUser={user} />
                     ) : (
