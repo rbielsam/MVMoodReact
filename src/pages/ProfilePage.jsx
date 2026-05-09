@@ -49,25 +49,25 @@ export default function ProfilePage() {
     const handlePasswordSubmit = (event) => {
         event.preventDefault();
         if (!passwords.current || !passwords.next || !passwords.confirm) {
-            setPasswordError(t('fill_all_fields'));
+            setPasswordError(language.fill_all_fields);
             setPasswordMessage('');
             return;
         }
 
         if (passwords.next !== passwords.confirm) {
-            setPasswordError(t('password_mismatch'));
+            setPasswordError(language.password_mismatch);
             setPasswordMessage('');
             return;
         }
 
-        if (passwords.next.length < 6) {
-            setPasswordError(t('password_too_short'));
+        if (passwords.next.length < 8) {
+            setPasswordError(language.password_too_short);
             setPasswordMessage('');
             return;
         }
 
         setPasswordError('');
-        setPasswordMessage(t('password_updated'));
+        setPasswordMessage(language.password_updated);
         setPasswords({ current: '', next: '', confirm: '' });
     };
 
@@ -135,8 +135,9 @@ export default function ProfilePage() {
                         <button className="settings-button" onClick={() => setShowPasswordForm((prev) => !prev)}>
                             {language.change_password}
                         </button>
+
                         <button className="settings-button" onClick={() => setShowTerms(true)}>{language.terms_conditions}</button>
-                        <button className="settings-button" onClick={() => setShowHelp(true)}>{language.help_support}</button>
+                        <button className="settings-button" onClick={() => setShowHelp(true)}>Para borrar o añadir otra cosa</button>
                         <button className="settings-button delete">{language.delete_account}</button>
                     </div>
 
@@ -149,6 +150,7 @@ export default function ProfilePage() {
                                         ×
                                     </button>
                                 </div>
+                                
                                 <form onSubmit={handlePasswordSubmit}>
                                     <div className="form-group">
                                         <label htmlFor="current">{language.current_password}</label>
@@ -183,14 +185,17 @@ export default function ProfilePage() {
                                             placeholder={language.repeat_password}
                                         />
                                     </div>
+
                                     {passwordError && <p className="error">{passwordError}</p>}
                                     {passwordMessage && <p className="message">{passwordMessage}</p>}
+
                                     <div className="form-actions">
                                         <button type="submit" className="save-btn">{language.confirm_password}</button>
                                         <button type="button" className="cancel-btn" onClick={() => setShowPasswordForm(false)}>
                                             {language.cancel}
                                         </button>
                                     </div>
+
                                 </form>
                             </div>
                         </div>
@@ -200,7 +205,7 @@ export default function ProfilePage() {
                         <div className="modal-overlay" onClick={() => setShowHelp(false)}>
                             <div className="modal-card modal-card--wide" onClick={(event) => event.stopPropagation()}>
                                 <div className="modal-header">
-                                    <h3>{t('help_support')}</h3>
+                                    <h3>Si teneis alguna sugerencia se puede poner si no se borra</h3>
                                     <button type="button" className="modal-close" onClick={() => setShowHelp(false)}>
                                         ×
                                     </button>

@@ -77,12 +77,15 @@ const es = {
         cancel: "Cancelar",
         change_password: 'Cambiar Contraseña',
         terms_conditions: 'Términos y Condiciones',
-        help_support: 'Ayuda y Soporte',
         delete_account: 'Eliminar Cuenta',
         current_password: "Contraseña actual",
         new_password: "Nueva contraseña",
-        repeatPassword: "Repite contraseña",
+        repeat_password: "Repite contraseña",
         confirm_password: "Confirmar contraseña",
+        fill_all_fields: "Deben rellenar todos los campos",
+        password_mismatch: "Las contraseñas no coinciden",
+        password_too_short: "Contraseña demasiado corta",
+        password_updated: "Contraseña actualizada"
     }
 };
 

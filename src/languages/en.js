@@ -78,12 +78,15 @@ const en = {
         cancel: "cancel",
         change_password: 'change password',
         terms_conditions: 'terms conditions',
-        help_support: 'help support',
         delete_account: 'delete account',
         current_password: "current password",
         new_password: "new password",
-        repeatPassword: "repeat password",
+        repeat_password: "repeat password",
         confirm_password: "confirm password",
+        fill_all_fields: "Fill all fields",
+        password_mismatch: "Password mismatch",
+        password_too_short: "Password too short",
+        password_updated: "Password updated"
     }
 };
 

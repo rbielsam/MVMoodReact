@@ -77,12 +77,15 @@ const cat = {
         cancel: "Cancel·lar",
         change_password: 'Canviar Contrasenya',
         terms_conditions: 'Termes i Condicions',
-        help_support: 'Ajuda i Suport',
         delete_account: 'Eliminar Compte',
         current_password: "Contrasenya actual",
         new_password: "Nova contrasenya",
-        repeatPassword: "Repeteix la contrasenya",
+        repeat_password: "Repeteix la contrasenya",
         confirm_password: "Confirmar contrasenya",
+        fill_all_fields: "S'han d'omplir tots el camps",
+        password_mismatch: "Les contrasenyes no coincideixen",
+        password_too_short: "Contrasenya massa curta",
+        password_updated: "Contrasenya actualitzada"
     }
 };
 
