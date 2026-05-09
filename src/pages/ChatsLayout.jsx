@@ -12,7 +12,7 @@ export default function LayoutMensajeria() {
             <Header />
             <div className="container">
                 <Sidebar />
-                {/* ÁREA DE CONTENIDO DINÁMICO */}
+                {}
                 {!chatSeleccionado ? (
                     <MessagesPage onSelectChat={(chat) => setChatSeleccionado(chat)} />
                 ) : (
