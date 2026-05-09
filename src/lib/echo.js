@@ -5,7 +5,7 @@ window.Pusher = Pusher;
 
 const echo = new Echo({
     broadcaster: 'pusher',
-    key: import.meta.env.VITE_PUSHER_APP_KEY, // O tu variable de entorno
+    key: import.meta.env.VITE_PUSHER_APP_KEY, // Variable de entorno
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     forceTLS: true,
     // Como usamos PrivateChannels, necesitamos pasar el token de Sanctum
