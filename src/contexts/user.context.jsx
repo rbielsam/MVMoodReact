@@ -90,7 +90,7 @@ function UserProviderWrapper(props) {
         //const response = await axios.post("http://localhost:8000/api/signup", {user});
         // Llamada al Back End (Laravel)
         try {
-            const response = await fetch("http://localhost:8000/api/register", {
+            const response = await fetch("http://127.0.0.1:8000/api/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -141,7 +141,7 @@ function UserProviderWrapper(props) {
     const resetPassword = async (user) => {
         // Llamada al Backend
         try {
-            const response = await fetch("http://localhost:8000/api/resetpassword", {
+            const response = await fetch("http://127.0.0.1:8000/api/resetpassword", {
                 method: "POST",
                 headers: {"content-Type": "application/json"},
                 body: JSON.stringify(user)
@@ -174,7 +174,7 @@ function UserProviderWrapper(props) {
     // Función asíncrona para devolver los datos de usuario para el HeaderLogged
     const getDataLoggedUser = async () => {
         try {
-            const response = await fetch("http://localhost:8000/api/user", {
+            const response = await fetch("http://127.0.0.1:8000/api/user", {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,

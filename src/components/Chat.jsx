@@ -6,8 +6,8 @@ import "../indexChat.css";
 
 export default function Chat({ selectedChat, onBack, currentUser }) {
 
+    const receptor = selectedChat.usuarios?.find(u => u.id !== currentUser.id);
     if (!selectedChat) return null;
-    const receptor = selectedChat.usuarios.find(u => u.id !== currentUser.id);
 
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.login;
@@ -22,7 +22,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         // Cargar mensajes previos desde la API
         const cargarHistorial = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/chats/${selectedChat.uuid}/mensajes`, {
+                const response = await fetch(`http://127.0.0.1:8000/api/chats/${selectedChat.id}/mensajes`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                         'Accept': 'application/json'
@@ -31,9 +31,25 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
                 const data = await response.json();
                 // Devuelve los datos en .data.data
                 // Los invertimos para que el más reciente esté abajo
-                setMensajes(data.data.reverse());
-            } catch (error) {
-                console.error("Error cargando historial:", error);
+                //setMensajes(data.data.reverse());
+
+                console.log("Historial recibido: ", data);
+
+                if (!response.ok) {
+                    console.error("Error HTTP: ", response.status, data);
+                    return;
+                }
+
+                if (Array.isArray(data.data)) {
+                    setMensajes(data.data.reverse());
+                }
+                else {
+                    console.error("Formato inesperado no correcto: ", data);
+                }
+
+            } catch (err) {
+                console.error("Error cargando historial:", err);
+
             } finally {
                 setCargando(false);
             }
@@ -50,7 +66,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         return () => {
             echo.leave(`private-chat.${selectedChat.uuid}`);
         };
-    }, [selectedChat.uuid]);
+    }, [selectedChat.id]);
 
     // Scroll automático al final
     useEffect(() => {
@@ -62,7 +78,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         e.preventDefault();
         if (!nuevoMensaje.trim()) return;
 
-        const receptor = selectedChat.usuarios.find(u => u.id !== currentUser.id);
+        const receptor = selectedChat.usuarios?.find(u => u.id !== currentUser.id);
         const textoParaEnviar = nuevoMensaje;
         setNuevoMensaje(""); // Limpiamos el input
 
@@ -75,7 +91,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    receptor_uuid: receptor.uuid,
+                    receptor_id: receptor.id,
                     contenido: textoParaEnviar
                 })
             });
@@ -83,7 +99,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
             if (response.ok) {
                 const data = await response.json();
                 // Añadimos nuestro propio mensaje a la lista local
-                setMensajes((prev) => [...prev, data]);
+                setMensajes(prev => [...prev, data.mensaje]);
             }
         } catch (error) {
             console.error("Error al enviar:", error);

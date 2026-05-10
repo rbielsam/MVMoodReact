@@ -22,7 +22,15 @@ export default function MessagesChat({ onSelectChat, currentUser }) {
                 });
                 const data = await res.json();
                 //console.log("Respuesta Back: ", data);
-                setChats(Array.isArray(data) ? data : []);
+                if (!Array.isArray(data)) {
+                    console.error("Respuesta del inesperada del servidor: ", data);
+                    setChats([]);
+                    return;
+                }
+
+                setChats(data);
+                console.log("Chats recibidos: ", chats);
+
             } catch (err) {
                 console.error("Error al obtener chats:", err);
             } finally {
@@ -46,12 +54,13 @@ export default function MessagesChat({ onSelectChat, currentUser }) {
             ) : (
                 <div className="messages-list">
                     {chats.map((chat) => {
-                        const receptor = chat.usuarios.find(u => u.id !== currentUser.id);
+                        const receptor = chat.usuarios?.find(u => u.id !== currentUser.id);
+                        if (!receptor) return null;
 
                         return (
                     
                             <div
-                                key={chat.uuid}
+                                key={chat.id}
                                 className="message-item"
                                 onClick={() => onSelectChat(chat)}
                             >

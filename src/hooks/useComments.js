@@ -9,7 +9,7 @@ export function useComments () {
     // Función para obtener los comentarios de un post
     const getComments = async (uuid) => {
         try {
-            const response = await fetch(`http://localhost:8000/api/publicaciones/${uuid}/comentarios`, {
+            const response = await fetch(`http://127.0.0.1:8000/api/publicaciones/${uuid}/comentarios`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -37,7 +37,7 @@ export function useComments () {
     // Función para guardar comentario de un POST
     const createComment = async (uuid, contenido) => {
         try {
-            const response = await fetch(`http://localhost:8000/api/publicaciones/${uuid}/comentarios`, {
+            const response = await fetch(`http://127.0.0.1:8000/api/publicaciones/${uuid}/comentarios`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,

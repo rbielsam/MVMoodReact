@@ -40,7 +40,7 @@ export default function ChatUserList ({ currentUser, onSelectUser }) {
 
     const listUsers = () => {
         return users.map(user => (
-            <li key={user.id} className="user-item" onClick={() => onSelectUser(user)}>
+            <li key={user.id} className="user-item" onClick={() => {console.log("Usuario del chat seleccionado: ", user); onSelectUser(user)}}>
                 {/*<img serc="" className="user-foto_perfil" />*/}
                 <p>{user.nickname}</p>
             </li>
