@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { UserContext } from "../contexts/user.context.jsx";
 import "../indexChat.css";
 import "../indexLogged.css";
-import MessagesChat from '../components/MessagesChat.jsx';
+import ConversacionesChat from '../components/ConversacionesChat.jsx';
 import Chat from '../components/Chat.jsx';
 import Footer from '../components/Footer.jsx';
 import HeaderLogged from "../components/HeaderLogged.jsx";
@@ -63,7 +63,7 @@ export default function ChatPage() {
                     />
 
                     {!chatSeleccionado ? (
-                        <MessagesChat onSelectChat={(chat) => setChatSeleccionado(chat)} currentUser={user} />
+                        <ConversacionesChat onSelectChat={(chat) => setChatSeleccionado(chat)} currentUser={user} />
                     ) : (
                         <Chat
                             selectedChat={chatSeleccionado}

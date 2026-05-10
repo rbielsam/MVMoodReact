@@ -3,7 +3,7 @@ import { LanguageContext } from '../contexts/language.context';
 import "../indexChat.css";
 
 
-export default function MessagesChat({ onSelectChat, currentUser }) {
+export default function ConversacionesChat({ onSelectChat, currentUser }) {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.login;
@@ -46,7 +46,7 @@ export default function MessagesChat({ onSelectChat, currentUser }) {
             {/*<HeaderLogged />
             <Sidebar />*/}
 
-            <h2>Mensajes</h2>
+            <h2>Conversaciones</h2>
             {cargando ? (
                 <p>Cargando conversaciones...</p>
             ) : chats.length === 0 ? (
