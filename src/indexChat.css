@@ -251,3 +251,133 @@
     color: #777;
     font-size: 18px;
 }
+
+/* MODO OSCURO CHAT */
+
+/*Contenedor principal Chat*/
+.dark .chatbox-container {
+    background: #1e1e1e;
+    color: #f1f1f1;
+}
+
+/* HEADER DEL CHAT */
+.dark .chatbox-header {
+    background: #2a2a2a;
+    border-bottom: 1px solid #333;
+}
+
+/* LISTA DE MENSAJES */
+.dark .chatbox-messages {
+    background: #1e1e1e;
+}
+
+/* MENSAJE ENVIADO */
+.dark .chatbox-msg.sent {
+    background: #007bff;
+    color: white;
+}
+
+/* MENSAJE RECIBIDO */
+.dark .chatbox-msg.received {
+    background: #3a3a3a;
+    color: #f1f1f1;
+}
+
+/* INPUT DEL CHAT */
+.dark .chatbox-input {
+    background: #2a2a2a;
+    border-top: 1px solid #333;
+}
+
+.dark .chatbox-input input {
+    background: #2a2a2a;
+    color: #f1f1f1;
+}
+
+.dark .chatbox-input input::placeholder {
+    color: #ccc;
+}
+
+/* BOTÓN ENVIAR */
+.dark .chatbox-input button {
+    background: #007bff;
+    color: white;
+}
+
+/* COLUMNA IZQUIERDA */
+.dark .chat-left-column {
+    background: #1e1e1e;
+    color: #f1f1f1;
+}
+
+/* LISTA DE USUARIOS */
+/*.dark .chat-left-users {
+    background: #2a2a2a;
+    border-bottom: 1px solid #333;
+}*/
+
+/* LISTA DE CONVERSACIONES */
+.dark .chat-left-chats {
+    background: #2a2a2a;
+    border-top: 1px solid #333;
+}
+
+/* VENTANA DE MENSAJES (lista de mensajes, no el chat activo) */
+.dark .chat-messages {
+    background: #1e1e1e;
+    color: #f1f1f1;
+}
+
+/* COLUMNA IZQUIERDA — LISTA DE USUARIOS */
+.dark .chat-left-users {
+    background: #2a2a2a;
+    color: #f1f1f1;
+    border-bottom: 1px solid #333;
+}
+
+/* COLUMNA DERECHA — CONTENEDOR DEL CHAT */
+.dark .chat-right-column {
+    background: #1e1e1e;
+    color: #f1f1f1;
+}
+
+/* LISTA DE MENSAJES (NO EL CHAT ACTIVO) */
+.dark .chat-messages {
+    background: #1e1e1e;
+    color: #f1f1f1;
+}
+
+.dark .chat-container {
+    background: #1e1e1e !important;
+    color: #f1f1f1 !important;
+}
+
+.dark .users-list {
+    background: #2a2a2a !important;
+    color: #f1f1f1 !important;
+}
+
+/* SI LOS ITEMS DE USUARIO TIENEN SU PROPIO FONDO */
+.dark .users-list .user-item,
+.dark .users-list .user-row,
+.dark .users-list .user-card {
+    background: #2a2a2a !important;
+    color: #f1f1f1 !important;
+}
+
+/* TITULO "Users" */
+.dark .users-list h3,
+.dark .users-list h4,
+.dark .users-list .title {
+    color: #f1f1f1 !important;
+}
+
+.dark .message-item:hover {
+    background-color: #2F2F2F;
+}
+
+.dark .user-item:hover {
+    background-color: #2F2F2F;
+    color: #FFFFFF;
+    border: 1px solid #3a3a3a;
+}

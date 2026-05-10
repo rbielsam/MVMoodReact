@@ -130,22 +130,22 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
     console.log("Chat renderizado");
 
     return ( 
-        <div className="chat-container">
+        <div className="chatbox-container">
 
-            <div className="chat-header"> 
+            <div className="chatbox-header"> 
                 <button onClick={onBack}>← {language.back}</button> 
                 {/*<h3>{selectedChat.usuarios[0]?.nickname}</h3> */}
                 <h3>{receptor?.nickname}</h3>
             </div> 
-            <div className="chat-messages"> 
+            <div className="chatbox-messages"> 
                 {mensajes.map(msg => ( 
-                    <div key={msg.uuid} className={`msg ${msg.emisor_id === currentUser.id ? 'sent' : 'received'}`}> 
+                    <div key={msg.uuid} className={`chatbox-msg ${msg.emisor_id === currentUser.id ? 'sent' : 'received'}`}> 
                         {msg.contenido} 
                     </div> 
                     ))} 
                 <div ref={scrollRef} /> 
             </div> 
-            <form onSubmit={handleSend} className="chat-input"> 
+            <form onSubmit={handleSend} className="chatbox-input"> 
                 <input value={nuevoMensaje} onChange={(e) => setNuevoMensaje(e.target.value)} /> 
                 <button type="submit">{language.send}</button> 
             </form> 
