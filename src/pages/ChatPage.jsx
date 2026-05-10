@@ -8,9 +8,13 @@ import Footer from '../components/Footer.jsx';
 import HeaderLogged from "../components/HeaderLogged.jsx";
 import Sidebar from '../components/Sidebar.jsx';
 import ChatUserList from "../components/ChatUserList";
+import { LanguageContext } from "../contexts/language.context.jsx";
 
 
 export default function ChatPage() {
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.ChatPage;
 
     const { user } = useContext(UserContext);
     const [chatSeleccionado, setChatSeleccionado] = useState(null);
@@ -79,7 +83,7 @@ export default function ChatPage() {
                             />
                         ) : (
                             <div className="chat-placeholder">
-                                <p>Chats</p>
+                                <p>{language.chats}</p>
                             </div>
                         )}
                     </div>

@@ -87,6 +87,26 @@ const en = {
         password_mismatch: "Password mismatch",
         password_too_short: "Password too short",
         password_updated: "Password updated"
+    },
+
+    ChatPage: {
+        chats: "chats"
+    },
+
+    Chat: {
+        back: "back",
+        send: "send"
+    },
+
+    ConversacionesChat: {
+        conversations: "Conversations",
+        loading_conversations: "loading conversations...",
+        no_conversations_yet: "No conversations yet",
+        no_messages_yet: "No messages yet"
+    },
+
+    ChatUserList: {
+        users: "Users"
     }
 };
 

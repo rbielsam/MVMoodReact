@@ -6,7 +6,7 @@ import "../indexChat.css";
 export default function ConversacionesChat({ onSelectChat, currentUser }) {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.login;
+    const language = lang.content.ConversacionesChat;
 
     const [chats, setChats] = useState([]);
     const [cargando, setCargando] = useState(true);
@@ -43,14 +43,12 @@ export default function ConversacionesChat({ onSelectChat, currentUser }) {
     return (
         
         <div className="messages-main">
-            {/*<HeaderLogged />
-            <Sidebar />*/}
 
-            <h2>Conversaciones</h2>
+            <h2>{language.conversations}</h2>
             {cargando ? (
-                <p>Cargando conversaciones...</p>
+                <p>{language.loading_conversations}</p>
             ) : chats.length === 0 ? (
-                <p>No tienes conversaciones aún.</p>
+                <p>{language.no_conversations_yet}</p>
             ) : (
                 <div className="messages-list">
                     {chats.map((chat) => {
@@ -69,14 +67,13 @@ export default function ConversacionesChat({ onSelectChat, currentUser }) {
                                     {}
                                     {/*<h4>{chat.usuarios[0]?.nickname}</h4>*/}
                                     <h4>{receptor?.nickname}</h4>
-                                    <p className="preview">{chat.ultimo_mensaje?.contenido || "Sin mensajes aún"}</p>
+                                    <p className="preview">{chat.ultimo_mensaje?.contenido || `${language.no_messages_yet}`}</p>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
             )}
-            {/*<Footer />*/}
         </div>
     );
 }

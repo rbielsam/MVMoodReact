@@ -6,11 +6,11 @@ import "../indexChat.css";
 
 export default function Chat({ selectedChat, onBack, currentUser }) {
 
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.Chat;
+
     const receptor = selectedChat.usuarios?.find(u => u.id !== currentUser.id);
     if (!selectedChat) return null;
-
-    const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.login;
 
     const [mensajes, setMensajes] = useState([]);
     const [nuevoMensaje, setNuevoMensaje] = useState("");
@@ -131,11 +131,9 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
 
     return ( 
         <div className="chat-container">
-            {/*<HeaderLogged />
-            <Sidebar />*/}
 
             <div className="chat-header"> 
-                <button onClick={onBack}>← Volver</button> 
+                <button onClick={onBack}>← {language.back}</button> 
                 {/*<h3>{selectedChat.usuarios[0]?.nickname}</h3> */}
                 <h3>{receptor?.nickname}</h3>
             </div> 
@@ -149,10 +147,9 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
             </div> 
             <form onSubmit={handleSend} className="chat-input"> 
                 <input value={nuevoMensaje} onChange={(e) => setNuevoMensaje(e.target.value)} /> 
-                <button type="submit">Enviar</button> 
+                <button type="submit">{language.send}</button> 
             </form> 
 
-            {/*<Footer />*/}
         </div> 
     );  
 }

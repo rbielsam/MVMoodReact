@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { LanguageContext } from "../contexts/language.context";
 
 
 export default function ChatUserList ({ currentUser, onSelectUser }) {
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.ChatUserList;
 
     const [users, setUsers] = useState([]);
 
@@ -50,7 +54,7 @@ export default function ChatUserList ({ currentUser, onSelectUser }) {
     return (
         <>
             <div className="users-list">
-                <h3>Users</h3>
+                <h3>{language.users}</h3>
                 {listUsers()}
             </div>
         </>
