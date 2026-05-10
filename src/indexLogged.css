@@ -797,6 +797,11 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
     border-color: #333;
 }
 
+.dark .sidebar a:hover {
+    color: #FFFFFF;
+    background-color: #3a3a3a;
+}
+
 .dark a,
 .dark h2,
 .dark h4,
