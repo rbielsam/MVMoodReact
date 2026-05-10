@@ -64,13 +64,25 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         // Suscripción a Pusher (Canal Privado)
         echo.private(`chat.${chatId}`)
             .listen('.nuevo-mensaje', (e) => {
-                console.log("Mensaje en vivo");
-                if (e.mensaje.emisor_id !== currentUser.id){
-                    setMensajes((prev) => [...prev, e.mensaje]);
-                } else {
-                    console.log("Mensaje duplicado evitado");
+            console.log("Mensaje en vivo recibido:", e.mensaje.uuid);
+
+            setMensajes((prev) => {
+                // 1. Verificamos si el mensaje ya está en la lista (por su UUID)
+                const yaExiste = prev.some(m => m.uuid === e.mensaje.uuid);
+
+                if (yaExiste) {
+                    console.log("Mensaje ignorado: ya existe en la lista");
+                    return prev; // No hacemos nada, devolvemos la lista como estaba
                 }
+
+                // 2. Si no existe, aplicamos la lógica del emisor
+                if (e.mensaje.emisor_id !== currentUser.id) {
+                    return [...prev, e.mensaje];
+                }
+
+                return prev;
             });
+        });
 
         return () => {
             echo.leave(`chat.${chatId}`);
