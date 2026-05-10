@@ -130,7 +130,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
     console.log("Chat renderizado");
 
     return ( 
-        <div className="main-content chat-container">
+        <div className="chat-container">
             {/*<HeaderLogged />
             <Sidebar />*/}
 

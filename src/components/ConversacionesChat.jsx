@@ -42,7 +42,7 @@ export default function ConversacionesChat({ onSelectChat, currentUser }) {
 
     return (
         
-        <div className="main-content messages-main">
+        <div className="messages-main">
             {/*<HeaderLogged />
             <Sidebar />*/}
 

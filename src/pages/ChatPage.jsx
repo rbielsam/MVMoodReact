@@ -50,32 +50,44 @@ export default function ChatPage() {
     }
 
     return (
-        <div className="app-layout">
-            <HeaderLogged />
+        <>
+            <div className="app-layout">
+                <HeaderLogged />
 
-            <div className="container">
-                <Sidebar />
+                <div className="chat-layout">
+                    <Sidebar />
 
-                <div className="main">
-                    <ChatUserList 
-                            currentUser={user}
-                            onSelectUser={startChatWithUser}
-                    />
+                    <div className="chat-left-column">
+                        <div className="chat-left-users">
+                            <ChatUserList 
+                                    currentUser={user}
+                                    onSelectUser={startChatWithUser}
+                            />
+                        </div>
 
-                    {!chatSeleccionado ? (
-                        <ConversacionesChat onSelectChat={(chat) => setChatSeleccionado(chat)} currentUser={user} />
-                    ) : (
-                        <Chat
-                            selectedChat={chatSeleccionado}
-                            currentUser={user}
-                            onBack={() => setChatSeleccionado(null)}
-                        />
-                    )}
+                        <div className="chat-left-chats">
+                            <ConversacionesChat onSelectChat={(chat) => setChatSeleccionado(chat)} currentUser={user} />
+                        </div>
+                    </div>
+
+                    <div className="chat-right-column">
+                        {chatSeleccionado ? (
+                            <Chat
+                                selectedChat={chatSeleccionado}
+                                currentUser={user}
+                                onBack={() => setChatSeleccionado(null)}
+                            />
+                        ) : (
+                            <div className="chat-placeholder">
+                                <p>Chats</p>
+                            </div>
+                        )}
+                    </div>
+
                 </div>
 
+                <Footer />
             </div>
-
-            <Footer />
-        </div>
+        </>
     );
 }
