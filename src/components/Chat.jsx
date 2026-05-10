@@ -19,6 +19,10 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
 
 
     useEffect(() => {
+        
+        if (!selectedChat?.id) return;
+
+        const chatId = selectedChat.id;
         // Cargar mensajes previos desde la API
         const cargarHistorial = async () => {
             try {
@@ -58,13 +62,18 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         cargarHistorial();
 
         // Suscripción a Pusher (Canal Privado)
-        echo.private(`chat.${selectedChat.uuid}`)
+        echo.private(`chat.${chatId}`)
             .listen('.nuevo-mensaje', (e) => {
-                setMensajes((prev) => [...prev, e.mensaje]);
+                console.log("Mensaje en vivo");
+                if (e.mensaje.emisor_id !== currentUser.id){
+                    setMensajes((prev) => [...prev, e.mensaje]);
+                } else {
+                    console.log("Mensaje duplicado evitado");
+                }
             });
 
         return () => {
-            echo.leave(`private-chat.${selectedChat.uuid}`);
+            echo.leave(`chat.${chatId}`);
         };
     }, [selectedChat.id]);
 
