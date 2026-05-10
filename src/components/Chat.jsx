@@ -67,7 +67,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
             console.log("Mensaje en vivo recibido:", e.mensaje.uuid);
 
             setMensajes((prev) => {
-                // 1. Verificamos si el mensaje ya está en la lista (por su UUID)
+                // Verificamos si el mensaje ya está en la lista (por su UUID)
                 const yaExiste = prev.some(m => m.uuid === e.mensaje.uuid);
 
                 if (yaExiste) {
@@ -75,7 +75,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
                     return prev; // No hacemos nada, devolvemos la lista como estaba
                 }
 
-                // 2. Si no existe, aplicamos la lógica del emisor
+                // Si no existe, aplicamos la lógica del emisor
                 if (e.mensaje.emisor_id !== currentUser.id) {
                     return [...prev, e.mensaje];
                 }
