@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 //import { useNavigate } from "react-router-dom";
 
 
@@ -20,7 +21,7 @@ function UserProviderWrapper(props) {
 
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
-    const [token, setToken] = useState( localStorage.getItem("token") || "");
+    const [token, setToken] = useState(localStorage.getItem("token") || "");
 
     
     useEffect(() => {
@@ -28,6 +29,7 @@ function UserProviderWrapper(props) {
 
         if (savedToken && savedToken !== "undefined") {
             setToken(savedToken);
+            <Link to="/home" />
             //window.location.replace("/home");
         }
     }, []);
@@ -227,13 +229,45 @@ function UserProviderWrapper(props) {
 
             if (!response.ok) {
                 console.error("Error al recibir el Nickname actualizado: ", data.message);
-                throw new Error("Error al recibir el Nickname actualizado");
                 setError("Error al recibir el Nickname actualizado: ", errorResponse.message);
+                throw new Error("Error al recibir el Nickname actualizado");
             }
 
             console.log("Nickname actualizado recibido correctamente");
             setUser(getDataLoggedUser());
             return data;
+
+        } catch (err) {
+            console.error("Error en la petición al servidor: ", err.message);
+            setError(err.message);
+        }
+    }
+
+    // Función asíncrona para editar la contraseña
+    const updatePassword = async (password_antigua, password_nueva) => {
+        try {
+            const response = await fetch(`${API_URL}/perfil/password`, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({password_antigua, password_nueva})
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.error("Error al recibir los datos para el cambio de constraseña: ", data.message);
+                setError("Error al recibir los datos para el cambio de constraseña: ", data.message);
+                throw new Error("Error al recibir los datos para el cambio de constraseña");
+            }
+
+            console.log("Contraseña actualizada correctamente");
+            setUser(getDataLoggedUser());
+            return data;
+
 
         } catch (err) {
             console.error("Error en la petición al servidor: ", err.message);
@@ -250,7 +284,7 @@ function UserProviderWrapper(props) {
     }, [token]);
     
     return (
-        <UserContext.Provider value={{ user, setUser, login, error, setError, signUp, resetPassword, message, token, getDataLoggedUser, updateNickname }}>
+        <UserContext.Provider value={{ user, setUser, login, error, setError, signUp, resetPassword, message, token, getDataLoggedUser, updateNickname, updatePassword }}>
             {props.children}
         </UserContext.Provider>
     );

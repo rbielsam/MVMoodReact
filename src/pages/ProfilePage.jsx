@@ -6,16 +6,17 @@ import Footer from '../components/Footer';
 import TermConditions from '../components/TermConditions';
 import { LanguageContext } from '../contexts/language.context';
 import { UserContext } from '../contexts/user.context';
+import userPic from "../assets/settingsprofile/user.png";
 
 
 export default function ProfilePage() {
 
-    const {user, setUser, getDataLoggedUser, updateNickname} = useContext(UserContext);
+    const {user, setUser, getDataLoggedUser, updateNickname, updatePassword} = useContext(UserContext);
 
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.ProfilePage;
 
-    const [profilePic, setProfilePic] = useState('/images/user.png');
+    const [profilePic, setProfilePic] = useState({userPic});
     const [nickname, setNickname] = useState("");
     const [isEditingNickname, setIsEditingNickname] = useState(false);
     const [showPasswordForm, setShowPasswordForm] = useState(false);
@@ -29,18 +30,21 @@ export default function ProfilePage() {
         setNickname(user.nickname);
     }, [user.nickname]);
 
-    const handleProfilePicChange = (event) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            const url = URL.createObjectURL(file);
-            setProfilePic(url);
-        }
+    const handleProfilePicChange = async (e) => {
+        setProfilePic(e.target.files?.[0]);
+
+        const formData = new FormData();
+        formData.append("foto_perfil", profilePic);
+
+        const data = await updateNickname(formData);
+        
     };
 
     const handleNicknameChange = async (e) => {
         e.preventDefault();
 
         const newNickname = nickname.trim();
+
         if (!newNickname) return;
 
         const formData = new FormData();
@@ -57,12 +61,12 @@ export default function ProfilePage() {
         setIsEditingNickname(false);
     };
 
-    const handlePasswordInput = (event) => {
-        const { name, value } = event.target;
+    const handlePasswordInput = async (e) => {
+        const { name, value } = e.target;
         setPasswords((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handlePasswordSubmit = (event) => {
+    /*const handlePasswordSubmit = (event) => {
         event.preventDefault();
         if (!passwords.current || !passwords.next || !passwords.confirm) {
             setPasswordError(language.fill_all_fields);
@@ -85,7 +89,17 @@ export default function ProfilePage() {
         setPasswordError('');
         setPasswordMessage(language.password_updated);
         setPasswords({ current: '', next: '', confirm: '' });
-    };
+    };*/
+
+    const handlePasswordChange = async (e) => {
+        e.preventDefault();
+
+        const password_antigua = passwords.current.trim();
+        const password_nueva = passwords.next.trim();
+        const password_nueva_confirm = passwords.confirm.trim();
+
+        const data = await updatePassword(password_antigua, password_nueva);
+    }
 
     return (
         <>
@@ -100,7 +114,7 @@ export default function ProfilePage() {
                         <div className="profile-card">
                             <div className="profile-picture-section">
                                 <div className="profile-picture-container">
-                                    <img src={profilePic} alt="Profile" className="profile-picture" />
+                                    <img src={`http://localhost:8000/storage/${user.foto_perfil}`} />
                                     <div className="profile-picture-overlay">
                                         <label htmlFor="profile-pic-input" className="change-photo-btn">
                                             <span>📷</span>
@@ -167,7 +181,7 @@ export default function ProfilePage() {
                                     </button>
                                 </div>
                                 
-                                <form onSubmit={handlePasswordSubmit}>
+                                <form onSubmit={handlePasswordChange}>
                                     <div className="form-group">
                                         <label htmlFor="current">{language.current_password}</label>
                                         <input
