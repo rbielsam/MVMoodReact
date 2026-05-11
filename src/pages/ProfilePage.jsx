@@ -1,20 +1,22 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
 import '../indexLogged.css';
 import Footer from '../components/Footer';
 import TermConditions from '../components/TermConditions';
-import { useContext } from 'react';
 import { LanguageContext } from '../contexts/language.context';
+import { UserContext } from '../contexts/user.context';
 
 
 export default function ProfilePage() {
+
+    const {user, setUser, getDataLoggedUser, updateNickname} = useContext(UserContext);
 
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.ProfilePage;
 
     const [profilePic, setProfilePic] = useState('/images/user.png');
-    const [nickname, setNickname] = useState('User');
+    const [nickname, setNickname] = useState("");
     const [isEditingNickname, setIsEditingNickname] = useState(false);
     const [showPasswordForm, setShowPasswordForm] = useState(false);
     const [showTerms, setShowTerms] = useState(false);
@@ -22,6 +24,10 @@ export default function ProfilePage() {
     const [passwords, setPasswords] = useState({ current: '', next: '', confirm: '' });
     const [passwordMessage, setPasswordMessage] = useState('');
     const [passwordError, setPasswordError] = useState('');
+
+    useEffect(() => {
+        setNickname(user.nickname);
+    }, [user.nickname]);
 
     const handleProfilePicChange = (event) => {
         const file = event.target.files?.[0];
@@ -31,14 +37,24 @@ export default function ProfilePage() {
         }
     };
 
-    const handleNicknameChange = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const newNickname = formData.get('nickname');
-        if (newNickname.trim()) {
-            setNickname(newNickname.trim());
-            setIsEditingNickname(false);
-        }
+    const handleNicknameChange = async (e) => {
+        e.preventDefault();
+
+        const newNickname = nickname.trim();
+        if (!newNickname) return;
+
+        const formData = new FormData();
+        formData.append("nickname", newNickname);
+
+        const data = await updateNickname(formData);
+
+        /*if (data?.nickname) {
+            setNickname(data.nickname);
+
+            setUser(prev => ({...prev, nickname: data.nickname}));
+        }*/
+
+        setIsEditingNickname(false);
     };
 
     const handlePasswordInput = (event) => {
@@ -113,12 +129,12 @@ export default function ProfilePage() {
                                         <form onSubmit={handleNicknameChange} className="nickname-edit-form">
                                             <input 
                                                 type="text" 
-                                                name="nickname" 
-                                                defaultValue={nickname} 
-                                                maxLength={20}
+                                                name="nickname"
+                                                value={nickname}
+                                                maxLength={255}
                                                 required
                                                 className="nick-input"
-                                                placeholder="Enter nickname"
+                                                onChange={(e) => setNickname(e.target.value)}
                                             />
                                             <div className="form-actions">
                                                 <button type="submit" className="save-btn">Save</button>

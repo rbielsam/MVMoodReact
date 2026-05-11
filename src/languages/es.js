@@ -74,6 +74,7 @@ const es = {
         settings: 'Configuración',
         profile_edit: 'Editar Perfil',
         nickname: "Nombre de usuario",
+        save: "Guardar",
         cancel: "Cancelar",
         change_password: 'Cambiar Contraseña',
         terms_conditions: 'Términos y Condiciones',

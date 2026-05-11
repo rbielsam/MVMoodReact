@@ -13,6 +13,8 @@ import { LanguageContext } from "../contexts/language.context.jsx";
 
 export default function ChatPage() {
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.ChatPage;
 
@@ -23,7 +25,7 @@ export default function ChatPage() {
     const startChatWithUser = async (user) => {
         try {
             console.log("receptor_id que se envía: ", user.id);
-            const response = await fetch("http://127.0.0.1:8000/api/chats/enviar", {
+            const response = await fetch(`${API_URL}/chats/enviar`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

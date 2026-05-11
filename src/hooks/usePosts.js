@@ -6,6 +6,8 @@ import { UserContext } from "../contexts/user.context";
 
 export function usePosts() {
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const {token, error, setError, message, setMessage} = useContext(UserContext);
     const [publicaciones, setPublicaciones] = useState([]);
     const redirectPath = "/home";
@@ -16,7 +18,7 @@ export function usePosts() {
         try {
             console.log("Token que se envia: ", token);
 
-            const response = await fetch("http://127.0.0.1:8000/api/home", {
+            const response = await fetch(`${API_URL}/home`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -48,7 +50,7 @@ export function usePosts() {
         //const response = await axios.post("http://localhost:8000/api/signup", {user});
         // Llamada al Back End (Laravel)
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/create", {                
+            const response = await fetch(`${API_URL}/create`, {                
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -90,7 +92,7 @@ export function usePosts() {
 
         // Llamada al BackEnd (Laravel)
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/publicaciones/${id}`, {
+            const response = await fetch(`${API_URL}/publicaciones/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -127,7 +129,7 @@ export function usePosts() {
         formData.append("_method", "PUT")
         // Llamada al BackEnd (Laravel)
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/publicaciones/${postId}`, {
+            const response = await fetch(`${API_URL}/publicaciones/${postId}`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,

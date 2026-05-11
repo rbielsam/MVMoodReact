@@ -4,6 +4,8 @@ import { LanguageContext } from "../contexts/language.context";
 
 export default function ChatUserList ({ currentUser, onSelectUser }) {
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.ChatUserList;
 
@@ -16,7 +18,7 @@ export default function ChatUserList ({ currentUser, onSelectUser }) {
     const getUserList = async () => {    
         try {
 
-            const response  = await fetch("http://127.0.0.1:8000/api/users", {
+            const response  = await fetch(`${API_URL}/users`, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                     "Accept": "application/json"

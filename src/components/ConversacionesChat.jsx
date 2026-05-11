@@ -5,6 +5,8 @@ import "../indexChat.css";
 
 export default function ConversacionesChat({ onSelectChat, currentUser }) {
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.ConversacionesChat;
 
@@ -14,7 +16,7 @@ export default function ConversacionesChat({ onSelectChat, currentUser }) {
     useEffect(() => {
         const fetchChats = async () => {
             try {
-                const res = await fetch("http://127.0.0.1:8000/api/chats", {
+                const res = await fetch(`${API_URL}/chats`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                         'Accept': 'application/json'

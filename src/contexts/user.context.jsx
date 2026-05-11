@@ -8,8 +8,10 @@ const UserContext = createContext();
 
 function UserProviderWrapper(props) {
 
+    const API_URL = import.meta.env.VITE_API_URL;
+
     const [user, setUser] = useState({
-        id:"",
+        id:null,
         email: "",
         password: "",
         repeatPassword: "",
@@ -36,7 +38,7 @@ function UserProviderWrapper(props) {
         
         // Llamada a la API de Laravel (BackEnd)
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/login", {
+            const response = await fetch(`${API_URL}/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -90,7 +92,7 @@ function UserProviderWrapper(props) {
         //const response = await axios.post("http://localhost:8000/api/signup", {user});
         // Llamada al Back End (Laravel)
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/register", {
+            const response = await fetch(`${API_URL}/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -141,7 +143,7 @@ function UserProviderWrapper(props) {
     const resetPassword = async (user) => {
         // Llamada al Backend
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/resetpassword", {
+            const response = await fetch(`${API_URL}/resetpassword`, {
                 method: "POST",
                 headers: {"content-Type": "application/json"},
                 body: JSON.stringify(user)
@@ -174,7 +176,7 @@ function UserProviderWrapper(props) {
     // Función asíncrona para devolver los datos de usuario para el HeaderLogged
     const getDataLoggedUser = async () => {
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/user", {
+            const response = await fetch(`${API_URL}/user`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -183,21 +185,21 @@ function UserProviderWrapper(props) {
                 }
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                const errorResponse = await response.json();
-                throw new Error("Error al recibir datos de usuario: ", errorResponse.message);
                 setError("Error al recibir datos de usuario: ", errorResponse.message);
+                throw new Error("Error al recibir datos de usuario: ", errorResponse.message);
             }
 
-            const data = await response.json();
             console.log("Datos de usuario recibidos correctamente");
 
-            setUser(prev => ({...prev,
+            setUser({
                 id: data.id,
                 nickname: data.nickname,
                 email: data.email,
                 foto_perfil: data.foto_perfil
-            }));
+            });
 
             return data;
 
@@ -206,9 +208,49 @@ function UserProviderWrapper(props) {
             setError(err);
         }
     }
+
+    // LÓGICA DE PERFIL DE USUARIO
+    // Función asíncrona para editar el nickname
+    const updateNickname = async (formData) => {
+        try {
+            const response = await fetch(`${API_URL}/perfil`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    //"Content-Type": "application/json",
+                    //"Accept": "application/json"
+                },
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.error("Error al recibir el Nickname actualizado: ", data.message);
+                throw new Error("Error al recibir el Nickname actualizado");
+                setError("Error al recibir el Nickname actualizado: ", errorResponse.message);
+            }
+
+            console.log("Nickname actualizado recibido correctamente");
+            setUser(getDataLoggedUser());
+            return data;
+
+        } catch (err) {
+            console.error("Error en la petición al servidor: ", err.message);
+            setError(err.message);
+        }
+    }
+
+
+    //Cargar datos del Usuario
+    useEffect(() => {
+        if (token) {
+            getDataLoggedUser();
+        }
+    }, [token]);
     
     return (
-        <UserContext.Provider value={{ user, setUser, login, error, setError, signUp, resetPassword, message, token, getDataLoggedUser }}>
+        <UserContext.Provider value={{ user, setUser, login, error, setError, signUp, resetPassword, message, token, getDataLoggedUser, updateNickname }}>
             {props.children}
         </UserContext.Provider>
     );

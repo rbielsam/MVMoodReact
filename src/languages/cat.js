@@ -74,6 +74,7 @@ const cat = {
         settings: 'Configuració',
         profile_edit: 'Editar Perfil',
         nickname: "Nom d'usuari",
+        save: "Guardar",
         cancel: "Cancel·lar",
         change_password: 'Canviar Contrasenya',
         terms_conditions: 'Termes i Condicions',

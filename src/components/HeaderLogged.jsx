@@ -31,9 +31,9 @@ export default function Header ({ children }) {
         return () => document.body.removeEventListener('click', closeLanguageMenu);
     }, []);
 
-    useEffect(() => {
+    /*useEffect(() => {
         getDataLoggedUser();
-    }, []);
+    }, []);*/
 
     const changeLanguage = () => {
         setShowLanguageMenu(!showLanguageMenu);

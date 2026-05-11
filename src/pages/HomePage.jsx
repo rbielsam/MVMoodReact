@@ -4,7 +4,7 @@ import { LanguageContext } from '../contexts/language.context';
 import Header from "../components/Header";
 import '../indexLogged.css';
 import { usePosts } from '../hooks/usePosts';
-//import { UserContext } from '../contexts/user.context';
+import { UserContext } from '../contexts/user.context';
 import Footer from "../components/Footer";
 import CreatePostForm from '../components/CreatePostForm';
 import Button from '../components/Button';
@@ -19,9 +19,8 @@ export default function HomePage() {
     const {translations, lang, setLang} = useContext(LanguageContext);
     const language = lang.content.HomePage;
 
-    //const {error, setError} = useContext(UserContext);
+    const {user, getDataLoggedUser, error, setError} = useContext(UserContext);
     const [showCreatePost, setShowCreatePost] = useState(false);
-    //const { t } = useLanguage();
     const {getPosts, create, publicaciones, update, del} = usePosts();
     const {like} = useLikes();
     const {getComments, createComment} = useComments();
