@@ -1,15 +1,17 @@
 import '../indexLogged.css';
 import styles from "../styles/Post.module.css";
-//import { usePosts } from '../hooks/usePosts';
 import { useState, useContext } from 'react';
-//import { useLanguage } from '../languages/Languages';
 import Button from './Button';
 import { LanguageContext } from '../contexts/language.context';
+import { UserContext } from "../contexts/user.context";
+import userPic from "../assets/settingsprofile/user.png";
+import { Link } from "react-router-dom";
 
 
 export default function Post({ post, updated, deleted, del, update, publicaciones, like, getComments, createComment }) {
     
     const {translations, lang, setLang} = useContext(LanguageContext);
+    const {user} = useContext(UserContext);
     const language = lang.content.Post;
 
     const [editPost, setEditPost] = useState(false);
@@ -19,9 +21,6 @@ export default function Post({ post, updated, deleted, del, update, publicacione
     const [commentList, setCommentList] = useState([]);
     const [contenido, setContenido] = useState("");
     const [newImagen, setNewImagen] = useState(null);
-
-    //const {del, update, publicaciones} = usePosts();
-    //const { t } = useLanguage();
 
 
     // Guardar editar POST
@@ -63,17 +62,6 @@ export default function Post({ post, updated, deleted, del, update, publicacione
         setShowComments(!showComments);
     };
 
-    /*const showCommentsMenu = async () => { // Abrir menú y cargar comentarios
-        setShowComments(!showComments);
-
-        if (!showComments) {
-            const response = await getComments(post.id);
-
-            if (!response?.error) {
-                setCommentList(response);
-            }
-        }
-    };*/
 
     const showCommentsMenu = () => {
         setShowComments((prev) => {
@@ -120,7 +108,8 @@ export default function Post({ post, updated, deleted, del, update, publicacione
 
             ) : (
                 <div className="post-content">
-                    <p className={styles.nicknamePost}>{post.user?.nickname}</p>
+                    <Link className={styles.linkPostNickImg} to="/profile"><img src={user.foto_perfil ? `http://localhost:8000/storage/${user.foto_perfil}`: userPic} alt="FotoPerfil" className={styles.postProfileImg} />
+                    <p className={styles.nicknamePost}>{post.user?.nickname}</p></Link>
                     <p className={styles.postText}>{post.contenido}</p>
 
                     {post.imagen && (

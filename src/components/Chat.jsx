@@ -39,7 +39,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
                 // Los invertimos para que el más reciente esté abajo
                 //setMensajes(data.data.reverse());
 
-                console.log("Historial recibido: ", data);
+                //console.log("Historial recibido: ", data);
 
                 if (!response.ok) {
                     console.error("Error HTTP: ", response.status, data);

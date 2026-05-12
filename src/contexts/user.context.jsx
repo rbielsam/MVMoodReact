@@ -244,7 +244,7 @@ function UserProviderWrapper(props) {
     }
 
     // Función asíncrona para editar la contraseña
-    const updatePassword = async (password_antigua, password_nueva) => {
+    const updatePassword = async (password_antigua, password_nueva, password_nueva_confirmation) => {
         try {
             const response = await fetch(`${API_URL}/perfil/password`, {
                 method: "PUT",
@@ -253,19 +253,19 @@ function UserProviderWrapper(props) {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: JSON.stringify({password_antigua, password_nueva})
+                body: JSON.stringify({password_antigua, password_nueva, password_nueva_confirmation})
             });
 
             const data = await response.json();
 
             if (!response.ok) {
-                console.error("Error al recibir los datos para el cambio de constraseña: ", data.message);
+                console.error("Error al cambiar la constraseña: ", data.message);
                 setError("Error al recibir los datos para el cambio de constraseña: ", data.message);
-                throw new Error("Error al recibir los datos para el cambio de constraseña");
+                //throw new Error("Error al recibir los datos para el cambio de constraseña");
             }
 
             console.log("Contraseña actualizada correctamente");
-            setUser(getDataLoggedUser());
+            await getDataLoggedUser();
             return data;
 
 

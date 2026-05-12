@@ -69,9 +69,17 @@ export default function ProfilePage() {
         setPasswords((prev) => ({ ...prev, [name]: value }));
     };
 
-    /*const handlePasswordSubmit = (event) => {
-        event.preventDefault();
-        if (!passwords.current || !passwords.next || !passwords.confirm) {
+
+    const handlePasswordChange = async (e) => {
+        e.preventDefault();
+        setPasswordError("");
+        setPasswordMessage("");
+
+        /*const password_antigua = passwords.current.trim();
+        const password_nueva = passwords.next.trim();
+        const password_nueva_confirm = passwords.confirm.trim();*/
+
+        /*if (!passwords.current || !passwords.next || !passwords.confirm) {
             setPasswordError(language.fill_all_fields);
             setPasswordMessage('');
             return;
@@ -87,21 +95,22 @@ export default function ProfilePage() {
             setPasswordError(language.password_too_short);
             setPasswordMessage('');
             return;
+        }*/
+
+        const data = await updatePassword(passwords.current, passwords.next, passwords.confirm);
+
+        if (data?.error) {
+            setPasswordError(data.error);
         }
 
-        setPasswordError('');
-        setPasswordMessage(language.password_updated);
-        setPasswords({ current: '', next: '', confirm: '' });
-    };*/
+        else if (data) {
+            setPasswordMessage(language.password_updated);
+            setPasswords({ current: '', next: '', confirm: '' });
+        }
+        else {
+            setPasswordError('Error por editar y pasar diccionario');
+        }
 
-    const handlePasswordChange = async (e) => {
-        e.preventDefault();
-
-        const password_antigua = passwords.current.trim();
-        const password_nueva = passwords.next.trim();
-        const password_nueva_confirm = passwords.confirm.trim();
-
-        const data = await updatePassword(password_antigua, password_nueva);
     }
 
     return (

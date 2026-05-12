@@ -3,7 +3,7 @@ import { LanguageContext } from '../contexts/language.context';
 import "../indexChat.css";
 
 
-export default function ConversacionesChat({ onSelectChat, currentUser }) {
+export default function ChatConversaciones({ onSelectChat, currentUser }) {
 
     const API_URL = import.meta.env.VITE_API_URL;
 
@@ -31,7 +31,7 @@ export default function ConversacionesChat({ onSelectChat, currentUser }) {
                 }
 
                 setChats(data);
-                console.log("Chats recibidos: ", chats);
+                //console.log("Chats recibidos: ", chats);
 
             } catch (err) {
                 console.error("Error al obtener chats:", err);

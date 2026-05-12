@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { UserContext } from "../contexts/user.context.jsx";
 import "../indexChat.css";
 import "../indexLogged.css";
-import ConversacionesChat from '../components/ConversacionesChat.jsx';
+import ChatConversaciones from '../components/ChatConversaciones.jsx';
 import Chat from '../components/Chat.jsx';
 import Footer from '../components/Footer.jsx';
 import HeaderLogged from "../components/HeaderLogged.jsx";
@@ -24,7 +24,7 @@ export default function ChatPage() {
 
     const startChatWithUser = async (user) => {
         try {
-            console.log("receptor_id que se envía: ", user.id);
+            //console.log("receptor_id que se envía: ", user.id);
             const response = await fetch(`${API_URL}/chats/enviar`, {
                 method: "POST",
                 headers: {
@@ -39,7 +39,7 @@ export default function ChatPage() {
             });
 
             const data = await response.json();
-            console.log("Chat creado o existente: ", data);
+            //console.log("Chat creado o existente: ", data);
 
             if (data.chat) {
                 setChatSeleccionado(data.chat);
@@ -72,7 +72,7 @@ export default function ChatPage() {
                         </div>
 
                         <div className="chat-left-chats">
-                            <ConversacionesChat onSelectChat={(chat) => setChatSeleccionado(chat)} currentUser={user} />
+                            <ChatConversaciones onSelectChat={(chat) => setChatSeleccionado(chat)} currentUser={user} />
                         </div>
                     </div>
 
