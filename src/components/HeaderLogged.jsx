@@ -11,6 +11,8 @@ import imgLogo from "../assets/imgLogo.png";
 import ImgLogo from "./ImgLogo";
 import { UserContext } from "../contexts/user.context";
 import { data } from "react-router-dom";
+import userPic from "../assets/settingsprofile/user.png";
+import { Link } from "react-router-dom";
 
 
 export default function Header ({ children }) {
@@ -49,9 +51,10 @@ export default function Header ({ children }) {
                     <ImgLogo to="/home" width="72" height="72" />
                 </div>
 
-                <div className={styles.dataLoggedContainer}>
+                <div className={`${styles.dataLoggedContainer} dataLoggedContainer`}>
                         {/*<p>{localStorage.getItem("nickname")}</p>*/}
-                        <p className={styles.dataLoggedUser}>{user.nickname}</p>
+                        <Link className={styles.linkHeaderNickImg} to="/profile"><img src={user.foto_perfil ? `http://localhost:8000/storage/${user.foto_perfil}`: userPic} alt="FotoPerfil" className={styles.headerProfileImg} />
+                        <p className={styles.dataLoggedUser}>{user.nickname}</p></Link>
                 </div>
 
 

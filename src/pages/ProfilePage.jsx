@@ -31,10 +31,13 @@ export default function ProfilePage() {
     }, [user.nickname]);
 
     const handleProfilePicChange = async (e) => {
-        setProfilePic(e.target.files?.[0]);
+
+        const foto_perfil = e.target.files?.[0];
+
+        if (!foto_perfil) return;
 
         const formData = new FormData();
-        formData.append("foto_perfil", profilePic);
+        formData.append("foto_perfil", foto_perfil);
 
         const data = await updateNickname(formData);
         
@@ -114,7 +117,7 @@ export default function ProfilePage() {
                         <div className="profile-card">
                             <div className="profile-picture-section">
                                 <div className="profile-picture-container">
-                                    <img src={`http://localhost:8000/storage/${user.foto_perfil}`} />
+                                    <img src={user.foto_perfil ? `http://localhost:8000/storage/${user.foto_perfil}` : userPic} />
                                     <div className="profile-picture-overlay">
                                         <label htmlFor="profile-pic-input" className="change-photo-btn">
                                             <span>📷</span>

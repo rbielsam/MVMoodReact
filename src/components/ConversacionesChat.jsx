@@ -56,6 +56,7 @@ export default function ConversacionesChat({ onSelectChat, currentUser }) {
                     {chats.map((chat) => {
                         const receptor = chat.usuarios?.find(u => u.id !== currentUser.id);
                         if (!receptor) return null;
+                        //console.log("Receptor: ", receptor);
 
                         return (
                     
@@ -64,9 +65,8 @@ export default function ConversacionesChat({ onSelectChat, currentUser }) {
                                 className="message-item"
                                 onClick={() => onSelectChat(chat)}
                             >
-                                <img src="/images/user.png" alt="avatar" className="message-avatar" />
+                                <img src={receptor.foto_perfil ? `http://localhost:8000/storage/${receptor.foto_perfil}` : "/images/user.png"} alt="avatar" className="message-avatar" />
                                 <div className="message-info">
-                                    {}
                                     {/*<h4>{chat.usuarios[0]?.nickname}</h4>*/}
                                     <h4>{receptor?.nickname}</h4>
                                     <p className="preview">{chat.ultimo_mensaje?.contenido || `${language.no_messages_yet}`}</p>
