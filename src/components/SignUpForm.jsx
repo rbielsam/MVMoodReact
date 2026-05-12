@@ -6,7 +6,7 @@ import { LanguageContext } from '../contexts/language.context.jsx';
 //import { Navigate } from 'react-router-dom';
 
 
-export default function SignUpForm (props) {
+export default function SignUpForm ({ props, accepted }) {
 
     const {user, setUser, error, setError, signUp} = useContext(UserContext);
     const {translations, lang, setLang} = useContext(LanguageContext);
@@ -37,7 +37,7 @@ export default function SignUpForm (props) {
                 <br/>
                 <input type="password" name="password_confirmation" placeholder={language.repeatPassword} className="imputs" value={user.password_confirmation} onChange={handleUserProps} required  />
                 <br/><br/>
-                <Button>{language.signUp}</Button>
+                <Button disabled={!accepted}>{language.signUp}</Button>
                 <br/>
             </form>
         </>

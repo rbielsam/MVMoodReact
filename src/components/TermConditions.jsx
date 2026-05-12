@@ -1,8 +1,7 @@
 import styles from '../styles/TermConditions.module.css';
 import { useState } from 'react';
 
-export default function TermConditions () {
-    const [accepted, setAccepted] = useState(false);
+export default function TermConditions ({ accepted, setAccepted }) {
 
     const handleCheckbox = (e) => {
         //console.log(e);

@@ -55,12 +55,6 @@ export default function ProfilePage() {
 
         const data = await updateNickname(formData);
 
-        /*if (data?.nickname) {
-            setNickname(data.nickname);
-
-            setUser(prev => ({...prev, nickname: data.nickname}));
-        }*/
-
         setIsEditingNickname(false);
     };
 
@@ -74,28 +68,6 @@ export default function ProfilePage() {
         e.preventDefault();
         setPasswordError("");
         setPasswordMessage("");
-
-        /*const password_antigua = passwords.current.trim();
-        const password_nueva = passwords.next.trim();
-        const password_nueva_confirm = passwords.confirm.trim();*/
-
-        /*if (!passwords.current || !passwords.next || !passwords.confirm) {
-            setPasswordError(language.fill_all_fields);
-            setPasswordMessage('');
-            return;
-        }
-
-        if (passwords.next !== passwords.confirm) {
-            setPasswordError(language.password_mismatch);
-            setPasswordMessage('');
-            return;
-        }
-
-        if (passwords.next.length < 8) {
-            setPasswordError(language.password_too_short);
-            setPasswordMessage('');
-            return;
-        }*/
 
         const data = await updatePassword(passwords.current, passwords.next, passwords.confirm);
 
@@ -131,7 +103,8 @@ export default function ProfilePage() {
                                         <label htmlFor="profile-pic-input" className="change-photo-btn">
                                             <span>📷</span>
                                         </label>
-                                        <input 
+                                        <input
+                                            className='imputs'
                                             id="profile-pic-input"
                                             type="file" 
                                             accept="image/*" 
@@ -159,7 +132,7 @@ export default function ProfilePage() {
                                                 value={nickname}
                                                 maxLength={255}
                                                 required
-                                                className="nick-input"
+                                                className="imputs"
                                                 onChange={(e) => setNickname(e.target.value)}
                                             />
                                             <div className="form-actions">
@@ -197,6 +170,7 @@ export default function ProfilePage() {
                                     <div className="form-group">
                                         <label htmlFor="current">{language.current_password}</label>
                                         <input
+                                            className='imputs'
                                             id="current"
                                             name="current"
                                             type="password"
@@ -208,6 +182,7 @@ export default function ProfilePage() {
                                     <div className="form-group">
                                         <label htmlFor="next">{language.new_password}</label>
                                         <input
+                                            className='imputs'
                                             id="next"
                                             name="next"
                                             type="password"
@@ -219,6 +194,7 @@ export default function ProfilePage() {
                                     <div className="form-group">
                                         <label htmlFor="confirm">{language.repeat_password}</label>
                                         <input
+                                            className='imputs'
                                             id="confirm"
                                             name="confirm"
                                             type="password"

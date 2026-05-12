@@ -42,6 +42,40 @@ body {
     display: flex;
 }
 
+:root {
+    --bg-color: #FFF;
+    --bg-color-divContainer: #F2F2F2;
+    --bg-color-HeaderLogged: #ffffff;
+
+    --bg-color-imputs: #C7DBFC;
+    --bg-color-termConditions: #FFF;
+    --bg-color-languageMenu: #FFF;
+    --border-languageMenu: 1px solid black;
+}
+
+.dark {
+    --bg-color: #333333;
+    --bg-color-divContainer: #2A2A2A;
+    --color-divContainer: #FFF; /*#7Ba6FF*/
+    --bg-color-HeaderLogged: #1E1E1E;
+    --border-color-HeaderLogged: #333;
+    --bg-color-termConditions: #87A6F5;
+    --color-button: #000000;
+    --bg-color-languageMenu: #2A2A2A;
+    --color-languageMenu: #FFF;
+    --border-languageMenu: 1px solid white;
+}
+
+.imputs {
+    background-color: var(--bg-color-imputs);
+    margin: 10px;
+    height: 2.5rem;
+    width: 80%;
+    padding: 5px;
+    border: 1px solid #5877CC;
+    border-radius: 3vh;
+}
+
 .sidebar {
     width: 200px;
     background-color: #ffffff;

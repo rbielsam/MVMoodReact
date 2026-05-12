@@ -7,6 +7,7 @@ import LeftSection from "../components/LeftSection";
 import RightSection from "../components/RightSection";
 import ImgLogo from "../components/ImgLogo";
 import LoginForm from "../components/LoginForm";
+import Button from '../components/Button';
 import { Link } from "react-router-dom";
 import { useContext } from 'react';
 import { LanguageContext } from '../contexts/language.context';
@@ -27,7 +28,8 @@ export default function Login () {
                     </LeftSection>
                     <RightSection>
                         <LoginForm />
-                        <Link className={styles.button} to="/signup">{language.signUp}</Link>
+                        {/*<Link className={styles.button} to="/signup">{language.signUp}</Link>*/}
+                        <Link to="/signup"><Button>{language.signUp}</Button></Link>
                         <Link className="a" to="/forgotpassword">{language.forgotPassword}</Link>
                     </RightSection>
                 </DivContainer>
