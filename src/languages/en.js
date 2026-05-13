@@ -13,7 +13,7 @@ const en = {
         acceptTerms: "I accept terms and conditions",
         signUpMVMood: "Sign up to MVMood",
         nickname: "nickname",
-        email:"email",
+        email: "email",
         password: "password",
         repeatPassword: "repeat password",
         signUp: "sign up"

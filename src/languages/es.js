@@ -13,10 +13,10 @@ const es = {
         acceptTerms: "Acepto los términos y condiciones",
         signUpMVMood: "Registrate en MVMood",
         nickname: "Nombre de usuario",
-        email:"email",
-        password: "contraseña",
+        email: "Email",
+        password: "Contraseña",
         repeatPassword: "Repite contraseña",
-        signUp: "Registrate"
+        signUp: "Regístrate"
     },
 
     forgotPassword: {

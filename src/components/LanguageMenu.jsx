@@ -1,4 +1,5 @@
 import styles from "../styles/LanguageMenu.module.css";
+import "../index.css"
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/language.context.jsx";
 
@@ -10,7 +11,7 @@ export default function LanguageMenu ({ onClose }) {
 
     return (
         <>
-            <div className={styles.languageMenu}>
+            <div className={`${styles.languageMenu} languageMenu`}>
                 <ul>
                     {translations.map(language => (
                         <li key={language.lang} onClick={() => {setLang(language); localStorage.setItem("language", JSON.stringify(language)); onClose()}}>{language.name}</li>

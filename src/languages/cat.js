@@ -13,8 +13,8 @@ const cat = {
         acceptTerms: "Accepto els termes i condicions",
         signUpMVMood: "Registra't a MVMood",
         nickname: "Nom d'usuari",
-        email:"email",
-        password: "contrasenya",
+        email: "Email",
+        password: "Contrasenya",
         repeatPassword: "Repeteix la contrasenya",
         signUp: "Registra't"
     },

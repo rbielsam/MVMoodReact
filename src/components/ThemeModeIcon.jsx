@@ -18,7 +18,7 @@ export default function ThemeModeIcon () {
     }, [])
 
     const changeTheme = () => {
-        console.log("Cambiar tema");
+        //console.log("Cambiar tema");
         const newTheme = !isDark;
         setIsDark(newTheme);
         document.documentElement.classList.toggle("dark", newTheme);

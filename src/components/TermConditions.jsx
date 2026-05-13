@@ -1,7 +1,12 @@
 import styles from '../styles/TermConditions.module.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { LanguageContext } from '../contexts/language.context';
+
 
 export default function TermConditions ({ accepted, setAccepted }) {
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.content.signUp;
 
     const handleCheckbox = (e) => {
         //console.log(e);
@@ -13,7 +18,7 @@ export default function TermConditions ({ accepted, setAccepted }) {
             <iframe className={styles.termConditions} src='/TermConditions.html'></iframe>
             <label>
                 <input type="checkbox" checked={accepted} onChange={handleCheckbox} />
-                <span> I accept terms and conditions</span>
+                <span> {language.acceptTerms}</span>
             </label>
         </>
     );

@@ -63,6 +63,10 @@ body {
     border: 1px solid #203C8F;
 }
 
+.dark .languageMenu li:hover {
+    background-color: #4A4A4A;
+}
+
 /*.pLogin {
     font-size: 0.80em;
     border: 2px solid red;
