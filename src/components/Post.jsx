@@ -124,7 +124,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                     <Button onClick={handleSave}>
                         {language.save}
                     </Button>
-                    <Button onClick={() => setEditPost(false)}>
+                    <Button className="buttonCancel" onClick={() => setEditPost(false)}>
                         {language.cancel}
                     </Button>
                 </>
@@ -141,6 +141,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                         </textarea>
 
                         <Button>{language.comment}</Button>
+                        <Button className="buttonCancel" onClick={() => setShowComments(false)}>{language.cancel}</Button>
 
                         {/*<button type="submit">{language.comment}</button>*/}
                     </form>
@@ -151,7 +152,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                         ) : (
                             commentList.map((comment) => (
                                 <div key={comment.uuid} className="comment-item">
-                                    <p>
+                                    <p className='comment-nickname'>
                                         <strong>{comment.user?.nickname}</strong>
                                     </p>
                                     <p>{comment.contenido}</p>

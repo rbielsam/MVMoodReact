@@ -1,4 +1,3 @@
-//import { useLanguage } from '../languages/Languages';
 import '../indexLogged.css';
 import { useState, useContext } from 'react';
 import {UserContext} from "../contexts/user.context";
@@ -13,7 +12,6 @@ export default function CreatePostForm({ onCreated }) {
     const language = lang.content.CreatePostForm;
 
     const [contenido, setContenido] = useState("");
-    //const { t } = useLanguage();
 
     const {error, setError, token} = useContext(UserContext);
     const {create} = usePosts();

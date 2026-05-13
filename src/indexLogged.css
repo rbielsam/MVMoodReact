@@ -766,7 +766,16 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
     resize: vertical;
 }
 
-.comment-section button {
+.dark .comment-section {
+    background-color: var(--bg-color);
+}
+
+.dark .comment-section textarea {
+    background-color: #1e1e1e;
+    color: var(--color-divContainer);
+}
+
+/*.comment-section button {
     margin-top: 5px;
     background-color: #007bff;
     color: white;
@@ -778,7 +787,7 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
 
 .comment-section button:hover {
     background-color: #0056b3;
-}
+}*/
 
 .comment-count-btn {
     background: transparent;
@@ -814,6 +823,15 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
     display: block;
     margin-bottom: 4px;
     color: #1f2640;
+}
+
+.dark .comment-nickname {
+    color: #E8E8E8;
+}
+
+.dark .comment-item {
+    background-color: #1e1e1e;
+    color: var(--color-divContainer);
 }
 
 .no-comments {
