@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import HeaderLogged from '../components/HeaderLogged';
 import Sidebar from '../components/Sidebar';
+import Button from "../components/Button";
 import '../indexLogged.css';
 import Footer from '../components/Footer';
 import TermConditions from '../components/TermConditions';
@@ -136,8 +137,10 @@ export default function ProfilePage() {
                                                 onChange={(e) => setNickname(e.target.value)}
                                             />
                                             <div className="form-actions">
-                                                <button type="submit" className="save-btn">Save</button>
-                                                <button type="button" onClick={() => setIsEditingNickname(false)} className="cancel-btn">{language.cancel}</button>
+                                                <Button>{language.save}</Button>
+                                                <Button className="buttonCancel" onClick={() => setIsEditingNickname(false)}>{language.cancel}</Button>
+                                                {/*<button type="submit" className="save-btn">Save</button>
+                                                <button type="button" onClick={() => setIsEditingNickname(false)} className="cancel-btn">{language.cancel}</button>*/}
                                             </div>
                                         </form>
                                     )}
@@ -208,10 +211,12 @@ export default function ProfilePage() {
                                     {passwordMessage && <p className="message">{passwordMessage}</p>}
 
                                     <div className="form-actions">
-                                        <button type="submit" className="save-btn">{language.confirm_password}</button>
-                                        <button type="button" className="cancel-btn" onClick={() => setShowPasswordForm(false)}>
+                                        {/*<button type="submit" className="save-btn">{language.confirm_password}</button>*/}
+                                        <Button>{language.confirm_password}</Button>
+                                        <Button className="buttonCancel" onClick={() => setShowPasswordForm(false)}>{language.cancel}</Button>
+                                        {/*<button type="button" className="cancel-btn" onClick={() => setShowPasswordForm(false)}>
                                             {language.cancel}
-                                        </button>
+                                        </button>*/}                                
                                     </div>
 
                                 </form>
@@ -254,7 +259,7 @@ export default function ProfilePage() {
                                     </button>
                                 </div>
                                 <div className="terms-content">
-                                    <TermConditions></TermConditions>
+                                    <TermConditions showCheckbox={false}></TermConditions>
                                 </div>
                             </div>
                         </div>

@@ -320,6 +320,12 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
     padding: 24px;
     position: relative;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.dark .modal-card {
+    background-color: var(--bg-color);
 }
 
 .modal-card--wide {

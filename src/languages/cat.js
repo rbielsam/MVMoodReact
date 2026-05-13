@@ -72,13 +72,13 @@ const cat = {
 
     ProfilePage: {
         settings: 'Configuració',
-        profile_edit: 'Editar Perfil',
+        profile_edit: 'Editar perfil',
         nickname: "Nom d'usuari",
         save: "Guardar",
         cancel: "Cancel·lar",
-        change_password: 'Canviar Contrasenya',
-        terms_conditions: 'Termes i Condicions',
-        delete_account: 'Eliminar Compte',
+        change_password: 'Canviar contrasenya',
+        terms_conditions: 'Termes i condicions',
+        delete_account: 'Eliminar compte',
         current_password: "Contrasenya actual",
         new_password: "Nova contrasenya",
         repeat_password: "Repeteix la contrasenya",
