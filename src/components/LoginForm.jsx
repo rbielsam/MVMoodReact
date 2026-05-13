@@ -14,7 +14,7 @@ export default function LoginForm (props) {
 
     const handleUserEmail = (e) => {
         setUser({...user, email: e.target.value}); // Recoge los datos que haya mas el nuevo
-        setError("")
+        setError("");
     }
 
     const handleUserPassword = (e) => {
@@ -32,7 +32,8 @@ export default function LoginForm (props) {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                {error && <p className="error">Error al conectar con el servidor para enviar los datos de acceso: {error.message}</p>}
+                {error && <p className="error">{error}</p>}
+                
                 <p className="pLogin">{language.logInMVMood}</p>
                 <input type="email" name="email" placeholder={language.email} className="imputs" value={user.email} onChange={handleUserEmail} required />
                 <br/>

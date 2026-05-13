@@ -12,7 +12,7 @@ function UserProviderWrapper(props) {
     const API_URL = import.meta.env.VITE_API_URL;
 
     const [user, setUser] = useState({
-        id:null,
+        id: null,
         email: "",
         password: "",
         repeatPassword: "",
@@ -40,7 +40,7 @@ function UserProviderWrapper(props) {
         
         // Llamada a la API de Laravel (BackEnd)
         try {
-            const response = await fetch(`${API_URL}/login`, {
+            const response = await fetch(`${API_URL}/api/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -54,35 +54,40 @@ function UserProviderWrapper(props) {
             });
 
             const data = await response.json();
-            console.log("Login correcto: ", data); //Recibe el objeto con sus atributos
-            setMessage("Login correcto: ", data);
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.log(errorResponse);
-                throw new Error("Error en el login: ", errorResponse);
-                console.error("Error en el login: ", errorResponse);
-                setError("Error en el login: ", errorResponse);
+                console.error(`Error del servidor en el login: ${errorResponse}`);
+                setError(`Error del servidor en el login: ${errorResponse}`);
+                //throw new Error("Error en el login: ", errorResponse);
 
-            } else {
-                localStorage.setItem("token", data.token);
-                setToken(data.token);
+                setUser({
+                    id:"",
+                    email: "",
+                    password: "",
+                    repeatPassword: "",
+                    nickname: ""
+                });
 
-                localStorage.setItem("nickname", data.user.nickname);
-                window.location.replace("/home");
-            }
+                return;
+
+            } 
+
+            //console.log("Login correcto: ", data); //Recibe el objeto con sus atributos
+            setMessage(`Login correcto: ${data.user.nickname}`);
+
+            localStorage.setItem("token", data.token);
+            console.log(`Token: ${data.token}`);
+            setToken(data.token);
+
+            localStorage.setItem("nickname", data.user.nickname);
+            //<Link to="/home" />
+            //window.location.replace("/home");
+            
             
         } catch (err) {
-            //console.error("Error en la petición login al servidor: ", err.message);
-            //setError(err);
-
-            setUser({
-                id:"",
-                email: "",
-                password: "",
-                repeatPassword: "",
-                nickname: ""
-            });
+            console.error(`Error de red o conexión en la petición login al servidor: ${err.message}`);
+            setError(`Error de red o conexión en la petición login al servidor: ${err.message}`);
         }
 
     }
@@ -94,7 +99,7 @@ function UserProviderWrapper(props) {
         //const response = await axios.post("http://localhost:8000/api/signup", {user});
         // Llamada al Back End (Laravel)
         try {
-            const response = await fetch(`${API_URL}/register`, {
+            const response = await fetch(`${API_URL}/api/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -145,7 +150,7 @@ function UserProviderWrapper(props) {
     const resetPassword = async (user) => {
         // Llamada al Backend
         try {
-            const response = await fetch(`${API_URL}/resetpassword`, {
+            const response = await fetch(`${API_URL}/api/resetpassword`, {
                 method: "POST",
                 headers: {"content-Type": "application/json"},
                 body: JSON.stringify(user)
@@ -178,7 +183,7 @@ function UserProviderWrapper(props) {
     // Función asíncrona para devolver los datos de usuario para el HeaderLogged
     const getDataLoggedUser = async () => {
         try {
-            const response = await fetch(`${API_URL}/user`, {
+            const response = await fetch(`${API_URL}/api/user`, {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -215,7 +220,7 @@ function UserProviderWrapper(props) {
     // Función asíncrona para editar el nickname
     const updateNickname = async (formData) => {
         try {
-            const response = await fetch(`${API_URL}/perfil`, {
+            const response = await fetch(`${API_URL}/api/perfil`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -246,7 +251,7 @@ function UserProviderWrapper(props) {
     // Función asíncrona para editar la contraseña
     const updatePassword = async (password_antigua, password_nueva, password_nueva_confirmation) => {
         try {
-            const response = await fetch(`${API_URL}/perfil/password`, {
+            const response = await fetch(`${API_URL}/api/perfil/password`, {
                 method: "PUT",
                 headers: {
                     "Authorization": `Bearer ${token}`,

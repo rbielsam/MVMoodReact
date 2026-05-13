@@ -12,6 +12,9 @@ export default function Sidebar() {
     const logOut = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("language");
+        localStorage.removeItem("theme");
+        localStorage.removeItem("nickname");
+        localStorage.removeItem("pusherTransportTLS");
     };
 
     return (

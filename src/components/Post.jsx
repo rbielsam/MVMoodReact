@@ -222,7 +222,9 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                             // Botón eliminar POST
                             <button
                                 className="danger"
-                                onClick={() => {
+                                onClick={(e) => {
+                                    const next = e.currentTarget.nextElementSibling;
+                                    next?.removeAttribute('show');
                                     if (confirm(`${language.sure_delete_post}`)) {
                                         del(post.id);
                                         deleted();

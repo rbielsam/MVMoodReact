@@ -10,7 +10,7 @@ export function useLikes () {
 
     const like = async (uuid)  => {
         try{
-            const response = await fetch(`${API_URL}/publicaciones/${uuid}/like`, {
+            const response = await fetch(`${API_URL}/api/publicaciones/${uuid}/like`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,
