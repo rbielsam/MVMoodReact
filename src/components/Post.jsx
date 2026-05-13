@@ -114,7 +114,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                 <div className='post-content'>
                     {/*<img src={`http://127.0.0.1:8000/storage/${post.imagen}`} />*/}
                     {urlImagen ?
-                        <img src={urlImagen} alt="Url Imagen" className="post-content-urlImagen" />
+                        <img src={urlImagen} alt="Url Imagen" className="attachUrlImagen" />
                     :
                         post.imagen && <img src={`http://127.0.0.1:8000/storage/${post.imagen}`} alt="Post Imagen" />
                     }

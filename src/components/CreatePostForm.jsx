@@ -4,6 +4,7 @@ import {UserContext} from "../contexts/user.context";
 import { LanguageContext } from '../contexts/language.context';
 import Button from '../components/Button';
 import { usePosts } from '../hooks/usePosts';
+import AttachIcon from './AttachIcon';
 
 
 export default function CreatePostForm({ onCreated }) {
@@ -16,6 +17,7 @@ export default function CreatePostForm({ onCreated }) {
     const {error, setError, token} = useContext(UserContext);
     const {create} = usePosts();
     const [imagen, setImagen] = useState(null);
+    const [urlImagen, setUrlImagen] = useState(null);
 
 
     const handleSubmit = async (e) => {
@@ -37,12 +39,25 @@ export default function CreatePostForm({ onCreated }) {
         
         setContenido("");
         setImagen(null);
+        setUrlImagen(null);
         onCreated();
 
     };
 
     const handleContenido = (e) => {
         setContenido(e.target.value);
+    };
+
+    const handleChangeImagen = (e) => {
+        const imagen = e.target.files[0];
+
+        if (!imagen) return;
+
+        setImagen(imagen);
+
+        const readUrl = new FileReader();
+        readUrl.onload = (e) => setUrlImagen(e.target.result);
+        readUrl.readAsDataURL(imagen);
     };
 /*
                     {data?.mensaje && <p className="ok">{data.mensaje}</p>}
@@ -62,7 +77,16 @@ export default function CreatePostForm({ onCreated }) {
                         onChange={handleContenido}
                         required
                     />
-                    <input type="file" name="imagen" onChange={(e) => {console.log("Imagen: ", e); setImagen(e.target.files[0])}} />
+
+                    <label className="attachLabel" htmlFor="createPostAddImage">
+                        <AttachIcon />
+                    </label>
+                    <input id="createPostAddImage" type="file" name="imagen" onChange={handleChangeImagen} style={{display:"none"}} />
+                    {/*<input type="file" name="imagen" onChange={(e) => {console.log("Imagen: ", e); setImagen(e.target.files[0])}} />*/}
+
+                    {urlImagen && (
+                        <img src={urlImagen} alt="Url Imagen" className="attachUrlImagen" />
+                    )}
 
                     <Button>{language.send}</Button>
                 </form>
