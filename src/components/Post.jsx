@@ -5,6 +5,7 @@ import Button from './Button';
 import { LanguageContext } from '../contexts/language.context';
 import { UserContext } from "../contexts/user.context";
 import userPic from "../assets/settingsprofile/user.png";
+import AttachIcon from './AttachIcon';
 import { Link } from "react-router-dom";
 
 
@@ -21,6 +22,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
     const [commentList, setCommentList] = useState([]);
     const [contenido, setContenido] = useState("");
     const [newImagen, setNewImagen] = useState(null);
+    const [urlImagen, setUrlImagen] = useState(null);
 
 
     // Guardar editar POST
@@ -94,16 +96,38 @@ export default function Post({ post, updated, deleted, del, update, publicacione
         }
     }
 
+    const handleChangeImagen = (e) => {
+        const imagen = e.target.files[0];
+
+        if (!imagen) return;
+
+        setNewImagen(imagen);
+
+        const readUrl = new FileReader();
+        readUrl.onload = (e) => setUrlImagen(e.target.result);
+        readUrl.readAsDataURL(imagen);
+    }
+
     return (
         <>
             {editPost ? (
                 <div className='post-content'>
-                    <img src={`http://localhost:8000/storage/${post.imagen}`} />
+                    {/*<img src={`http://127.0.0.1:8000/storage/${post.imagen}`} />*/}
+                    {urlImagen ?
+                        <img src={urlImagen} alt="Url Imagen" className="post-content-urlImagen" />
+                    :
+                        post.imagen && <img src={`http://127.0.0.1:8000/storage/${post.imagen}`} alt="Post Imagen" />
+                    }
+
                     <textarea
                         value={editPostContent}
                         onChange={(e) => setEditPostContent(e.target.value)}
                     />
-                    <input type="file" name="imagen" onChange={(e) => setNewImagen(e.target.files[0])} />
+
+                    <label className="attachLabel" htmlFor={`editPostAddImage${post.id}`}>
+                        <AttachIcon />
+                    </label>
+                    <input id={`editPostAddImage${post.id}`} type="file" name="imagen" onChange={handleChangeImagen} style={{display:"none"}} />
                 </div>
 
             ) : (
@@ -124,7 +148,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                     <Button onClick={handleSave}>
                         {language.save}
                     </Button>
-                    <Button className="buttonCancel" onClick={() => setEditPost(false)}>
+                    <Button className="buttonCancel" onClick={() => {setEditPost(false); setUrlImagen(null);}}>
                         {language.cancel}
                     </Button>
                 </>
@@ -152,9 +176,13 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                         ) : (
                             commentList.map((comment) => (
                                 <div key={comment.uuid} className="comment-item">
-                                    <p className='comment-nickname'>
-                                        <strong>{comment.user?.nickname}</strong>
-                                    </p>
+                                    <div className='comment-nickname'>
+                                        <Link className={styles.linkPostNickImg} to="/profile"><img src={user.foto_perfil ? `http://localhost:8000/storage/${user.foto_perfil}`: userPic}
+                                            alt="FotoPerfil"
+                                            className={styles.postProfileImg} />
+                                        </Link>
+                                        <p>{comment.user?.nickname}</p>
+                                    </div>
                                     <p>{comment.contenido}</p>
                                 </div>
                             ))

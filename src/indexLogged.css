@@ -142,9 +142,14 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
     font-size: 1em;
     resize: vertical;
+}
+
+.dark .create-post textarea {
+    background-color: #2A2A2A;
+    color: #FFF;
 }
 
 /*.create-post button {
@@ -662,6 +667,31 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
     object-fit: contain;
 }
 
+.post-content textarea {
+    width: 100%;
+    min-height: 100px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.post-content-urlImagen {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.attachLabel {
+    display: inline-block;
+    width: fit-content;
+}
+
+.dark .post-content textarea {
+    color: #FFFFFF;
+    background-color: #2A2A2A;
+    border-color: #203C8F;
+}
+
 .action-btn {
     background: transparent;
     border: none;
@@ -694,6 +724,11 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
 
 .like-btn.liked {
     color: #e74c3c;
+}
+
+.dark .like-btn:hover, .comment-btn:hover {
+    background-color: #000000;
+    color: #FFF;
 }
 
 .menu-btn {
@@ -823,6 +858,12 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
     display: block;
     margin-bottom: 4px;
     color: #1f2640;
+}
+
+.comment-nickname {
+    display: flex;
+    font-weight: bold;
+    gap: 10px;
 }
 
 .dark .comment-nickname {
