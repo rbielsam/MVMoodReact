@@ -23,8 +23,8 @@ export function useComments () {
 
             if(!response.ok) {
                 const errorResponse = data.message;
-                console.error(`Error cargando los POSTS: ${errorResponse}`);
-                setError(`Error cargando los POSTS: ${errorResponse}`);
+                console.error(`Error cargando los comentarios: ${errorResponse}`);
+                setError(`Error cargando los comentarios: ${errorResponse}`);
 
                 return;
             }
