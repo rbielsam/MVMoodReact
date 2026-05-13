@@ -16,7 +16,7 @@ export default function ChatConversaciones({ onSelectChat, currentUser }) {
     useEffect(() => {
         const fetchChats = async () => {
             try {
-                const res = await fetch(`${API_URL}/chats`, {
+                const res = await fetch(`${API_URL}/api/chats`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                         'Accept': 'application/json'

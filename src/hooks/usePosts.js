@@ -16,7 +16,7 @@ export function usePosts() {
     // Función para obtener los POSTS
     const getPosts = async () => {
         try {
-            console.log("Token que se envia: ", token);
+            //console.log("Token que se envia: ", token);
 
             const response = await fetch(`${API_URL}/api/home`, {
                 method: "GET",
@@ -29,17 +29,23 @@ export function usePosts() {
             });
 
             const result = await response.json();
-            console.log(result.data);
+            //console.log(result.data);
             
             if (!response.ok) {
-                throw new Error("No se pueden cargar las peticiones");
+                //throw new Error("No se pueden cargar las peticiones");
+                const errorResponse = data.message;
+                console.error(`Error al cargar los POSTS: ${errorResponse}`);
+                setError(`Error al cargar los POSTS: ${errorResponse}`);
+
+                return {error: errorResponse};
             }
 
             setPublicaciones(result);
+            console.log("POSTS cargados correctamente");
 
         } catch (err) {
-            console.log("Error al conectar con el servidor", err);
-            setError(err.message);
+            console.log(`Error al conectar con el servidor: ${err}`);
+            setError(`Error al conectar con el servidor: ${err}`);
         }
     };
 
@@ -47,7 +53,7 @@ export function usePosts() {
     // Función para crear POSTS
     const create = async (formData/*contenido*/) => {
 
-        //const response = await axios.post("http://localhost:8000/api/signup", {user});
+        //const response = await axios.post(`${API_URL}`/api/signup`, {user});
         // Llamada al Back End (Laravel)
         try {
             const response = await fetch(`${API_URL}/api/create`, {                
@@ -62,26 +68,22 @@ export function usePosts() {
             });
 
             const data = await response.json();
-            console.log("Publicación creada: ",  data);
-            //setMessage("Publicación creada: ",  data);
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.error("Error en la creación del POST: ", errorResponse);
+                console.error(`Error en la creación del POST: ${errorResponse}`);
                 setError(`Error en la creación del POST: ${errorResponse}`);
             }
 
             else {
+                console.log("Publicación creada correctamente");
+                setMessage("Publicación creada correctamente");
                 return data;
-                //window.location.replace("/home");
-                //return <Navigate to={redirectPath} replace />
             }
-
         
         } catch (err) {
-            console.error("Error en la petición al servidor: ", err.message);
-            setError(err);
-
+            console.error(`Error en la petición al servidor: ${err.message}`);
+            setError(`Error en la petición al servidor: ${err.message}`);
         }
 
     };
@@ -102,22 +104,22 @@ export function usePosts() {
             });
 
             const data = await response.json();
-            console.log("Estado de la publicación: ", data);
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.error("Error eliminando el POST: ", errorResponse);
-                setError("Error eliminando el POST: ", errorResponse);
+                console.error(`Error eliminando el POST: ${errorResponse}`);
+                setError(`Error eliminando el POST: ${errorResponse}`);
             }
 
             else {
+                console.log("Publicación eliminada correctamente");
+                setMessage("Publicación eliminada correctamente");
                 return data;
-                //window.location.replace("/home"); // MEJORAR ESTA LÍNEA ! ! !
             }
 
         } catch (err) {
-            console.error("Error en la petición al servidor: ", err.message);
-            setError(err);
+            console.error(`Error en la petición al servidor: ${err.message}`);
+            setError(`Error en la petición al servidor: ${err.message}`);
         }
 
     };
@@ -141,19 +143,21 @@ export function usePosts() {
             });
 
             const data = await response.json();
-            console.log("Estado de la publicación: ", data);
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.error("Error editando el POST: ", errorResponse);
-                setError("Error editando el POST: ", errorResponse);
+                console.error("Error en la edición del POST: ", errorResponse);
+                setError("Error en la edición del POST: ", errorResponse);
+                return;
             }
 
+            console.log("Publicación editada correctamente");
+            setMessage("Publicación editada correctamente");
             return data;
 
         } catch (err) {
-            console.error("Error en la petición al servidor: ", err.message);
-            setError(err);
+            console.error(`Error en la petición al servidor: ${err.message}`);
+            setError(`Error en la petición al servidor: ${err.message}`);
         }
     };
 

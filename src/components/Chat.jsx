@@ -28,7 +28,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         // Cargar mensajes previos desde la API
         const cargarHistorial = async () => {
             try {
-                const response = await fetch(`${API_URL}/chats/${selectedChat.id}/mensajes`, {
+                const response = await fetch(`${API_URL}/api/chats/${selectedChat.id}/mensajes`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                         'Accept': 'application/json'
@@ -106,7 +106,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         setNuevoMensaje(""); // Limpiamos el input
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/chats/enviar`, {
+            const response = await fetch(`${API_URL}/api/chats/enviar`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

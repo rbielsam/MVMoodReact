@@ -23,15 +23,17 @@ export function useComments () {
 
             if(!response.ok) {
                 const errorResponse = data.message;
-                console.error("Error editando el POST: ", errorResponse);
-                setError("Error obteniendo los comentarios: ", errorResponse);
+                console.error(`Error cargando los POSTS: ${errorResponse}`);
+                setError(`Error cargando los POSTS: ${errorResponse}`);
+
+                return;
             }
 
             return data;
 
         } catch (err) {
-            console.error("Error en la petición al servidor: ", err.message);
-            setError(err);
+            console.error(`Error en la petición al servidor: ${err.message}`);
+            setError(`Error en la petición al servidor: ${err.message}`);
         }
     }
 
@@ -53,15 +55,18 @@ export function useComments () {
 
             if(!response.ok) {
                 const errorResponse = data.message;
-                console.error("Error creando el comentario: ", errorResponse);
-                setError("Error creando el comentario: ", errorResponse);
+                console.error(`Error creando el comentario: ${errorResponse}`);
+                setError(`Error creando el comentario: ${errorResponse}`);
+
+                return;
             }
 
+            console.log("Comentario creado correctamente");
             return data;
 
         } catch (err) {
-            console.error("Error en la petición al servidor: ", err.message);
-            setError(err);
+            console.error(`Error en la petición al servidor: ${err.message}`);
+            setError(`Error en la petición al servidor: ${err.message}`);
         }
     }
 

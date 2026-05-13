@@ -107,6 +107,12 @@ const cat = {
 
     ChatUserList: {
         users: "Usuaris"
+    },
+
+    LanguageMenu: {
+        english: "Anglès",
+        spanish: "Castellà",
+        catalan: "Català"
     }
 };
 

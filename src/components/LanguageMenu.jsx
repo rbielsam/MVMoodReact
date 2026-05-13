@@ -6,7 +6,7 @@ import { LanguageContext } from "../contexts/language.context.jsx";
 
 export default function LanguageMenu ({ onClose }) {
 
-    const { translations, setLang } = useContext(LanguageContext);
+    const { lang, setLang, translations } = useContext(LanguageContext);
 
 
     return (
@@ -14,7 +14,14 @@ export default function LanguageMenu ({ onClose }) {
             <div className={`${styles.languageMenu} languageMenu`}>
                 <ul>
                     {translations.map(language => (
-                        <li key={language.lang} onClick={() => {setLang(language); localStorage.setItem("language", JSON.stringify(language)); onClose()}}>{language.name}</li>
+                        <li key={language.lang}
+                            onClick={() => {
+                                setLang(language);
+                                localStorage.setItem("language", JSON.stringify(language));
+                                onClose();
+                            }}>
+                                {language.name}
+                        </li>
                     ))}                    
                 </ul>
             </div>

@@ -14,6 +14,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
     const {translations, lang, setLang} = useContext(LanguageContext);
     const {user} = useContext(UserContext);
     const language = lang.content.Post;
+    const API_URL = import.meta.env.VITE_API_URL;
 
     const [editPost, setEditPost] = useState(false);
     const [editPostContent, setEditPostContent] = useState(post.contenido);
@@ -112,11 +113,11 @@ export default function Post({ post, updated, deleted, del, update, publicacione
         <>
             {editPost ? (
                 <div className='post-content'>
-                    {/*<img src={`http://127.0.0.1:8000/storage/${post.imagen}`} />*/}
+                    {/*<img src={`${API_URL}/storage/${post.imagen}`} />*/}
                     {urlImagen ?
                         <img src={urlImagen} alt="Url Imagen" className="attachUrlImagen" />
                     :
-                        post.imagen && <img src={`http://127.0.0.1:8000/storage/${post.imagen}`} alt="Post Imagen" />
+                        post.imagen && <img src={`${API_URL}/storage/${post.imagen}`} alt="Post Imagen" />
                     }
 
                     <textarea
@@ -132,12 +133,17 @@ export default function Post({ post, updated, deleted, del, update, publicacione
 
             ) : (
                 <div className="post-content">
-                    <Link className={styles.linkPostNickImg} to="/profile"><img src={user.foto_perfil ? `http://localhost:8000/storage/${user.foto_perfil}`: userPic} alt="FotoPerfil" className={styles.postProfileImg} />
-                    <p className={styles.nicknamePost}>{post.user?.nickname}</p></Link>
+                    <Link className={styles.linkPostNickImg} to="/profile">
+                        <img src={post.user.foto_perfil ? `${API_URL}/storage/${post.user.foto_perfil}`: userPic}
+                        alt="FotoPerfil"
+                        className={styles.postProfileImg} />
+
+                        <p className={styles.nicknamePost}>{post.user?.nickname}</p>
+                    </Link>
                     <p className={styles.postText}>{post.contenido}</p>
 
                     {post.imagen && (
-                        <img src={`http://localhost:8000/storage/${post.imagen}`} />
+                        <img src={`${API_URL}/storage/${post.imagen}`} />
                     )}
                 </div>
 
@@ -177,7 +183,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
                             commentList.map((comment) => (
                                 <div key={comment.uuid} className="comment-item">
                                     <div className='comment-nickname'>
-                                        <Link className={styles.linkPostNickImg} to="/profile"><img src={user.foto_perfil ? `http://localhost:8000/storage/${user.foto_perfil}`: userPic}
+                                        <Link className={styles.linkPostNickImg} to="/profile"><img src={user.foto_perfil ? `${API_URL}/storage/${user.foto_perfil}`: userPic}
                                             alt="FotoPerfil"
                                             className={styles.postProfileImg} />
                                         </Link>

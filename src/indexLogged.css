@@ -40,6 +40,11 @@ body {
 
 .container {
     display: flex;
+    background-color: #F2F2F2;;
+}
+
+.dark .container {
+    background-color: #2A2A2A;
 }
 
 :root {
@@ -106,10 +111,10 @@ body {
     bottom: 70px;
 }
 
-.main {
+/*.main {
     flex: 1;
     padding: 20px;
-}
+}*/
 
 
 .post {
@@ -662,9 +667,12 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
 
 .post-content img {
     max-width: 100%;
-    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    /*height: auto;
     display: block;
-    object-fit: contain;
+    object-fit: contain;*/
 }
 
 .post-content textarea {
@@ -925,6 +933,8 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
 .main {
     margin-left: 200px;
     margin-top: 70px;
+    flex: 1;
+    padding: 20px;
 }
 
 /*.message-user {

@@ -1,22 +1,21 @@
 import ThemeModeIcon from "./ThemeModeIcon";
 import LanguageIcon from "./LanguageIcon";
-import { use, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import LanguageMenu from "./LanguageMenu";
 import languageMenuStyles from "../styles/LanguageMenu.module.css";
 import '../indexLogged.css';
 import "../index.css";
 import styles from "../styles/HeaderLogged.module.css";
 import styleLanguageIcon from "../styles/LanguageIcon.module.css";
-import imgLogo from "../assets/imgLogo.png";
 import ImgLogo from "./ImgLogo";
 import { UserContext } from "../contexts/user.context";
-import { data } from "react-router-dom";
 import userPic from "../assets/settingsprofile/user.png";
 import { Link } from "react-router-dom";
 
 
 export default function Header ({ children }) {
 
+    const API_URL = import.meta.env.VITE_API_URL;
     const [showLanguageMenu, setShowLanguageMenu] = useState(false);
     const {user, getDataLoggedUser} = useContext(UserContext);
 
@@ -24,8 +23,7 @@ export default function Header ({ children }) {
         const closeLanguageMenu = (e) => {
             if (e.target.closest(`.${languageMenuStyles.languageMenu}`) || (e.target.closest(`.${styleLanguageIcon.languageIcon}`))) return;
 
-            setShowLanguageMenu(false);
-        
+            setShowLanguageMenu(false);        
         };
 
         document.body.addEventListener('click', closeLanguageMenu);
@@ -50,8 +48,14 @@ export default function Header ({ children }) {
 
                 <div className={`${styles.dataLoggedContainer} dataLoggedContainer`}>
                         {/*<p>{localStorage.getItem("nickname")}</p>*/}
-                        <Link className={styles.linkHeaderNickImg} to="/profile"><img src={user.foto_perfil ? `http://localhost:8000/storage/${user.foto_perfil}`: userPic} alt="FotoPerfil" className={styles.headerProfileImg} />
-                        <p className={styles.dataLoggedUser}>{user.nickname}</p></Link>
+                        <Link className={styles.linkHeaderNickImg} to="/profile">
+                            <img src={user.foto_perfil ? `${API_URL}/storage/${user.foto_perfil}`: userPic}
+                                alt="FotoPerfil"
+                                className={styles.headerProfileImg}
+                            />
+
+                            <p className={styles.dataLoggedUser}>{user.nickname}</p>
+                        </Link>
                 </div>
 
 

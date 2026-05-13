@@ -22,15 +22,18 @@ export function useLikes () {
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.error("Error editando el POST: ", errorResponse);
-                setError("Error editando el POST: ", errorResponse);
+                console.error(`Error al procesar el LIKE: ${errorResponse}`);
+                setError(`Error al procesar el LIKE: ${errorResponse}`);
+
+                return;
             }
 
+            console.log("LIKE procesado correctamente");
             return data;
 
         } catch (err) {
-            console.error("Error en la petición al servidor: ", err.message);
-            setError(err);
+            console.error(`Error en la petición al servidor: ${err.message}`);
+            setError(`Error en la petición al servidor: ${err.message}`);
         }
 
     };
