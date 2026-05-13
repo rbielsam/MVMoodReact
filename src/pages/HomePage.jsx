@@ -52,7 +52,7 @@ export default function HomePage() {
                     {publicaciones?.mensaje && <p className="ok">{publicaciones.mensaje}</p>}
                     {publicaciones?.error && <p className="error">{publicaciones.error}</p>} 
 
-                    <Button className="buttonCancel" onClick={() => setShowCreatePost(!showCreatePost)}>
+                    <Button className={showCreatePost ? "buttonCancel" : ""} onClick={() => setShowCreatePost(!showCreatePost)}>
                         {showCreatePost ? `${language.cancel}` : `${language.create_post}`}
                     </Button>
 
