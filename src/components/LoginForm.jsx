@@ -8,7 +8,7 @@ import { LanguageContext } from "../contexts/language.context.jsx";
 export default function LoginForm (props) {
 
     const {user, setUser, login, error, setError} = useContext(UserContext);
-    const {translations, lang, setLang} = useContext(LanguageContext);
+    const {lang} = useContext(LanguageContext);
     //const language = lang.content.login;
     const language = lang.login;
 

@@ -139,7 +139,7 @@ export default function ProfilePage() {
                                             />
                                             <div className="form-actions">
                                                 <Button>{language.save}</Button>
-                                                <Button className="buttonCancel" onClick={() => {setNickname(nickname), setIsEditingNickname(false);}}>{language.cancel} </Button>
+                                                <Button className="buttonCancel" onClick={() => {setIsEditingNickname(false); setNickname(user.nickname)}}>{language.cancel} </Button>
                                                 {/*<button type="submit" className="save-btn">Save</button>
                                                 <button type="button" onClick={() => setIsEditingNickname(false)} className="cancel-btn">{language.cancel}</button>*/}
                                             </div>
