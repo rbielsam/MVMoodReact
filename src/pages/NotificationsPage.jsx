@@ -9,7 +9,8 @@ import { LanguageContext } from '../contexts/language.context';
 export default function NotificationsPage({ data }) {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.NotificationsPage;
+    //const language = lang.content.NotificationsPage;
+    const language = lang.NotificationsPage;
 
     return (
         <>

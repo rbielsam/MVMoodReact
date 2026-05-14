@@ -9,8 +9,9 @@ export default function ForgotPasswordForm(props) {
 
     const {user, setUser, error, setError, resetPassword} = useContext(UserContext);
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.forgotPassword;
-
+    //const language = lang.content.forgotPassword;
+    const language = lang.ForgotPassword;
+    
 
     const handleEmail = (e) => {
         setUser({...user, email: e.target.value});

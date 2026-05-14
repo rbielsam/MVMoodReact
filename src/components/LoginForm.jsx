@@ -9,7 +9,8 @@ export default function LoginForm (props) {
 
     const {user, setUser, login, error, setError} = useContext(UserContext);
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.login;
+    //const language = lang.content.login;
+    const language = lang.login;
 
 
     const handleUserEmail = (e) => {

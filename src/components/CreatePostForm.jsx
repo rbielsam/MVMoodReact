@@ -10,8 +10,9 @@ import AttachIcon from './AttachIcon';
 export default function CreatePostForm({ onCreated }) {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.CreatePostForm;
-
+    //const language = lang.content.CreatePostForm;
+    const language = lang.CreatePostForm;
+    
     const [contenido, setContenido] = useState("");
 
     const {error, setError, token} = useContext(UserContext);

@@ -16,8 +16,9 @@ export default function ChatPage() {
     const API_URL = import.meta.env.VITE_API_URL;
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.ChatPage;
-
+    //const language = lang.content.ChatPage;
+    const language = lang.ChatPage;
+    
     const { user } = useContext(UserContext);
     const [chatSeleccionado, setChatSeleccionado] = useState(null);
 

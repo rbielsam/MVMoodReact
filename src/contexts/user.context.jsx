@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "./language.context";
 //import { useNavigate } from "react-router-dom";
 
 
@@ -10,6 +11,7 @@ const UserContext = createContext();
 function UserProviderWrapper(props) {
 
     const API_URL = import.meta.env.VITE_API_URL;
+    const {lang} = useContext(LanguageContext);
 
     const [user, setUser] = useState({
         id: null,

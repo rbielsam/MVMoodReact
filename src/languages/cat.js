@@ -1,9 +1,9 @@
 const cat = {
     login: {
-        logInMVMood: "Incia sesió a MVMood",
+        logInMVMood: "Incia sessió a MVMood",
         email: "email",
         password: "contrasenya",
-        logIn: "Iniciar sesió",
+        logIn: "Iniciar sessió",
         signUp: "Registra't",
         forgotPassword: "Has oblidat la constrasenya?"
     },

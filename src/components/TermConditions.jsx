@@ -6,7 +6,8 @@ import { LanguageContext } from '../contexts/language.context';
 export default function TermConditions ({ accepted, setAccepted, showCheckbox = true }) {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.signUp;
+    //const language = lang.content.signUp;
+    const language = lang.signUp;
 
     const handleCheckbox = (e) => {
         //console.log(e);

@@ -13,7 +13,8 @@ export default function Post({ post, updated, deleted, del, update, publicacione
     
     const {translations, lang, setLang} = useContext(LanguageContext);
     const {user} = useContext(UserContext);
-    const language = lang.content.Post;
+    //const language = lang.content.Post;
+    const language = lang.Post;
     const API_URL = import.meta.env.VITE_API_URL;
 
     const [editPost, setEditPost] = useState(false);

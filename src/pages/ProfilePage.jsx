@@ -15,7 +15,8 @@ export default function ProfilePage() {
     const {user, setUser, getDataLoggedUser, updateNickname, updatePassword} = useContext(UserContext);
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.ProfilePage;
+    //const language = lang.content.ProfilePage;
+    const language = lang.ProfilePage;
 
     const [profilePic, setProfilePic] = useState({userPic});
     const [nickname, setNickname] = useState("");
@@ -138,7 +139,7 @@ export default function ProfilePage() {
                                             />
                                             <div className="form-actions">
                                                 <Button>{language.save}</Button>
-                                                <Button className="buttonCancel" onClick={() => setIsEditingNickname(false)}>{language.cancel}</Button>
+                                                <Button className="buttonCancel" onClick={() => {setNickname(nickname), setIsEditingNickname(false);}}>{language.cancel} </Button>
                                                 {/*<button type="submit" className="save-btn">Save</button>
                                                 <button type="button" onClick={() => setIsEditingNickname(false)} className="cancel-btn">{language.cancel}</button>*/}
                                             </div>

@@ -7,8 +7,9 @@ export default function ChatUserList ({ currentUser, onSelectUser }) {
     const API_URL = import.meta.env.VITE_API_URL;
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.ChatUserList;
-
+    //const language = lang.content.ChatUserList;
+    const language = lang.ChatUserList;
+    
     const [users, setUsers] = useState([]);
 
     useEffect(() => {

@@ -9,7 +9,8 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
     const API_URL = import.meta.env.VITE_API_URL;
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.Chat;
+    //const language = lang.content.Chat;
+    const language = lang.Chat;
 
     const receptor = selectedChat.usuarios?.find(u => u.id !== currentUser.id);
     if (!selectedChat) return null;

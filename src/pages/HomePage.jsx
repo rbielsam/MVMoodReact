@@ -17,7 +17,8 @@ import HeaderLogged from "../components/HeaderLogged";
 export default function HomePage() {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.HomePage;
+    //const language = lang.content.HomePage;
+    const language = lang.HomePage;
 
     const {user, getDataLoggedUser, error, setError} = useContext(UserContext);
     const [showCreatePost, setShowCreatePost] = useState(false);

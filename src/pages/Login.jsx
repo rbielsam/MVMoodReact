@@ -16,7 +16,8 @@ import { LanguageContext } from '../contexts/language.context';
 export default function Login () {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.login;
+    //const language = lang.content.login;
+    const language = lang.login;
 
     return (
         <>

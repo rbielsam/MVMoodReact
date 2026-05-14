@@ -734,7 +734,7 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
     color: #e74c3c;
 }
 
-.dark .like-btn:hover, .comment-btn:hover {
+.dark .like-btn:hover, .dark .comment-btn:hover {
     background-color: #000000;
     color: #FFF;
 }

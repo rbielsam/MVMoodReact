@@ -10,7 +10,8 @@ export default function SignUpForm ({ props, accepted }) {
 
     const {user, setUser, error, setError, signUp} = useContext(UserContext);
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.signUp;
+    //const language = lang.content.signUp;
+    const language = lang.signUp;
 
 
     const handleUserProps = (e) => {

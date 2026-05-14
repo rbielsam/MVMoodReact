@@ -16,8 +16,9 @@ export default function LanguageMenu ({ onClose }) {
                     {translations.map(language => (
                         <li key={language.lang}
                             onClick={() => {
-                                setLang(language);
-                                localStorage.setItem("language", JSON.stringify(language));
+                                setLang(language.content);
+                                //localStorage.setItem("language", JSON.stringify(language));
+                                localStorage.setItem("language", language.lang);
                                 onClose();
                             }}>
                                 {language.name}

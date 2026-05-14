@@ -8,7 +8,8 @@ export default function ChatConversaciones({ onSelectChat, currentUser }) {
     const API_URL = import.meta.env.VITE_API_URL;
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.ConversacionesChat;
+    //const language = lang.content.ConversacionesChat;
+    const language = lang.ConversacionesChat;
 
     const [chats, setChats] = useState([]);
     const [cargando, setCargando] = useState(true);

@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 export default function Sidebar() {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    const language = lang.content.Sidebar;
+    //const language = lang.content.Sidebar;
+    const language = lang.Sidebar;
 
     const logOut = () => {
         localStorage.removeItem("token");
