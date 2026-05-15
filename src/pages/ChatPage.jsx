@@ -26,7 +26,7 @@ export default function ChatPage() {
     const startChatWithUser = async (user) => {
         try {
             //console.log("receptor_id que se envía: ", user.id);
-            const response = await fetch(`${API_URL}/chats/enviar`, {
+            const response = await fetch(`${API_URL}/api/chats/enviar`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
