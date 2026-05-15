@@ -129,6 +129,31 @@ const es = {
         okUpdateNickname: "Nickname actualizado correctamente",
         errorServerUpdatePassword: "Error al actualizar la constraseña: ",
         okUpdatePassword: "Contraseña actualizada correctamente"
+    },
+
+    errorPosts: {
+        errorServerConnectionPosts: "Error al conectar con el servidor: ",
+        errorServerLoadPosts: "Error al cargar los POSTS: ",
+        okLoadPosts: "POSTS cargados correctamente",
+        errorServerCreatePost: "Error en la creación del POST: ",
+        okCreatePost: "Publicación creada correctamente",
+        errorServerDeletePost: "Error eliminando el POST: ",
+        okDeletePost: "Publicación eliminada correctamente",
+        errorServerUpdatePost: "Error en la edición del POST: ",
+        okUpdatePost: "Publicación editada correctamente"
+    },
+
+    errorLikes: {
+        errorServerConnectionLikes: "Error al conectar con el servidor: ",
+        errorLike: "Error al procesar el LIKE: ",
+        okLike: "LIKE procesado correctamente"
+    },
+
+    errorComments: {
+        errorServerConnetionComments: "Error en la petición al servidor: ",
+        errorLoadingComments: "Error cargando los comentarios: ",
+        okCreateComment: "Comentario creado correctamente",
+        errorCreatingComment: "Error creando el comentario: "
     }
 };
 

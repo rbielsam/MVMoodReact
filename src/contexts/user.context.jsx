@@ -18,8 +18,7 @@ const getSavedLang = () => {
 
 function UserProviderWrapper(props) {
 
-    const API_URL = import.meta.env.VITE_API_URL;
-    
+    const API_URL = import.meta.env.VITE_API_URL;    
 
     const [user, setUser] = useState({
         id: null,
@@ -28,7 +27,7 @@ function UserProviderWrapper(props) {
         repeatPassword: "",
         nickname: ""
     });
-
+    
     const [error, setError] = useState("");
     const [errorBackend, setErrorBackend] = useState("");
     const [message, setMessage] = useState("");

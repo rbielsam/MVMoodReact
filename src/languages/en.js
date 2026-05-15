@@ -130,6 +130,31 @@ const en = {
         okUpdateNickname: "Nickname updated correctly",
         errorServerUpdatePassword: "Error updating password: ",
         okUpdatePassword: "Contraseña actualizada correctamente"
+    },
+
+    errorPosts: {
+        errorServerConnectionPosts: "Error conecting to the server: ",
+        errorServerLoadPosts: "Error loading POSTS: ",
+        okLoadPosts: "POSTS loaded correctly",
+        errorServerCreatePost: "Error in creating the POST: ",
+        okCreatePost: "POST created successfully",
+        errorServerDeletePost: "Error deleting the POST: ",
+        okDeletePost: "Post successfully deleted",
+        errorServerUpdatePost: "Error in POST editing: ",
+        okUpdatePost: "POST edited correctly"
+    },
+
+    errorLikes: {
+        errorServerConnectionLikes: "Error conecting to the server: ",
+        errorLike: "Error processing LIKE: ",
+        okLike: "LIKE processed correctly"
+    },
+
+    errorComments: {
+        errorServerConnetionComments: "Error conecting to the server: ",
+        errorLoadingComments: "Error loading comments: ",
+        okCreateComment: "Comment created successfully",
+        errorCreatingComment: "Error creating comment: "
     }
 };
 

@@ -9,7 +9,6 @@ export default function LoginForm (props) {
 
     const {user, setUser, login, error, setError, errorBackend} = useContext(UserContext);
     const {lang} = useContext(LanguageContext);
-    //const language = lang.content.login;
     const language = lang.login;
     const translatedError = error ? lang.UserFunctions[error] : "";
 

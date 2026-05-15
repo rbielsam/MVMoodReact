@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../contexts/user.context";
+import { LanguageContext } from '../contexts/language.context';
 
 
 export function useComments () {
@@ -7,6 +8,9 @@ export function useComments () {
     const API_URL = import.meta.env.VITE_API_URL;
 
     const {token, setError} = useContext(UserContext);
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.errorComments;
 
     // Función para obtener los comentarios de un post
     const getComments = async (uuid) => {
@@ -23,8 +27,8 @@ export function useComments () {
 
             if(!response.ok) {
                 const errorResponse = data.message;
-                console.error(`Error cargando los comentarios: ${errorResponse}`);
-                setError(`Error cargando los comentarios: ${errorResponse}`);
+                console.error(`${language.errorLoadingComments} ${errorResponse}`);
+                setError(`${language.errorLoadingComments} ${errorResponse}`);
 
                 return;
             }
@@ -32,8 +36,9 @@ export function useComments () {
             return data;
 
         } catch (err) {
-            console.error(`Error en la petición al servidor: ${err.message}`);
-            setError(`Error en la petición al servidor: ${err.message}`);
+            console.error(`${language.errorServerConnectionComments} ${err.message}`);
+            setError(`${language.errorServerConnectionComments} ${err.message}`);
+            return {error: err.message};
         }
     }
 
@@ -55,18 +60,18 @@ export function useComments () {
 
             if(!response.ok) {
                 const errorResponse = data.message;
-                console.error(`Error creando el comentario: ${errorResponse}`);
-                setError(`Error creando el comentario: ${errorResponse}`);
+                console.error(`${language.errorCreatingComment} ${errorResponse}`);
+                setError(`${language.errorCreatingComment} ${errorResponse}`);
 
                 return;
             }
 
-            console.log("Comentario creado correctamente");
+            console.log(`${language.okCreateComment}`);
             return data;
 
         } catch (err) {
-            console.error(`Error en la petición al servidor: ${err.message}`);
-            setError(`Error en la petición al servidor: ${err.message}`);
+            console.error(`${language.errorServerConnetionComments} ${err.message}`);
+            setError(`${language.errorServerConnetionComments} ${err.message}`);
         }
     }
 

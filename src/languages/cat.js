@@ -129,6 +129,31 @@ const cat = {
         okUpdateNickname: "Nickname actualitzat correctament",
         errorServerUpdatePassword: "Error al actualitzar la constrasenya: ",
         okUpdatePassword: "Contrasenya actualitzada correctament"
+    },
+
+    errorPosts: {
+        errorServerConnectionPosts: "Error al conectar amb el servidor: ",
+        errorServerLoadPosts: "Error al carregar els POSTS: ",
+        okLoadPosts: "POSTS carregats correctament",
+        errorServerCreatePost: "Error a la creació del POST: ",
+        okCreatePost: "Publicació creada correctament",
+        errorServerDeletePost: "Error eliminant el POST: ",
+        okDeletePost: "Publicació eliminada correctament",
+        errorServerUpdatePost: "Error a la edició del POST: ",
+        okUpdatePost: "Publicaci editada correctament"
+    },
+
+    errorLikes: {
+        errorServerConnectionLikes: "Error al conectar amb el servidor: ",
+        errorLike: "Error al processar el LIKE: ",
+        okLike: "LIKE processat correctament"
+    },
+
+    errorComments: {
+        errorServerConnetionComments: "Error a la petici al servidor: ",
+        errorLoadingComments: "Error caregant les comentaris: ",
+        okCreateComment: "Comentari creat correctament",
+        errorCreatingComment: "Error creant el comentari: "
     }
 };
 

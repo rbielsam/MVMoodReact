@@ -11,11 +11,10 @@ import { Link } from "react-router-dom";
 
 export default function Post({ post, updated, deleted, del, update, publicaciones, like, getComments, createComment }) {
     
-    const {translations, lang, setLang} = useContext(LanguageContext);
-    const {user} = useContext(UserContext);
-    //const language = lang.content.Post;
-    const language = lang.Post;
     const API_URL = import.meta.env.VITE_API_URL;
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const {user, error} = useContext(UserContext);
+    const language = lang.Post;
 
     const [editPost, setEditPost] = useState(false);
     const [editPostContent, setEditPostContent] = useState(post.contenido);
@@ -28,7 +27,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
 
 
     // Guardar editar POST
-    const handleSave = async () => {
+    const handleSave = async (id) => {
 
         const formData = new FormData();
         formData.append("contenido", editPostContent);
@@ -73,7 +72,8 @@ export default function Post({ post, updated, deleted, del, update, publicacione
 
             if (next) {
                 getComments(post.id).then((response) => {
-                    if (!response?.error) {
+                    if (!response || !response?.error) {
+                        setCommentList([]);
                         setCommentList(response);
                     }
                 });
@@ -111,7 +111,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
     }
 
     return (
-        <>
+        <>            
             {editPost ? (
                 <div className='post-content'>
                     {/*<img src={`${API_URL}/storage/${post.imagen}`} />*/}
@@ -163,6 +163,7 @@ export default function Post({ post, updated, deleted, del, update, publicacione
 
             {showComments && (
                 <div className="comment-section">
+
                     <form onSubmit={handleComments}>
 
                         <textarea placeholder={language.type_message}

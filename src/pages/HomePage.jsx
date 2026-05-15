@@ -17,7 +17,6 @@ import HeaderLogged from "../components/HeaderLogged";
 export default function HomePage() {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    //const language = lang.content.HomePage;
     const language = lang.HomePage;
 
     const {user, getDataLoggedUser, error, setError} = useContext(UserContext);
@@ -52,6 +51,7 @@ export default function HomePage() {
                 <div className="main">
                     {publicaciones?.mensaje && <p className="ok">{publicaciones.mensaje}</p>}
                     {publicaciones?.error && <p className="error">{publicaciones.error}</p>} 
+                    {error && (<p className="error">{error}</p>)}
 
                     <Button className={showCreatePost ? "buttonCancel" : ""} onClick={() => setShowCreatePost(!showCreatePost)}>
                         {showCreatePost ? `${language.cancel}` : `${language.create_post}`}

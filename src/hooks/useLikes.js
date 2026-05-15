@@ -1,5 +1,6 @@
 import { use, useContext } from "react";
 import { UserContext } from "../contexts/user.context";
+import { LanguageContext } from '../contexts/language.context';
 
 
 export function useLikes () {
@@ -7,6 +8,9 @@ export function useLikes () {
     const API_URL = import.meta.env.VITE_API_URL;
     
     const {token, setError} = useContext(UserContext);
+
+    const {translations, lang, setLang} = useContext(LanguageContext);
+    const language = lang.errorLikes;
 
     const like = async (uuid)  => {
         try{
@@ -22,18 +26,18 @@ export function useLikes () {
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.error(`Error al procesar el LIKE: ${errorResponse}`);
-                setError(`Error al procesar el LIKE: ${errorResponse}`);
+                console.error(`${language.errorLike} ${errorResponse}`);
+                setError(`${language.errorLike} ${errorResponse}`);
 
                 return;
             }
 
-            console.log("LIKE procesado correctamente");
+            console.log(`${language.okLike}`);
             return data;
 
         } catch (err) {
-            console.error(`Error en la petición al servidor: ${err.message}`);
-            setError(`Error en la petición al servidor: ${err.message}`);
+            console.error(`${language.errorServerConnectionLikes} ${err.message}`);
+            setError(`${language.errorServerConnectionLikes} ${err.message}`);
         }
 
     };
