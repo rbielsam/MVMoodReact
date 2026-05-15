@@ -8,10 +8,11 @@ import { LanguageContext } from '../contexts/language.context.jsx';
 
 export default function SignUpForm ({ props, accepted }) {
 
-    const {user, setUser, error, setError, signUp} = useContext(UserContext);
+    const {user, setUser, error, setError, errorBackend, signUp} = useContext(UserContext);
     const {translations, lang, setLang} = useContext(LanguageContext);
     //const language = lang.content.signUp;
     const language = lang.signUp;
+    const translatedError = error ? lang.UserFunctions[error] : "";
 
 
     const handleUserProps = (e) => {
@@ -29,7 +30,7 @@ export default function SignUpForm ({ props, accepted }) {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                {error && <p className="error">{error.message}</p>}
+                {translatedError && (<p className="error">{translatedError} {errorBackend}</p>)}
                 <p className="pLogin">{language.signUpMVMood}</p>
                 <input type="text" name="nickname" placeholder={language.nickname} className="imputs" value={user.nickname} onChange={handleUserProps} />
                 <input type="email" name="email" placeholder={language.email} className="imputs" value={user.email} onChange={handleUserProps} required />

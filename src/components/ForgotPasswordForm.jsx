@@ -7,11 +7,12 @@ import { LanguageContext } from '../contexts/language.context.jsx';
 
 export default function ForgotPasswordForm(props) {
 
-    const {user, setUser, error, setError, resetPassword} = useContext(UserContext);
+    const {user, setUser, error, setError, errorBackend, resetPassword} = useContext(UserContext);
     const {translations, lang, setLang} = useContext(LanguageContext);
     //const language = lang.content.forgotPassword;
-    const language = lang.ForgotPassword;
-    
+    const language = lang.forgotPassword;
+    const translatedError = error ? lang.UserFunctions[error] : "";
+
 
     const handleEmail = (e) => {
         setUser({...user, email: e.target.value});
@@ -31,7 +32,7 @@ export default function ForgotPasswordForm(props) {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                {error && <p className="error">{error.message}</p>}
+                {translatedError && (<p className="error">{translatedError} {errorBackend}</p>)}
                 <p>{language.writeEmail}</p>
                 <input type="email" name="email" placeholder={language.email} className="imputs" value={user.email} onChange={handleEmail} required /><br/>
                 <Button>{language.resetPassword}</Button><br/><br/>
