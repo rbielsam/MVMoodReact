@@ -17,6 +17,10 @@ body {
     color: #222;
 }
 
+.error {
+    color: red;
+}
+
 .dark,
 .dark body {
     background-color: #121212;
