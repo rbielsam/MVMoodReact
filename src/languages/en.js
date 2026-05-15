@@ -72,6 +72,7 @@ const en = {
     },
 
     ProfilePage: {
+        errorServerConnectionProfile: "Server connection error: ",
         settings: 'settings',
         profile_edit: "profile edit",
         nickname: "nickname",
@@ -87,7 +88,9 @@ const en = {
         fill_all_fields: "Fill all fields",
         password_mismatch: "Password mismatch",
         password_too_short: "Password too short",
-        password_updated: "Password updated"
+        password_updated: "Password updated",
+        errorDeleteUser: "Error when deleting account: ",
+        okDeleteUser: "Account successfuly deleted"
     },
 
     ChatPage: {

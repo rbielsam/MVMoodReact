@@ -71,6 +71,7 @@ const cat = {
     },
 
     ProfilePage: {
+        errorServerConnectionProfile: "Error de conexió amb el servidor: ",
         settings: 'Configuració',
         profile_edit: 'Editar perfil',
         nickname: "Nom d'usuari",
@@ -86,7 +87,9 @@ const cat = {
         fill_all_fields: "S'han d'omplir tots el camps",
         password_mismatch: "Les contrasenyes no coincideixen",
         password_too_short: "Contrasenya massa curta",
-        password_updated: "Contrasenya actualitzada"
+        password_updated: "Contrasenya actualitzada",
+        errorDeleteUser: "Error al eliminar el compte: ",
+        okDeleteUser: "Compte eliminat correctament"
     },
 
     ChatPage: {

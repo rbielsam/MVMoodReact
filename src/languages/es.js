@@ -71,6 +71,7 @@ const es = {
     },
 
     ProfilePage: {
+        errorServerConnectionProfile: "Error de conexión con el servidor: ",
         settings: 'Configuración',
         profile_edit: 'Editar perfil',
         nickname: "Nombre de usuario",
@@ -86,7 +87,9 @@ const es = {
         fill_all_fields: "Deben rellenar todos los campos",
         password_mismatch: "Las contraseñas no coinciden",
         password_too_short: "Contraseña demasiado corta",
-        password_updated: "Contraseña actualizada"
+        password_updated: "Contraseña actualizada",
+        errorDeleteUser: "Error al eliminar cuenta: ",
+        okDeleteUser: "Cuenta eliminada correctamente"
     },
 
     ChatPage: {
