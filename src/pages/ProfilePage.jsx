@@ -17,7 +17,6 @@ export default function ProfilePage() {
     const {user, setUser, getDataLoggedUser, updateNickname, updatePassword, error, setError, token} = useContext(UserContext);
 
     const {translations, lang, setLang} = useContext(LanguageContext);
-    //const language = lang.content.ProfilePage;
     const language = lang.ProfilePage;
 
     const [profilePic, setProfilePic] = useState({userPic});
