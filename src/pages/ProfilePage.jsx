@@ -94,8 +94,8 @@ export default function ProfilePage() {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    //"Content-Type": "application/json",
+                    //"Accept": "application/json"
                 }
             });
 
@@ -110,6 +110,12 @@ export default function ProfilePage() {
             }
 
             console.log(`${language.okDeleteUser}`);
+            localStorage.removeItem("token");
+            localStorage.removeItem("language");
+            localStorage.removeItem("theme");
+            localStorage.removeItem("nickname");
+            localStorage.removeItem("pusherTransportTLS");
+            window.location.replace("/");
 
         } catch (err) {
             console.error(`${language.errorServerConnectionProfile} ${err.message}`);

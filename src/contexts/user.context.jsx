@@ -161,7 +161,7 @@ function UserProviderWrapper(props) {
 
             console.log(`${language.okRegister}`);
             setMessage(`${language.okRegister}`);
-            <Link to="/" />
+            window.location.replace("/");
             //window.location.replace("/");
             //<Navigate to={"/"} replace />
             //navigate("/");
