@@ -4,6 +4,6 @@ import styles from "../styles/AttachIcon.module.css";
 export default function AttachIcon () {
 
     return (
-        <img className={styles.attachIcon} src={attach} alt="Icono adjuntar imágen" />
+        <img id={styles.attachIconId} className={styles.attachIcon} src={attach} alt="Icono adjuntar imágen" />
     );
 }
