@@ -29,7 +29,7 @@ export default function SignUpForm ({ props, accepted }) {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                {error && <p className="error">Error en la petición de registro al servidor: {error.message}</p>}
+                {error && <p className="error">{error.message}</p>}
                 <p className="pLogin">{language.signUpMVMood}</p>
                 <input type="text" name="nickname" placeholder={language.nickname} className="imputs" value={user.nickname} onChange={handleUserProps} />
                 <input type="email" name="email" placeholder={language.email} className="imputs" value={user.email} onChange={handleUserProps} required />

@@ -114,6 +114,22 @@ const en = {
         english: "English",
         spanish: "Spanish",
         catalan: "Catalan"
+    },
+
+    UserFunctions: {
+        errorServerConnection: "Error conecting to the server: ",
+        errorServerLogin: "Server login error: ",
+        okLogin: "Correct login: ",
+        errorServerRegister: "Error in registration: ",
+        okRegister: "Correct registration",
+        errorServerResetPassword: "Error updating password: ",
+        okResetPassword: "Password updated correctly",
+        errorServerGetDataUserLogged: "Error receiving user data: ",
+        okGetDataUserLogged: "User data received corectly",
+        errorServerUpdateNickname: "Error receiving updated nickname: ",
+        okUpdateNickname: "Nickname updated correctly",
+        errorServerUpdatePassword: "Error updating password: ",
+        okUpdatePassword: "Contraseña actualizada correctamente"
     }
 };
 

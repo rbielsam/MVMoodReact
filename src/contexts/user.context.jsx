@@ -1,17 +1,24 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { LanguageContext } from "./language.context";
-//import { useNavigate } from "react-router-dom";
+import en from "../languages/en";
+import es from "../languages/es";
+import cat from "../languages/cat";
 
 
 const UserContext = createContext();
-//const navigate = useNavigate();
+
+const languages = {en, es, cat};
+
+const getSavedLang = () => {
+    const savedLang = localStorage.getItem("language");
+    return savedLang ? languages[savedLang] : en;
+}
 
 
 function UserProviderWrapper(props) {
 
     const API_URL = import.meta.env.VITE_API_URL;
-    const {lang} = useContext(LanguageContext);
 
     const [user, setUser] = useState({
         id: null,
@@ -39,6 +46,9 @@ function UserProviderWrapper(props) {
 
     // Función asíncrona para el Login
     const login = async (user) => {
+
+        const lang = getSavedLang();
+        const language = lang.UserFunctions;
         
         // Llamada a la API de Laravel (BackEnd)
         try {
@@ -59,8 +69,8 @@ function UserProviderWrapper(props) {
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.error(`Error del servidor en el login: ${errorResponse}`);
-                setError(`Error del servidor en el login: ${errorResponse}`);
+                console.error(`${language.errorServerLogin} ${errorResponse}`);
+                setError(`${language.errorServerLogin} ${errorResponse}`);
                 //throw new Error("Error en el login: ", errorResponse);
 
                 setUser({
@@ -76,7 +86,7 @@ function UserProviderWrapper(props) {
             } 
 
             //console.log("Login correcto: ", data); //Recibe el objeto con sus atributos
-            setMessage(`Login correcto: ${data.user.nickname}`);
+            setMessage(`${okLogin} ${data.user.nickname}`);
 
             localStorage.setItem("token", data.token);
             //console.log(`Token: ${data.token}`);
@@ -88,8 +98,8 @@ function UserProviderWrapper(props) {
             
             
         } catch (err) {
-            console.error(`Error de red o conexión en la petición login al servidor: ${err.message}`);
-            setError(`Error de red o conexión en la petición login al servidor: ${err.message}`);
+            console.error(`${errorServerConnection} ${err.message}`);
+            setError(`${errorServerConnection} ${err.message}`);
 
             setUser({
                 id:"",
@@ -105,6 +115,9 @@ function UserProviderWrapper(props) {
 
     // Función asíncrona para el Sign Up
     const signUp = async (user) => {
+
+        const lang = getSavedLang();
+        const language = lang.UserFunctions;
 
         //const response = await axios.post("http://localhost:8000/api/signup", {user});
         // Llamada al Back End (Laravel)
@@ -127,8 +140,8 @@ function UserProviderWrapper(props) {
 
             if (!response.ok) {
                 const errorResponse = data.message;                
-                console.error(`Error en el registro: ${errorResponse}`);
-                setError(`Error en el registro: ${errorResponse}`);
+                console.error(`${errorServerRegister} ${errorResponse}`);
+                setError(`${errorServerRegister} ${errorResponse}`);
                 //throw new Error("Error en el registro: ", errorResponse.message);
 
                 setUser({
@@ -142,8 +155,8 @@ function UserProviderWrapper(props) {
                 return;
             }
 
-            console.log("Registro correcto");
-            setMessage("Registro correcto");
+            console.log(`${okRegister}`);
+            setMessage(`${okRegister}`);
             <Link to="/" />
             //window.location.replace("/");
             //<Navigate to={"/"} replace />
@@ -151,8 +164,8 @@ function UserProviderWrapper(props) {
 
         
         } catch (err) {
-            console.error(`Error en la petición al servidor: ${err.message}`);
-            setError(`Error en la petición al servidor: ${err.message}`);
+            console.error(`${errorServerConnection} ${err.message}`);
+            setError(`${errorServerConnection} ${err.message}`);
 
             setUser({
                 id:"",
@@ -167,6 +180,10 @@ function UserProviderWrapper(props) {
 
     // Función asíncrona para restablecer la constraseña
     const resetPassword = async (user) => {
+
+        const lang = getSavedLang();
+        const language = lang.UserFunctions;
+
         // Llamada al Backend
         try {
             const response = await fetch(`${API_URL}/api/resetpassword`, {
@@ -179,8 +196,8 @@ function UserProviderWrapper(props) {
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.error(`Error al actualizar la contraseña: ${errorResponse}`);
-                setError(`Error al actualizar la contraseña: ${errorResponse}`);
+                console.error(`${errorServerResetPassword} ${errorResponse}`);
+                setError(`${errorServerResetPassword} ${errorResponse}`);
                 //throw new Error("Error al actualizar la contraseña: ", errorResponse.message);
 
                 setUser({
@@ -193,12 +210,12 @@ function UserProviderWrapper(props) {
                 return;
             }
 
-            console.log("Contraseña actualizada correctamente");
-            setMessage("Contraseña actualizada correctamente");
+            console.log(`${okResetPassword}`);
+            setMessage(`${okResetPassword}`);
 
         } catch (err) {
-            console.error(`Error en la petición al servidor: ${err.message}`);
-            setError(`Error en la petición al servidor: ${err.message}`);
+            console.error(`${errorServerConnection} ${err.message}`);
+            setError(`${errorServerConnection} ${err.message}`);
 
             setUser({
                 id:"",
@@ -212,6 +229,10 @@ function UserProviderWrapper(props) {
 
     // Función asíncrona para devolver los datos de usuario para el HeaderLogged
     const getDataLoggedUser = async () => {
+
+        const lang = getSavedLang();
+        const language = lang.UserFunctions;
+
         try {
             const response = await fetch(`${API_URL}/api/user`, {
                 method: "GET",
@@ -226,8 +247,8 @@ function UserProviderWrapper(props) {
 
             if (!response.ok) {
                 const errorResponse = data.message
-                console.error(`Error al recibir datos de usuario: ${errorResponse}`);
-                setError(`Error al recibir datos de usuario: ${errorResponse}`);
+                console.error(`${errorServerGetDataUserLogged} ${errorResponse}`);
+                setError(`${errorServerGetDataUserLogged} ${errorResponse}`);
                 //throw new Error("Error al recibir datos de usuario: ", errorResponse.message);
 
                 return;
@@ -240,19 +261,23 @@ function UserProviderWrapper(props) {
                 foto_perfil: data.foto_perfil
             });
 
-            console.log("Datos de usuario recibidos correctamente");
+            console.log(`${okGetDataUserLogged}`);
 
             return data;
 
         } catch (err) {
-            console.error(`Error en la petición al servidor: ${err.message}`);
-            setError(`Error en la petición al servidor: ${err.message}`);
+            console.error(`${errorServerConnection} ${err.message}`);
+            setError(`${errorServerConnection} ${err.message}`);
         }
     }
 
     // LÓGICA DE PERFIL DE USUARIO
     // Función asíncrona para editar el nickname
     const updateNickname = async (formData) => {
+
+        const lang = getSavedLang();
+        const language = lang.UserFunctions;
+
         try {
             const response = await fetch(`${API_URL}/api/perfil`, {
                 method: "POST",
@@ -268,26 +293,30 @@ function UserProviderWrapper(props) {
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.error(`Error al recibir el Nickname actualizado: ${errorResponse}`);
-                setError(`Error al recibir el Nickname actualizado: ${errorResponse}`);
+                console.error(`${errorServerUpdateNickname} ${errorResponse}`);
+                setError(`${errorServerUpdateNickname} ${errorResponse}`);
                 //throw new Error("Error al recibir el Nickname actualizado");
 
                 return;
             }
 
-            console.log("Nickname actualizado correctamente");
+            console.log(`${okUpdateNickname}`);
             //setUser(getDataLoggedUser());
             await getDataLoggedUser();
             return data;
 
         } catch (err) {
-            console.error(`Error en la petición al servidor: ${err.message}`);
-            setError(`Error en la petición al servidor: ${err.message}`);
+            console.error(`${errorServerConnection} ${err.message}`);
+            setError(`${errorServerConnection} ${err.message}`);
         }
     }
 
     // Función asíncrona para editar la contraseña
     const updatePassword = async (password_antigua, password_nueva, password_nueva_confirmation) => {
+
+        const lang = getSavedLang();
+        const language = lang.UserFunctions;
+
         try {
             const response = await fetch(`${API_URL}/api/perfil/password`, {
                 method: "PUT",
@@ -303,20 +332,20 @@ function UserProviderWrapper(props) {
 
             if (!response.ok) {
                 const errorResponse = data.message;
-                console.error(`Error al cambiar la constraseña: ${errorResponse}`);
-                setError(`Error al cambiar la constraseña: ${errorResponse}`);
+                console.error(`${errorServerUpdatePassword} ${errorResponse}`);
+                setError(`${errorServerUpdatePassword} ${errorResponse}`);
                 //throw new Error("Error al recibir los datos para el cambio de constraseña");
 
                 return {error: errorResponse};
             }
 
-            console.log("Contraseña actualizada correctamente");
+            console.log(`${okUpdatePassword}`);
             await getDataLoggedUser();
             return data;
 
         } catch (err) {
-            console.error(`Error en la petición al servidor: ${err.message}`);
-            setError(`Error en la petición al servidor: ${err.message}`);
+            console.error(`${errorServerConnection} ${err.message}`);
+            setError(`${errorServerConnection} ${err.message}`);
         }
     }
 

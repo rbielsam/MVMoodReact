@@ -113,6 +113,22 @@ const es = {
         english: "Inglés",
         spanish: "Español",
         catalan: "Catalán"
+    },
+
+    UserFunctions: {
+        errorServerConnection: "Error al conectar con el servidor: ",
+        errorServerLogin: "Error del servidor en el login: ",
+        okLogin: "Login correcto: ",
+        errorServerRegister: "Error en el registro: ",
+        okRegister: "Registro correcto",
+        errorServerResetPassword: "Error al actualizar la contraseña: ",
+        okResetPassword: "Contraseña actualizada correctamente",
+        errorServerGetDataUserLogged: "Error al recibir datos de usuario: ",
+        okGetDataUserLogged: "Datos de usuario recibidos correctamente",
+        errorServerUpdateNickname: "Error al recibir el Nickname actualizado: ",
+        okUpdateNickname: "Nickname actualizado correctamente",
+        errorServerUpdatePassword: "Error al actualizar la constraseña: ",
+        okUpdatePassword: "Contraseña actualizada correctamente"
     }
 };
 

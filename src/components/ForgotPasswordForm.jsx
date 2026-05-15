@@ -31,7 +31,7 @@ export default function ForgotPasswordForm(props) {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                {error && <p className="error">Error en la petición al servidor: {error.message}</p>}
+                {error && <p className="error">{error.message}</p>}
                 <p>{language.writeEmail}</p>
                 <input type="email" name="email" placeholder={language.email} className="imputs" value={user.email} onChange={handleEmail} required /><br/>
                 <Button>{language.resetPassword}</Button><br/><br/>

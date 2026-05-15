@@ -113,6 +113,22 @@ const cat = {
         english: "Anglès",
         spanish: "Castellà",
         catalan: "Català"
+    },
+
+    UserFunctions: {
+        errorServerConnection: "Error al conectar amb el servidor: ",
+        errorServerLogin: "Error del servidor al login: ",
+        okLogin: "Login correcte: ",
+        errorServerRegister: "Error en el registre: ",
+        okRegister: "Registre correcte",
+        errorServerResetPassword: "Error al actualitzar la contrasenya: ",
+        okResetPassword: "Contrasenya actualitzada correctament",
+        errorServerGetDataUserLogged: "Error al rebre dades d'usuari: ",
+        okGetDataUserLogged: "Dades d'usuario rebuts correctament",
+        errorServerUpdateNickname: "Error al rebre el Nickname actualitzat: ",
+        okUpdateNickname: "Nickname actualitzat correctament",
+        errorServerUpdatePassword: "Error al actualitzar la constrasenya: ",
+        okUpdatePassword: "Contrasenya actualitzada correctament"
     }
 };
 

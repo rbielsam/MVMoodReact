@@ -6,7 +6,11 @@ import babel from '@rolldown/plugin-babel'
 export default defineConfig({
   server: {
     host: "127.0.0.1",
-    port: 5173
+    port: 5173,
+    hmr: {
+      host: "localhost",
+      protocol: "ws"
+    }
   },
   
   plugins: [

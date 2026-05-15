@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,6 +9,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Carlito';
     /*font-family: Arial, sans-serif;*/
     min-height: 100vh;
     width: 100%;
