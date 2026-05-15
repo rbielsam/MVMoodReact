@@ -125,6 +125,7 @@ export default function ProfilePage() {
             <div className="container">
                 <Sidebar />
                 <div className="main">
+                    {error && (<p className="error">{error}</p>)}
                     <h2>{language.settings}</h2>
 
                     <div className="settings-section profile-section">
