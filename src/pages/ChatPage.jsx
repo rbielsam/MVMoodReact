@@ -19,7 +19,7 @@ export default function ChatPage() {
     //const language = lang.content.ChatPage;
     const language = lang.errorChat;
     
-    const { user } = useContext(UserContext);
+    const { user, error, setError } = useContext(UserContext);
     const [chatSeleccionado, setChatSeleccionado] = useState(null);
 
 
@@ -35,7 +35,7 @@ export default function ChatPage() {
                 },
                 body: JSON.stringify({
                     receptor_id: user.id,
-                    contenido: "Hola"
+                    contenido: ""
                 })
             });
 
@@ -63,6 +63,7 @@ export default function ChatPage() {
 
                 <div className="chat-layout">
                     <Sidebar />
+                    {error && (<p className="error">{error}</p>)}
 
                     <div className="chat-left-column">
                         <div className="chat-left-users">
