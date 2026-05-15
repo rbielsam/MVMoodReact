@@ -9,7 +9,7 @@ export default function ChatConversaciones({ onSelectChat, currentUser }) {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
     //const language = lang.content.ConversacionesChat;
-    const language = lang.ConversacionesChat;
+    const language = lang.errorChat;
 
     const [chats, setChats] = useState([]);
     const [cargando, setCargando] = useState(true);
@@ -26,7 +26,7 @@ export default function ChatConversaciones({ onSelectChat, currentUser }) {
                 const data = await res.json();
                 //console.log("Respuesta Back: ", data);
                 if (!Array.isArray(data)) {
-                    console.error("Respuesta del inesperada del servidor: ", data);
+                    console.error(`${language.errorConversacionesChat} ${data}`);
                     setChats([]);
                     return;
                 }
@@ -35,7 +35,7 @@ export default function ChatConversaciones({ onSelectChat, currentUser }) {
                 //console.log("Chats recibidos: ", chats);
 
             } catch (err) {
-                console.error("Error al obtener chats:", err);
+                console.error(`${language.errorServerConnectionChat} ${err}`);
             } finally {
                 setCargando(false);
             }

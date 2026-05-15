@@ -154,6 +154,17 @@ const cat = {
         errorLoadingComments: "Error caregant les comentaris: ",
         okCreateComment: "Comentari creat correctament",
         errorCreatingComment: "Error creant el comentari: "
+    },
+
+    errorChat: {
+        errorServerConnectionChat: "Error al conectar amb el servidor: ",
+        errorReturnChat: "El chat retornat no és vàlid: ",
+        errorFormatoInesperado: "Format inesperat no correcte: ",
+        okLiveMessageReceived: "Missatge en viu rebut: ",
+        ignoredMessage: "Missatge ignorat, ya existeix a la llista",
+        renderedChat: "Chat actualitza´t",
+        errorConversacionesChat: "Resposta inesperada del servidor: ",
+        errorReceivedListUsers: "Error al rebre la llista d'usuaris: "
     }
 };
 

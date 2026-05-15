@@ -154,6 +154,17 @@ const es = {
         errorLoadingComments: "Error cargando los comentarios: ",
         okCreateComment: "Comentario creado correctamente",
         errorCreatingComment: "Error creando el comentario: "
+    },
+
+    errorChat: {
+        errorServerConnectionChat: "Error al conectar con el servidor: ",
+        errorReturnChat: "El chat devuelto no és válido: ",
+        errorFormatoInesperado: "Formato inesperado no correcto: ",
+        okLiveMessageReceived: "Mensaje en vivo recibido: ",
+        ignoredMessage: "Mensaje ignorado, ya existe en la lista",
+        renderedChat: "Chat renderizado",
+        errorConversacionesChat: "Respuesta inesperada del servidor: ",
+        errorReceivedListUsers: "Error al recibir la lista de usuarios: "
     }
 };
 

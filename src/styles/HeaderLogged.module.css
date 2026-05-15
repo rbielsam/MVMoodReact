@@ -20,7 +20,7 @@
     flex-direction: row;
     gap: 10px;
     align-items: center;
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
 }
 /*.dataLoggedContainer {
     display: flex;

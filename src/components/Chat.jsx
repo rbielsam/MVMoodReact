@@ -10,7 +10,7 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
     //const language = lang.content.Chat;
-    const language = lang.Chat;
+    const language = lang.errorChat;
 
     const receptor = selectedChat.usuarios?.find(u => u.id !== currentUser.id);
     if (!selectedChat) return null;
@@ -51,11 +51,11 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
                     setMensajes(data.data.reverse());
                 }
                 else {
-                    console.error("Formato inesperado no correcto: ", data);
+                    console.error(`${language.errorFormatoInesperado} ${data}`);
                 }
 
             } catch (err) {
-                console.error("Error cargando historial:", err);
+                console.error(`${language.errorServerConnectionChat} ${err}`);
 
             } finally {
                 setCargando(false);
@@ -67,14 +67,14 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
         // Suscripción a Pusher (Canal Privado)
         echo.private(`chat.${chatId}`)
             .listen('.nuevo-mensaje', (e) => {
-            console.log("Mensaje en vivo recibido:", e.mensaje.uuid);
+            console.log(`${language.okLiveMessageReceived} ${e.mensaje.uuid}`);
 
             setMensajes((prev) => {
                 // Verificamos si el mensaje ya está en la lista (por su UUID)
                 const yaExiste = prev.some(m => m.uuid === e.mensaje.uuid);
 
                 if (yaExiste) {
-                    console.log("Mensaje ignorado: ya existe en la lista");
+                    console.log(`${language.ignoredMessage}`);
                     return prev; // No hacemos nada, devolvemos la lista como estaba
                 }
 
@@ -126,11 +126,11 @@ export default function Chat({ selectedChat, onBack, currentUser }) {
                 setMensajes(prev => [...prev, data.mensaje]);
             }
         } catch (error) {
-            console.error("Error al enviar:", error);
+            console.error(`${language.errorServerConnectionChat} ${error}`);
         }
     };
 
-    console.log("Chat renderizado");
+    console.log(`${language.renderedChat}`);
 
     return ( 
         <div className="chatbox-container">

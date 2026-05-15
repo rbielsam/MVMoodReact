@@ -17,7 +17,7 @@ export default function ChatPage() {
 
     const {translations, lang, setLang} = useContext(LanguageContext);
     //const language = lang.content.ChatPage;
-    const language = lang.ChatPage;
+    const language = lang.errorChat;
     
     const { user } = useContext(UserContext);
     const [chatSeleccionado, setChatSeleccionado] = useState(null);
@@ -46,13 +46,13 @@ export default function ChatPage() {
                 setChatSeleccionado(data.chat);
             }
             else {
-                console.error("El chat devuelto no és válido: ", data);
+                console.error(`${language.errorReturnChat} ${data}`);
             }
         
 
         } catch (err) {
-            throw new Error ("Error al conectar con el servidor: ", err.message);
-            console.error("Error al conectar con el servidor: ", err.message);
+            console.error(`${language.errorServerConnectionChat} ${err.message}`);
+            throw new Error (`${language.errorServerConnectionChat} ${err.message}`);
         }
     }
 

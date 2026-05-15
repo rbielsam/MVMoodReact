@@ -155,6 +155,17 @@ const en = {
         errorLoadingComments: "Error loading comments: ",
         okCreateComment: "Comment created successfully",
         errorCreatingComment: "Error creating comment: "
+    },
+
+    errorChat: {
+        errorServerConnectionChat: "Error conecting to the server: ",
+        errorReturnChat: "The returned chat is invalid: ",
+        errorFormatoInesperado: "Unexpetec format no correct: ",
+        okLiveMessageReceived: "Live message received: ",
+        ignoredMessage: "Message ignored, already exist in the list",
+        renderedChat: "Rendered chat",
+        errorConversacionesChat: "Unexpeted server response: ",
+        errorReceivedListUsers: "Error receiving user list: "
     }
 };
 
