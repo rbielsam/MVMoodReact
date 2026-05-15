@@ -761,7 +761,7 @@ h2 { color: #333; margin-top: 20px; margin-bottom: 30px; padding-left: 15px; }
 }
 
 .menu-options {
-    display: none;
+    /*display: none;*/
     position: absolute;
     background-color: #fff;
     border: 1px solid #ccc;
